@@ -1,0 +1,26 @@
+{
+  "tool": "built-in imagegen",
+  "reference": "existing PR93 same-hero atlas",
+  "newPosesPerHero": 16,
+  "prompt": "Exact reference identity;4x4transparent sheet;row1takeoff/rise/apex,row2fall/impact/recovery,row3guard/impact/brace/recovery,row4hurt/recovery/dodge/recovery;distinct limb joints;no text/effects.",
+  "assets": [
+    {
+      "hero": "captain",
+      "source": "exec-700c6c69-7531-42cb-bd69-dcca2efc58f0.png",
+      "file": "captain-actions-v2.webp",
+      "sha256": "dfb1de00d0efda38da773d103802f1c4c5b2d84bb80907c8fa65ea910f6e53e7"
+    },
+    {
+      "hero": "shark",
+      "source": "exec-2d7d5096-2740-4891-8edd-ca9025e75578.png",
+      "file": "shark-actions-v2.webp",
+      "sha256": "83311ca067a448fdb826cdecd0419a49b543f02ada5f0569c07998654dbe2f43"
+    },
+    {
+      "hero": "crab",
+      "source": "exec-aa4fd1dc-a139-46e2-8cd1-c4fd2c8a1ed3.png",
+      "file": "crab-actions-v2.webp",
+      "sha256": "a789df638a011b84eb030835ccc33199e21e921a24bfdec716d8f6a11541a0f4"
+    }
+  ]
+}

@@ -1,0 +1,391 @@
+{
+ "schema": 2,
+ "preview": true,
+ "note": "Enemy roster: CraftPix kit-bashed pirates (tools/enemy/roster.json) and CC0 3D-rendered bosses/ghosts (tools/enemy/render3d.json). preview: characters in `review` render so the owner can judge them in real gameplay; approve each character with tools/approve_enemy_anim.py or remove `preview` before release.",
+ "characters": [
+  {
+   "id": "cutthroat",
+   "class": "agile-melee",
+   "manifest": "cutthroat/manifest.json",
+   "binds": [
+    {
+     "type": "pirate",
+     "level": 2
+    },
+    {
+     "type": "pirate",
+     "level": 1
+    }
+   ]
+  },
+  {
+   "id": "gunner",
+   "class": "ranged",
+   "manifest": "gunner/manifest.json",
+   "binds": [
+    {
+     "type": "gunner",
+     "level": 2
+    },
+    {
+     "type": "gunner",
+     "level": 1
+    }
+   ]
+  },
+  {
+   "id": "smuggler",
+   "class": "agile-melee",
+   "manifest": "smuggler/manifest.json",
+   "binds": [
+    {
+     "type": "pirate",
+     "level": 4
+    }
+   ]
+  },
+  {
+   "id": "smuggler-gunner",
+   "class": "ranged",
+   "manifest": "smuggler-gunner/manifest.json",
+   "binds": [
+    {
+     "type": "gunner",
+     "level": 4
+    }
+   ]
+  },
+  {
+   "id": "duelist",
+   "class": "agile-melee",
+   "manifest": "duelist/manifest.json",
+   "binds": [
+    {
+     "type": "duelist",
+     "level": 4
+    }
+   ]
+  },
+  {
+   "id": "brawler",
+   "class": "heavy-melee",
+   "manifest": "brawler/manifest.json",
+   "binds": [
+    {
+     "type": "brute",
+     "level": 4
+    },
+    {
+     "type": "crab",
+     "level": 1
+    }
+   ]
+  },
+  {
+   "id": "storm-cutter",
+   "class": "agile-melee",
+   "manifest": "storm-cutter/manifest.json",
+   "binds": [
+    {
+     "type": "storm",
+     "level": 6
+    }
+   ]
+  },
+  {
+   "id": "thunder-gunner",
+   "class": "ranged",
+   "manifest": "thunder-gunner/manifest.json",
+   "binds": [
+    {
+     "type": "thunder",
+     "level": 6
+    }
+   ]
+  },
+  {
+   "id": "wind-raider",
+   "class": "agile-melee",
+   "manifest": "wind-raider/manifest.json",
+   "binds": [
+    {
+     "type": "raider",
+     "level": 6
+    }
+   ]
+  },
+  {
+   "id": "wrecker",
+   "class": "heavy-melee",
+   "manifest": "wrecker/manifest.json",
+   "binds": [
+    {
+     "type": "wrecker",
+     "level": 7
+    }
+   ]
+  },
+  {
+   "id": "lighthouse-brute",
+   "class": "heavy-melee",
+   "manifest": "lighthouse-brute/manifest.json",
+   "binds": [
+    {
+     "type": "brute",
+     "level": 7
+    },
+    {
+     "type": "tideBrute",
+     "level": 7
+    }
+   ]
+  },
+  {
+   "id": "lookout",
+   "class": "ranged",
+   "manifest": "lookout/manifest.json",
+   "binds": [
+    {
+     "type": "lookout",
+     "level": 7
+    },
+    {
+     "type": "ranged",
+     "level": 1
+    }
+   ]
+  },
+  {
+   "id": "harpooner",
+   "class": "ranged",
+   "manifest": "harpooner/manifest.json",
+   "binds": [
+    {
+     "type": "harpooner",
+     "level": 8
+    }
+   ]
+  },
+  {
+   "id": "dockmaster",
+   "class": "heavy-melee",
+   "manifest": "dockmaster/manifest.json",
+   "binds": [
+    {
+     "type": "dockmaster",
+     "level": 1
+    }
+   ]
+  },
+  {
+   "id": "bomber",
+   "class": "ranged",
+   "manifest": "bomber/manifest.json",
+   "binds": [
+    {
+     "type": "bomber",
+     "level": 4
+    }
+   ]
+  },
+  {
+   "id": "skater",
+   "class": "agile-melee",
+   "manifest": "skater/manifest.json",
+   "binds": [
+    {
+     "type": "skater",
+     "level": 8
+    }
+   ]
+  },
+  {
+   "id": "revenant",
+   "class": "heavy-melee",
+   "manifest": "revenant/manifest.json",
+   "binds": [
+    {
+     "type": "revenant",
+     "level": 8
+    }
+   ]
+  },
+  {
+   "id": "shieldguard",
+   "class": "heavy-melee",
+   "manifest": "shieldguard/manifest.json",
+   "binds": [
+    {
+     "type": "shieldguard",
+     "level": 9
+    }
+   ]
+  },
+  {
+   "id": "halberdier",
+   "class": "heavy-melee",
+   "manifest": "halberdier/manifest.json",
+   "binds": [
+    {
+     "type": "halberdier",
+     "level": 9
+    }
+   ]
+  },
+  {
+   "id": "bombardier",
+   "class": "ranged",
+   "manifest": "bombardier/manifest.json",
+   "binds": [
+    {
+     "type": "bombardier",
+     "level": 9
+    }
+   ]
+  },
+  {
+   "id": "marine",
+   "class": "agile-melee",
+   "manifest": "marine/manifest.json",
+   "binds": [
+    {
+     "type": "marine",
+     "level": 10
+    }
+   ]
+  },
+  {
+   "id": "deckgunner",
+   "class": "ranged",
+   "manifest": "deckgunner/manifest.json",
+   "binds": [
+    {
+     "type": "deckgunner",
+     "level": 10
+    }
+   ]
+  },
+  {
+   "id": "bone-cutthroat",
+   "class": "agile-melee",
+   "manifest": "bone-cutthroat/manifest.json",
+   "binds": [
+    {
+     "type": "skeleton",
+     "level": 3
+    },
+    {
+     "type": "skeleton",
+     "level": 5
+    }
+   ]
+  },
+  {
+   "id": "cursed-archer",
+   "class": "ranged",
+   "manifest": "cursed-archer/manifest.json",
+   "binds": [
+    {
+     "type": "archer",
+     "level": 3
+    },
+    {
+     "type": "archer",
+     "level": 5
+    }
+   ]
+  },
+  {
+   "id": "totem-guard",
+   "class": "heavy-melee",
+   "manifest": "totem-guard/manifest.json",
+   "binds": [
+    {
+     "type": "shield",
+     "level": 3
+    },
+    {
+     "type": "shield",
+     "level": 5
+    }
+   ]
+  },
+  {
+   "id": "boss3d-guardian",
+   "class": "heavy-melee",
+   "manifest": "boss3d-guardian/manifest.json",
+   "binds": [
+    {
+     "type": "boss",
+     "level": 3
+    }
+   ]
+  },
+  {
+   "id": "boss3d-shaman",
+   "class": "heavy-melee",
+   "manifest": "boss3d-shaman/manifest.json",
+   "binds": [
+    {
+     "type": "boss",
+     "level": 5
+    }
+   ]
+  },
+  {
+   "id": "boss3d-storm-captain",
+   "class": "heavy-melee",
+   "manifest": "boss3d-storm-captain/manifest.json",
+   "binds": [
+    {
+     "type": "boss",
+     "level": 6
+    }
+   ]
+  },
+  {
+   "id": "boss3d-lightkeeper",
+   "class": "heavy-melee",
+   "manifest": "boss3d-lightkeeper/manifest.json",
+   "binds": [
+    {
+     "type": "boss",
+     "level": 7
+    }
+   ]
+  },
+  {
+   "id": "boss3d-rime",
+   "class": "heavy-melee",
+   "manifest": "boss3d-rime/manifest.json",
+   "binds": [
+    {
+     "type": "boss",
+     "level": 8
+    }
+   ]
+  },
+  {
+   "id": "boss3d-admiral",
+   "class": "heavy-melee",
+   "manifest": "boss3d-admiral/manifest.json",
+   "binds": [
+    {
+     "type": "boss",
+     "level": 10
+    }
+   ]
+  },
+  {
+   "id": "ghost3d",
+   "class": "agile-melee",
+   "manifest": "ghost3d/manifest.json",
+   "binds": [
+    {
+     "type": "ghost",
+     "level": 5
+    }
+   ]
+  }
+ ]
+}

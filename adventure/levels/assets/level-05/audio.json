@@ -1,0 +1,21 @@
+{
+ "teleport": "sfx-teleport.ogg",
+ "orb": "sfx-orb.ogg",
+ "orbPop": "sfx-orbPop.ogg",
+ "runeErupt": "sfx-runeErupt.ogg",
+ "runeWarn": "sfx-runeWarn.ogg",
+ "shieldBreak": "sfx-shieldBreak.ogg",
+ "totemPlace": "sfx-totemPlace.ogg",
+ "totemPickup": "sfx-totemPickup.ogg",
+ "chant": "sfx-chant.ogg",
+ "thunder": "sfx-thunder.ogg",
+ "geyser": "sfx-geyser.ogg",
+ "geyserWarn": "sfx-geyserWarn.ogg",
+ "batScreech": "sfx-batScreech.ogg",
+ "batFlap": "sfx-batFlap.ogg",
+ "jumpPad": "sfx-jumpPad.ogg",
+ "quicksand": "sfx-quicksand.ogg",
+ "spiritGate": "sfx-spiritGate.ogg",
+ "curseLifted": "sfx-curseLifted.ogg",
+ "bossFall": "sfx-bossFall.ogg"
+}

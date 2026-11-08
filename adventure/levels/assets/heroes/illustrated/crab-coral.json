@@ -1,0 +1,349 @@
+{
+  "v": 1,
+  "hero": "crab",
+  "image": "crab-coral-atlas.webp",
+  "frameW": 256,
+  "frameH": 288,
+  "columns": 4,
+  "frames": 24,
+  "anchor": [
+    128,
+    270
+  ],
+  "scale": 0.8,
+  "animations": {
+    "idle": {
+      "frames": [
+        0,
+        1
+      ],
+      "fps": 3
+    },
+    "run": {
+      "frames": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "fps": 12
+    },
+    "jump": {
+      "frames": [
+        8
+      ],
+      "fps": 1
+    },
+    "fall": {
+      "frames": [
+        9
+      ],
+      "fps": 1
+    },
+    "land": {
+      "frames": [
+        10
+      ],
+      "fps": 1
+    },
+    "attackA": {
+      "frames": [
+        11,
+        12,
+        13
+      ],
+      "fps": 1
+    },
+    "attackB": {
+      "frames": [
+        11,
+        12,
+        13
+      ],
+      "fps": 1
+    },
+    "attackC": {
+      "frames": [
+        11,
+        12,
+        13
+      ],
+      "fps": 1
+    },
+    "throw": {
+      "frames": [
+        14,
+        15
+      ],
+      "fps": 1
+    },
+    "dash": {
+      "frames": [
+        16
+      ],
+      "fps": 1
+    },
+    "dashAttack": {
+      "frames": [
+        17
+      ],
+      "fps": 1
+    },
+    "hurt": {
+      "frames": [
+        18
+      ],
+      "fps": 1
+    },
+    "block": {
+      "frames": [
+        19
+      ],
+      "fps": 1
+    },
+    "death": {
+      "frames": [
+        20,
+        21
+      ],
+      "fps": 6
+    },
+    "victory": {
+      "frames": [
+        22,
+        23
+      ],
+      "fps": 4
+    }
+  },
+  "source_files": [
+    {
+      "name": "exec-2803d3f4-773a-4338-bab6-18592153d3f0.png",
+      "sha256": "fdb5d582b4100d6ceafc70b9ea28309550eaf9f1c26ded955b4f6b8db2f5134f",
+      "role": "original imagegen Coral King costume art, spacious 4x6 pose sheet"
+    }
+  ],
+  "source_frames": [
+    {
+      "source": 0,
+      "rect": [
+        50,
+        66,
+        159,
+        148
+      ]
+    },
+    {
+      "source": 0,
+      "rect": [
+        304,
+        64,
+        165,
+        151
+      ]
+    },
+    {
+      "source": 0,
+      "rect": [
+        553,
+        85,
+        177,
+        130
+      ]
+    },
+    {
+      "source": 0,
+      "rect": [
+        808,
+        87,
+        178,
+        128
+      ]
+    },
+    {
+      "source": 0,
+      "rect": [
+        39,
+        342,
+        180,
+        131
+      ]
+    },
+    {
+      "source": 0,
+      "rect": [
+        296,
+        342,
+        178,
+        133
+      ]
+    },
+    {
+      "source": 0,
+      "rect": [
+        554,
+        339,
+        177,
+        134
+      ]
+    },
+    {
+      "source": 0,
+      "rect": [
+        808,
+        343,
+        179,
+        131
+      ]
+    },
+    {
+      "source": 0,
+      "rect": [
+        43,
+        560,
+        173,
+        168
+      ]
+    },
+    {
+      "source": 0,
+      "rect": [
+        296,
+        602,
+        181,
+        127
+      ]
+    },
+    {
+      "source": 0,
+      "rect": [
+        550,
+        600,
+        181,
+        131
+      ]
+    },
+    {
+      "source": 0,
+      "rect": [
+        812,
+        578,
+        181,
+        154
+      ]
+    },
+    {
+      "source": 0,
+      "rect": [
+        37,
+        880,
+        178,
+        110
+      ]
+    },
+    {
+      "source": 0,
+      "rect": [
+        296,
+        880,
+        182,
+        110
+      ]
+    },
+    {
+      "source": 0,
+      "rect": [
+        556,
+        804,
+        172,
+        180
+      ]
+    },
+    {
+      "source": 0,
+      "rect": [
+        807,
+        852,
+        188,
+        137
+      ]
+    },
+    {
+      "source": 0,
+      "rect": [
+        33,
+        1151,
+        192,
+        96
+      ]
+    },
+    {
+      "source": 0,
+      "rect": [
+        298,
+        1154,
+        184,
+        93
+      ]
+    },
+    {
+      "source": 0,
+      "rect": [
+        565,
+        1096,
+        158,
+        146
+      ]
+    },
+    {
+      "source": 0,
+      "rect": [
+        814,
+        1100,
+        174,
+        143
+      ]
+    },
+    {
+      "source": 0,
+      "rect": [
+        45,
+        1371,
+        180,
+        131
+      ]
+    },
+    {
+      "source": 0,
+      "rect": [
+        297,
+        1415,
+        175,
+        83
+      ]
+    },
+    {
+      "source": 0,
+      "rect": [
+        557,
+        1324,
+        176,
+        173
+      ]
+    },
+    {
+      "source": 0,
+      "rect": [
+        810,
+        1337,
+        181,
+        161
+      ]
+    }
+  ],
+  "status": "24-frame costume artwork packed and visually inspected; browser integration and Android validation pending",
+  "outfit": "outfit-coral",
+  "art_provenance": "docs/development/hero-art-20261025/CORAL-KING.md"
+}

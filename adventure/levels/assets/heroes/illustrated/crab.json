@@ -1,0 +1,346 @@
+{
+  "v": 1,
+  "hero": "crab",
+  "image": "crab-atlas.webp",
+  "frameW": 256,
+  "frameH": 288,
+  "columns": 4,
+  "frames": 24,
+  "anchor": [
+    128,
+    270
+  ],
+  "scale": 0.8,
+  "animations": {
+    "idle": {
+      "frames": [
+        0,
+        1
+      ],
+      "fps": 3
+    },
+    "run": {
+      "frames": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "fps": 12
+    },
+    "jump": {
+      "frames": [
+        8
+      ],
+      "fps": 1
+    },
+    "fall": {
+      "frames": [
+        9
+      ],
+      "fps": 1
+    },
+    "land": {
+      "frames": [
+        10
+      ],
+      "fps": 1
+    },
+    "attackA": {
+      "frames": [
+        11,
+        12,
+        13
+      ],
+      "fps": 1
+    },
+    "attackB": {
+      "frames": [
+        11,
+        12,
+        13
+      ],
+      "fps": 1
+    },
+    "attackC": {
+      "frames": [
+        11,
+        12,
+        13
+      ],
+      "fps": 1
+    },
+    "throw": {
+      "frames": [
+        14,
+        15
+      ],
+      "fps": 1
+    },
+    "dash": {
+      "frames": [
+        16
+      ],
+      "fps": 1
+    },
+    "dashAttack": {
+      "frames": [
+        17
+      ],
+      "fps": 1
+    },
+    "hurt": {
+      "frames": [
+        18
+      ],
+      "fps": 1
+    },
+    "block": {
+      "frames": [
+        19
+      ],
+      "fps": 1
+    },
+    "death": {
+      "frames": [
+        20,
+        21
+      ],
+      "fps": 6
+    },
+    "victory": {
+      "frames": [
+        22,
+        23
+      ],
+      "fps": 4
+    }
+  },
+  "source_files": [
+    {
+      "name": "exec-2f8201e9-588c-440f-bfe7-70ce935ffd30.png",
+      "sha256": "1eb1220e62f1dcab62374691b2c1680a29db7022da3df2174b386f228c318652"
+    }
+  ],
+  "source_frames": [
+    {
+      "source": 0,
+      "rect": [
+        18,
+        56,
+        207,
+        193
+      ]
+    },
+    {
+      "source": 0,
+      "rect": [
+        275,
+        50,
+        211,
+        199
+      ]
+    },
+    {
+      "source": 0,
+      "rect": [
+        514,
+        84,
+        246,
+        167
+      ]
+    },
+    {
+      "source": 0,
+      "rect": [
+        775,
+        82,
+        246,
+        169
+      ]
+    },
+    {
+      "source": 0,
+      "rect": [
+        15,
+        301,
+        248,
+        171
+      ]
+    },
+    {
+      "source": 0,
+      "rect": [
+        283,
+        304,
+        245,
+        171
+      ]
+    },
+    {
+      "source": 0,
+      "rect": [
+        534,
+        316,
+        241,
+        168
+      ]
+    },
+    {
+      "source": 0,
+      "rect": [
+        784,
+        312,
+        240,
+        170
+      ]
+    },
+    {
+      "source": 0,
+      "rect": [
+        25,
+        517,
+        228,
+        225
+      ]
+    },
+    {
+      "source": 0,
+      "rect": [
+        263,
+        575,
+        261,
+        170
+      ]
+    },
+    {
+      "source": 0,
+      "rect": [
+        516,
+        615,
+        240,
+        155
+      ]
+    },
+    {
+      "source": 0,
+      "rect": [
+        765,
+        563,
+        251,
+        211
+      ]
+    },
+    {
+      "source": 0,
+      "rect": [
+        12,
+        855,
+        288,
+        166
+      ]
+    },
+    {
+      "source": 0,
+      "rect": [
+        272,
+        867,
+        270,
+        154
+      ]
+    },
+    {
+      "source": 0,
+      "rect": [
+        547,
+        795,
+        218,
+        244
+      ]
+    },
+    {
+      "source": 0,
+      "rect": [
+        772,
+        865,
+        242,
+        174
+      ]
+    },
+    {
+      "source": 0,
+      "rect": [
+        17,
+        1113,
+        265,
+        129
+      ]
+    },
+    {
+      "source": 0,
+      "rect": [
+        272,
+        1117,
+        284,
+        133
+      ]
+    },
+    {
+      "source": 0,
+      "rect": [
+        555,
+        1074,
+        204,
+        186
+      ]
+    },
+    {
+      "source": 0,
+      "rect": [
+        788,
+        1070,
+        214,
+        187
+      ]
+    },
+    {
+      "source": 0,
+      "rect": [
+        14,
+        1353,
+        230,
+        148
+      ]
+    },
+    {
+      "source": 0,
+      "rect": [
+        254,
+        1389,
+        260,
+        109
+      ]
+    },
+    {
+      "source": 0,
+      "rect": [
+        544,
+        1268,
+        218,
+        237
+      ]
+    },
+    {
+      "source": 0,
+      "rect": [
+        781,
+        1294,
+        229,
+        213
+      ]
+    }
+  ],
+  "status": "review-candidate; browser verified only after integration; Android untested"
+}

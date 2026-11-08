@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 300" fill="none">
+<!-- Original Pirate Strike engraved brass frame. No reference artwork. -->
+<defs><linearGradient id="brass" x1="0" y1="0" x2="180" y2="300" gradientUnits="userSpaceOnUse"><stop stop-color="#6f4222"/><stop offset=".18" stop-color="#fce3a5"/><stop offset=".33" stop-color="#b47c36"/><stop offset=".6" stop-color="#715027"/><stop offset=".8" stop-color="#e6bf75"/><stop offset="1" stop-color="#684221"/></linearGradient><linearGradient id="edge"><stop stop-color="#f6d99b"/><stop offset="1" stop-color="#9a6934"/></linearGradient></defs>
+<path d="M18 3H72L90 10 108 3H162L177 18V282L162 297H108L90 290 72 297H18L3 282V18Z" stroke="#03101a" stroke-width="6"/>
+<path d="M18 3H72L90 10 108 3H162L177 18V282L162 297H108L90 290 72 297H18L3 282V18Z" stroke="url(#brass)" stroke-width="5"/>
+<path d="M20 9H69L90 17 111 9H160L171 20V280L160 291H111L90 283 69 291H20L9 280V20Z" stroke="url(#edge)" opacity=".7"/>
+<path d="M14 47V24L24 14H55M125 14H156L166 24V47M14 253V276L24 286H55M125 286H156L166 276V253" stroke="#e9c98a" stroke-width="1.4"/>
+<path d="M7 64 12 69 7 74 12 79 7 84M173 64 168 69 173 74 168 79 173 84M7 216 12 221 7 226 12 231 7 236M173 216 168 221 173 226 168 231 173 236" stroke="#e3bb76"/>
+<g stroke="url(#brass)" stroke-width="2"><path d="m17 19 8 8m-8 0 8-8m130 0 8 8m-8 0 8-8M17 273l8 8m-8 0 8-8m130 0 8 8m-8 0 8-8"/><path d="m74 4 16 9 16-9M74 296l16-9 16 9"/></g>
+<g fill="#ebca8c" stroke="#5b3a20"><circle cx="5" cy="45" r="2"/><circle cx="175" cy="45" r="2"/><circle cx="5" cy="255" r="2"/><circle cx="175" cy="255" r="2"/><path d="m90 5 4 4-4 4-4-4zm0 282 4 4-4 4-4-4z"/></g></svg>

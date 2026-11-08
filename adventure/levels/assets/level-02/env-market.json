@@ -1,0 +1,271 @@
+{
+ "page": "env-market.webp",
+ "scale": 2,
+ "size": [
+  1024,
+  1024
+ ],
+ "items": {
+  "barrel": {
+   "rect": [
+    130,
+    484,
+    116,
+    124
+   ],
+   "world": [
+    57.9,
+    62
+   ],
+   "src": "PNG/Environment/Wooden_Barrel.png"
+  },
+  "bucket": {
+   "rect": [
+    366,
+    484,
+    73,
+    80
+   ],
+   "world": [
+    36.7,
+    40
+   ],
+   "src": "PNG/Environment/Bucket.png"
+  },
+  "crate": {
+   "rect": [
+    248,
+    484,
+    116,
+    116
+   ],
+   "world": [
+    58.0,
+    58
+   ],
+   "src": "PNG/Environment/Wooden_Crate.png"
+  },
+  "fence_a": {
+   "rect": [
+    456,
+    0,
+    177,
+    184
+   ],
+   "world": [
+    88.3,
+    92
+   ],
+   "src": "PNG/Environment/Fence_01.png"
+  },
+  "fence_b": {
+   "rect": [
+    635,
+    0,
+    218,
+    184
+   ],
+   "world": [
+    109.0,
+    92
+   ],
+   "src": "PNG/Environment/Fence_02.png"
+  },
+  "fill": {
+   "rect": [
+    0,
+    484,
+    128,
+    128
+   ],
+   "world": [
+    64,
+    64.0
+   ],
+   "src": "PNG/Platformer/Ground_06.png"
+  },
+  "grass_a": {
+   "rect": [
+    503,
+    484,
+    116,
+    60
+   ],
+   "world": [
+    58,
+    30.0
+   ],
+   "src": "PNG/Environment/Grass_01.png"
+  },
+  "grass_b": {
+   "rect": [
+    739,
+    484,
+    116,
+    56
+   ],
+   "world": [
+    58,
+    27.8
+   ],
+   "src": "PNG/Environment/Grass_02.png"
+  },
+  "lantern": {
+   "rect": [
+    0,
+    0,
+    240,
+    352
+   ],
+   "world": [
+    119.9,
+    176
+   ],
+   "src": "PNG/Environment/Street_Lantern.png"
+  },
+  "rock_a": {
+   "rect": [
+    621,
+    484,
+    116,
+    59
+   ],
+   "world": [
+    58,
+    29.5
+   ],
+   "src": "PNG/Environment/Rock_03.png"
+  },
+  "rock_b": {
+   "rect": [
+    441,
+    484,
+    60,
+    62
+   ],
+   "world": [
+    30,
+    31.2
+   ],
+   "src": "PNG/Environment/Rock_05.png"
+  },
+  "side_left": {
+   "rect": [
+    650,
+    354,
+    128,
+    128
+   ],
+   "world": [
+    64,
+    64.0
+   ],
+   "src": "PNG/Platformer/Ground_05.png"
+  },
+  "side_right": {
+   "rect": [
+    780,
+    354,
+    128,
+    128
+   ],
+   "world": [
+    64,
+    64.0
+   ],
+   "src": "PNG/Platformer/Ground_07.png"
+  },
+  "sign": {
+   "rect": [
+    242,
+    0,
+    212,
+    192
+   ],
+   "world": [
+    105.9,
+    96
+   ],
+   "src": "PNG/Environment/Sign_01.png"
+  },
+  "top_grass_a": {
+   "rect": [
+    0,
+    354,
+    128,
+    128
+   ],
+   "world": [
+    64,
+    64.0
+   ],
+   "src": "PNG/Platformer/Ground_10.png"
+  },
+  "top_grass_b": {
+   "rect": [
+    130,
+    354,
+    128,
+    128
+   ],
+   "world": [
+    64,
+    64.0
+   ],
+   "src": "PNG/Platformer/Ground_11.png"
+  },
+  "top_grass_c": {
+   "rect": [
+    260,
+    354,
+    128,
+    128
+   ],
+   "world": [
+    64,
+    64.0
+   ],
+   "src": "PNG/Platformer/Ground_12.png"
+  },
+  "top_left": {
+   "rect": [
+    390,
+    354,
+    128,
+    128
+   ],
+   "world": [
+    64,
+    64.0
+   ],
+   "src": "PNG/Platformer/Ground_04.png"
+  },
+  "top_right": {
+   "rect": [
+    520,
+    354,
+    128,
+    128
+   ],
+   "world": [
+    64,
+    64.0
+   ],
+   "src": "PNG/Platformer/Ground_08.png"
+  },
+  "top_stone": {
+   "rect": [
+    855,
+    0,
+    128,
+    128
+   ],
+   "world": [
+    64,
+    64.0
+   ],
+   "src": "PNG/Platformer/Ground_02.png"
+  }
+ },
+ "license": "CraftPix 'Free Market Cartoon 2D Game Tileset' (https://craftpix.net/file-licenses/): graded, resampled in-game atlas only; source archives are not shipped"
+}

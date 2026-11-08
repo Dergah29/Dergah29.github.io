@@ -1,0 +1,8 @@
+{
+  "schema": 2,
+  "id": "pirate-cutthroat",
+  "status": "art_pending",
+  "note": "Waiting for the professionally authored frames described in docs/enemy-animation/pirate-cutthroat.md. Pack them with tools/pack_enemy_anim.py; the packer writes this file.",
+  "pages": [],
+  "clips": {}
+}

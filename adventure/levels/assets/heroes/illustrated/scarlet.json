@@ -1,0 +1,123 @@
+{
+ "v": 1,
+ "hero": "scarlet",
+ "image": "scarlet-atlas.webp",
+ "frameW": 256,
+ "frameH": 288,
+ "columns": 4,
+ "frames": 24,
+ "anchor": [
+  128,
+  270
+ ],
+ "scale": 0.8,
+ "animations": {
+  "idle": {
+   "fps": 3,
+   "frames": [
+    0,
+    1
+   ]
+  },
+  "run": {
+   "fps": 12,
+   "frames": [
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+   ]
+  },
+  "jump": {
+   "fps": 1,
+   "frames": [
+    8
+   ]
+  },
+  "fall": {
+   "fps": 1,
+   "frames": [
+    9
+   ]
+  },
+  "land": {
+   "fps": 1,
+   "frames": [
+    10
+   ]
+  },
+  "attackA": {
+   "fps": 1,
+   "frames": [
+    11,
+    12,
+    13
+   ]
+  },
+  "attackB": {
+   "fps": 1,
+   "frames": [
+    11,
+    12,
+    13
+   ]
+  },
+  "attackC": {
+   "fps": 1,
+   "frames": [
+    11,
+    12,
+    13
+   ]
+  },
+  "throw": {
+   "fps": 1,
+   "frames": [
+    14,
+    15
+   ]
+  },
+  "dash": {
+   "fps": 1,
+   "frames": [
+    16
+   ]
+  },
+  "dashAttack": {
+   "fps": 1,
+   "frames": [
+    17
+   ]
+  },
+  "hurt": {
+   "fps": 1,
+   "frames": [
+    18
+   ]
+  },
+  "block": {
+   "fps": 1,
+   "frames": [
+    19
+   ]
+  },
+  "death": {
+   "fps": 6,
+   "frames": [
+    20,
+    21
+   ]
+  },
+  "victory": {
+   "fps": 4,
+   "frames": [
+    22,
+    23
+   ]
+  }
+ },
+ "source": "assets/heroes/scarlet.png + scarlet-run.png (Mari's own paintings), posed by tools/build_mari_arena_atlas.py",
+ "status": "Arena only (PirateHeroes.loadIllustration('scarlet', {arena:true})); browser verified; Android untested"
+}

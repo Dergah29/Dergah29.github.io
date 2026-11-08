@@ -1,0 +1,54 @@
+{
+  "scope": "Arena only; original generated assets, not Adventure replacements",
+  "generator": "built-in imagegen",
+  "assets": [
+    {
+      "file": "props-v1.webp",
+      "source": "exec-cd7c96b0-541d-4959-be4d-ecda428893a6.png",
+      "prompt": "Nine separate transparent painted pirate props: chest, cannon, platform, puzzle pedestal, compass shrine, lever, crate, barrel, flagpole base. Strict3x3 arrangement, no characters/text; side-on game view, wood/brass/stone/rope.",
+      "encoding": "WebP quality86; alpha retained for props",
+      "bytes": 323214,
+      "sha256": "15d66a2c0e03b8d0af60ee42094874d9dec1b36f5ea2bbc978b730a943ba445b"
+    },
+    {
+      "file": "temple-v1.webp",
+      "source": "exec-10387799-3f6f-44b7-b4f9-3b5d5a76ef5f.png",
+      "prompt": "Original moonlit coastal pirate temple, carved stone compass pillars, vines, lanterns, ocean depth; empty side-on gameplay terrace, no characters or UI.",
+      "encoding": "WebP quality86; alpha retained for props",
+      "bytes": 197190,
+      "sha256": "f9224d304466f17307cab1f1b0f29571d4dc4fbbd46f4a794c4ff46a2e412ab5"
+    },
+    {
+      "file": "cliffs-v1.webp",
+      "source": "exec-7862e772-35b6-4339-a3f2-d888337c7e44.png",
+      "prompt": "Original tropical pirate cliffside race, distant bridges and waterfalls, empty side-on foreground boardwalk, no characters or UI.",
+      "encoding": "WebP quality86",
+      "bytes": 252700,
+      "sha256": "cfbbec033b6c00ecb2e5ceb3bbf6a77f2f20d4d15da1b70a739fc9a18d59b0f7"
+    },
+    {
+      "file": "island-v1.webp",
+      "source": "exec-a0fed308-4819-4bfc-b4d6-9fede62cf7a7.png",
+      "prompt": "Original sunset pirate island fort, distant ships and towers, empty side-on courtyard terrace for dynamic flags and control shrines, no characters or UI.",
+      "encoding": "WebP quality86",
+      "bytes": 191056,
+      "sha256": "626d905e4117779d0fdd9df31645357f8151cafa611c76a16656e98e62f38497"
+    },
+    {
+      "file": "traps-v1.webp",
+      "source": "exec-b49ba51f-8f9d-4da0-862c-e32ce5a5f4f0.png",
+      "prompt": "Original transparent side-on two-state timber/brass/steel floor trap; seven extended spikes and identical retracted housing, no UI or characters.",
+      "bytes": 170272,
+      "sha256": "1930621c416967675b00f5015cad833b9a33bedadc2e829987f3a507c7921365",
+      "encoding": "WebP quality86 with alpha"
+    },
+    {
+      "file": "atmosphere-v1.webp",
+      "source": "exec-cb2ef270-40a6-4d1c-8575-e71ab203c367.png",
+      "prompt": "Original premium painted 2D pirate environmental overlay atlas, four equal 2x2 transparent cells: upper left translucent coastal mist; upper right tropical palm fronds and weathered rope; lower left brass hanging harbor lantern with amber flame; lower right moonlit sea foam highlights. Generous cell margins, no overlaps, no text/UI/characters/watermark or copied game assets. Detailed hand painted wood/brass/foliage matching original sunset harbors.",
+      "encoding": "WebP quality87 method6,1536x1024,RGBA alpha0–254 retained",
+      "bytes": 328898,
+      "sha256": "675d93d96dfb75e96d42aef700caf84a8c4ee6092913ccb31871d277c5a5fb18"
+    }
+  ]
+}

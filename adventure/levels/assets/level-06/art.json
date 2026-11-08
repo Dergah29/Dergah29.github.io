@@ -1,0 +1,114 @@
+{
+ "lighthouse": {
+  "anchor": [
+   186,
+   900
+  ],
+  "lamp": [
+   186,
+   129
+  ],
+  "rod": [
+   186,
+   0
+  ],
+  "door": [
+   186,
+   834
+  ]
+ },
+ "mirror": {
+  "center": [
+   60,
+   45
+  ]
+ },
+ "post": {
+  "anchor": [
+   24,
+   180
+  ],
+  "pivot": [
+   24,
+   12
+  ]
+ },
+ "lantern": {
+  "anchor": [
+   51,
+   162
+  ],
+  "light": [
+   51,
+   96
+  ]
+ },
+ "winch": {
+  "anchor": [
+   66,
+   114
+  ],
+  "hub": [
+   66,
+   54
+  ]
+ },
+ "captain-body": {
+  "anchor": [
+   120,
+   324
+  ],
+  "neck": [
+   120,
+   57
+  ],
+  "shoulderF": [
+   183,
+   78
+  ],
+  "shoulderB": [
+   57,
+   78
+  ]
+ },
+ "captain-head": {
+  "neck": [
+   84,
+   156
+  ],
+  "eye": [
+   71.1,
+   91.80000000000001
+  ]
+ },
+ "captain-arm": {
+  "shoulder": [
+   39,
+   18
+  ],
+  "hand": [
+   39,
+   141
+  ]
+ },
+ "captain-arm-back": {
+  "shoulder": [
+   39,
+   18
+  ],
+  "hand": [
+   39,
+   141
+  ]
+ },
+ "captain-sabre": {
+  "grip": [
+   33,
+   240
+  ],
+  "tip": [
+   40.2,
+   12
+  ]
+ }
+}

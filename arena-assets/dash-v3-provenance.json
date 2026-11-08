@@ -1,0 +1,31 @@
+{
+  "tool": "built-in imagegen",
+  "prompt": "Exact same hero reference,5horizontal transparent full-body articulated dash sword attack poses:preparation,push-off,slash,impact follow-through,recovery. Preserve anatomy/style/costume;no text/background/transformed copies.",
+  "newFramesPerHero": 5,
+  "assets": [
+    {
+      "hero": "sailor",
+      "source": "exec-87968d7b-91ea-4b25-8490-58692b60599d.png",
+      "file": "sailor-dash-v3.webp",
+      "sha256": "c4d6fb3ce06620ad6c133d1ac12a4ef17d6a65dead0c9dd946d1ab0d0f2f1ac6"
+    },
+    {
+      "hero": "captain",
+      "source": "exec-e4fa35f2-9789-4563-9b2b-21f1fb8a75f4.png",
+      "file": "captain-dash-v3.webp",
+      "sha256": "b3e2e5e20e15c399c3409bec25cabb60f5377dc40aad6cb5155d02918de41195"
+    },
+    {
+      "hero": "shark",
+      "source": "exec-9da0c744-bc21-4a47-a865-ffce436d3ce8.png",
+      "file": "shark-dash-v3.webp",
+      "sha256": "951000c4e1b235144f1f966a745412d44838b75edc2585819768a0b414a14b91"
+    },
+    {
+      "hero": "crab",
+      "source": "exec-ef054b38-7b80-44bf-84f7-8386a5cf6989.png",
+      "file": "crab-dash-v3.webp",
+      "sha256": "81c7e45ffd5cae9d28f721cdc1b3415eb8ea184733c655df74276c209ed8b045"
+    }
+  ]
+}

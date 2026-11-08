@@ -1,0 +1,91 @@
+{
+ "source": "v3/harbor/assets/adventure.webp",
+ "size": [
+  619,
+  500
+ ],
+ "anchor": [
+  320,
+  372
+ ],
+ "unit": 0.8,
+ "flags": [
+  {
+   "x": 236,
+   "y": 57,
+   "w": 46,
+   "h": 43,
+   "pole": [
+    239,
+    59
+   ]
+  },
+  {
+   "x": 355,
+   "y": 18,
+   "w": 47,
+   "h": 44,
+   "pole": [
+    358,
+    20
+   ]
+  },
+  {
+   "x": 434,
+   "y": 76,
+   "w": 40,
+   "h": 36,
+   "pole": [
+    437,
+    78
+   ]
+  },
+  {
+   "x": 128,
+   "y": 178,
+   "w": 42,
+   "h": 34,
+   "pole": [
+    131,
+    180
+   ]
+  }
+ ],
+ "foretop": {
+  "pivot": [
+   440,
+   200
+  ]
+ },
+ "maintop": {
+  "pivot": [
+   365,
+   92
+  ]
+ },
+ "deck": {
+  "captain": [
+   165,
+   262
+  ],
+  "crew": [
+   [
+    300,
+    322
+   ],
+   [
+    392,
+    326
+   ],
+   [
+    455,
+    318
+   ]
+  ],
+  "nest": [
+   348,
+   150
+  ]
+ },
+ "note": "Layers share the source canvas. Enemy and damage variants are derived from the same painted ship."
+}

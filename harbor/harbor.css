@@ -1,0 +1,464 @@
+#pirate-harbor{--ink:#071d27;--navy:#0a2632;--gold:#dfb86a;--pale:#fff0cd;--sea:#91d9d1;--muted:#b1c5c5;--serif:Georgia,'Times New Roman',serif;font:14px/1.35 system-ui,sans-serif;color:var(--pale)}#pirate-harbor *{box-sizing:border-box}#pirate-harbor{margin:0;background:#071d27;overflow:hidden}#pirate-harbor button,#pirate-harbor select{font:inherit;color:inherit}#pirate-harbor button{cursor:pointer;touch-action:manipulation}#pirate-harbor button:focus-visible,#pirate-harbor select:focus-visible,#pirate-harbor [role=button]:focus-visible{outline:2px solid #fff2ad;outline-offset:3px}#pirate-harbor button:disabled{opacity:.48;cursor:default}#pirate-harbor button:active:not(:disabled){filter:brightness(1.2)}#pirate-harbor .sf-app{position:fixed;inset:0;overflow:hidden}#pirate-harbor .harborScene{position:absolute;inset:0;background:#153f48}#pirate-harbor .harborScene > canvas,#pirate-harbor .harborScene > svg{position:absolute;width:100%;height:100%;inset:0}#pirate-harbor .worldSvg{overflow:hidden}#pirate-harbor .buildingZone{fill:transparent;stroke:transparent;stroke-width:3;pointer-events:all;cursor:pointer;transition:fill .25s,stroke .25s;vector-effect:non-scaling-stroke}#pirate-harbor .buildingZone:hover,#pirate-harbor .buildingZone:focus-visible,#pirate-harbor .buildingZone.selected{fill:#ffdb7b16;stroke:#ffe6a8b0;filter:drop-shadow(0 0 7px #ffe397);outline:none}#pirate-harbor .worldSvg .entrance{pointer-events:none}#pirate-harbor .entrance circle{fill:#102f38b8;stroke:#f2dba2;stroke-width:2}#pirate-harbor .entrance use{color:#ffedb8}#pirate-harbor .worldSvg .landmarkName{pointer-events:none;opacity:0;transition:opacity .2s}#pirate-harbor .worldSvg.guides .landmarkName{opacity:1}#pirate-harbor .landmarkName text{fill:#fff1ce;stroke:#10252a;stroke-width:7;paint-order:stroke;font:600 28px Georgia;text-anchor:middle}#pirate-harbor .hubTop{position:absolute;inset:0 0 auto;display:flex;justify-content:space-between;align-items:flex-start;padding:15px 22px;background:linear-gradient(#0418218c,transparent);pointer-events:none;height:80px}#pirate-harbor .brand{font:700 21px/1 var(--serif);letter-spacing:2.8px;text-shadow:0 2px 7px #000}#pirate-harbor .brand small{display:block;font:10px system-ui;letter-spacing:3.5px;color:#e9dbb6;margin-top:6px}#pirate-harbor .hubTools{display:flex;align-items:center;gap:9px;pointer-events:auto}#pirate-harbor .wallet{font:14px var(--serif);background:#0b2731a6;border:1px solid #c5a56377;padding:7px 13px;border-radius:20px;text-shadow:0 1px #000}#pirate-harbor .wallet svg{height:14px;width:14px;vertical-align:-2px;color:var(--gold);margin-right:4px}#pirate-harbor .round{border:1px solid #d9c08499;border-radius:50%;width:44px;height:44px;padding:10px;display:grid;place-items:center;background:radial-gradient(at 30% 10%,#45606cdd,#08222eee);box-shadow:0 3px 10px #0005;color:#f6dca4}#pirate-harbor .round svg{width:22px;height:22px}#pirate-harbor .hubBottom{position:absolute;bottom:max(12px,env(safe-area-inset-bottom));left:22px;right:22px;display:flex;align-items:end;justify-content:space-between;pointer-events:none}#pirate-harbor .crewShortcut{pointer-events:auto;background:#09262dd9;border:1px solid #bf9e58aa;padding:0 15px 0 0;display:flex;align-items:center;gap:7px;height:53px;border-radius:4px 18px 18px 4px;box-shadow:0 4px 20px #0005}#pirate-harbor .crewShortcut img{height:68px;width:52px;object-fit:contain;align-self:end;filter:drop-shadow(0 2px 2px #000)}#pirate-harbor .crewShortcut b{font:700 16px var(--serif);display:block}#pirate-harbor .crewShortcut small{font:9px system-ui;letter-spacing:1px;color:#a8d9cf;display:block;margin-top:2px}#pirate-harbor .status{position:absolute;bottom:5px;left:50%;transform:translateX(-50%);font-size:8px;letter-spacing:1px;color:#fff1d7ad;text-shadow:0 1px 3px #000;pointer-events:none;white-space:nowrap}#pirate-harbor .hubHint{position:absolute;left:50%;top:83%;transform:translate(-50%,-50%);font:italic 13px var(--serif);background:#071c24a8;padding:5px 17px;border-radius:20px;pointer-events:none;color:#f7e7c6;animation:hintout 1s 8s forwards}@keyframes hintout{to{opacity:0}}#pirate-harbor .visitPlaque{position:absolute;bottom:25px;left:50%;transform:translateX(-50%);width:310px;background:linear-gradient(100deg,#122f36f5,#081c25f5);border:1px solid #e8c980;border-radius:3px;padding:12px 14px;box-shadow:0 6px 30px #0008;display:flex;align-items:center;gap:14px;animation:arrive .2s ease-out}#pirate-harbor .visitPlaque h2{font:700 21px var(--serif);margin:0 0 3px}#pirate-harbor .visitPlaque p{font-size:10px;margin:0;color:#a9cbc7}#pirate-harbor .visitPlaque button{margin-left:auto}#pirate-harbor .goldButton{border:1px solid #fff0aa;padding:10px 19px;min-height:44px;background:linear-gradient(#edcd84,#b28239);color:#261c13;text-shadow:0 1px #fff5;font-weight:750;box-shadow:inset 0 0 0 2px #a8763044,0 3px 10px #0003;clip-path:polygon(8px 0,calc(100% - 8px) 0,100% 8px,100% calc(100% - 8px),calc(100% - 8px) 100%,8px 100%,0 calc(100% - 8px),0 8px)}#pirate-harbor .quietButton{min-height:44px;padding:8px 15px;background:#18343dd9;border:1px solid #a98b5366;color:#ebdec0}#pirate-harbor .smallLabel{color:#9bd8cb;font:600 9px system-ui;letter-spacing:1.8px;text-transform:uppercase}#pirate-harbor .screenRoot{position:absolute;inset:0;background:#0b2731;animation:arrive .25s ease-out;overflow:hidden}#pirate-harbor .roomBackdrop{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.8}#pirate-harbor .roomShade{position:absolute;inset:0;background:linear-gradient(90deg,#08232b33,#061c25b3)}#pirate-harbor .pageTop{position:absolute;top:0;left:0;right:0;height:65px;display:flex;align-items:center;gap:13px;padding:9px 20px;background:linear-gradient(#051a24db,transparent);z-index:3}#pirate-harbor .pageTitle h1{font:700 24px var(--serif);margin:0;letter-spacing:.5px}#pirate-harbor .pageTitle small{font-size:9px;color:#c0d7d2;letter-spacing:1.3px}#pirate-harbor .pageTop .right{margin-left:auto;display:flex;align-items:center;gap:10px}#pirate-harbor .prototypeTag{font-size:9px;letter-spacing:1.4px;color:#b9d1c6}#pirate-harbor .collectionBody{position:absolute;top:72px;bottom:20px;left:22px;right:22px;display:flex;flex-direction:column;gap:12px}#pirate-harbor .collectionToolbar{display:flex;align-items:center;gap:8px}#pirate-harbor .segmented{display:flex;border-bottom:1px solid #a68a5177;gap:6px}#pirate-harbor .tabButton{background:transparent;border:0;border-bottom:2px solid transparent;color:#aec2bf;min-height:44px;padding:8px 16px;font:700 14px var(--serif)}#pirate-harbor .tabButton.active{color:#ffe7ae;border-color:#e1bc71;background:linear-gradient(transparent,#d1aa4c1c)}#pirate-harbor .filterSet{margin-left:auto;display:flex;gap:7px}#pirate-harbor select{background:#0c2933db;border:1px solid #8c784d80;padding:8px 25px 8px 10px;min-height:44px;font-size:11px;max-width:155px;border-radius:0;color:#ddd7c4}#pirate-harbor .heroGrid{display:flex;gap:13px;flex:1;min-height:0;overflow:auto;padding:3px 4px 4px;scroll-snap-type:x mandatory}#pirate-harbor .crewCard{position:relative;border:0;border-top:2px solid var(--accent);border-bottom:1px solid #d6bc7b;background:linear-gradient(135deg,#153845fa,#071d27f5);min-width:145px;flex:1;max-width:260px;min-height:240px;isolation:isolate;padding:0;overflow:hidden;text-align:left;scroll-snap-align:center;box-shadow:0 7px 17px #0006,inset 1px 0 #caa35c66,inset -1px 0 #caa35c66;clip-path:polygon(9px 0,calc(100% - 9px) 0,100% 9px,100% calc(100% - 9px),calc(100% - 9px) 100%,9px 100%,0 calc(100% - 9px),0 9px);transition:filter .2s,transform .2s}#pirate-harbor .crewCard:hover{filter:brightness(1.13);transform:translateY(-2px)}#pirate-harbor .cardHalo{position:absolute;inset:0 0 10%;background:radial-gradient(ellipse at 50% 35%,var(--halo),transparent 65%);opacity:.55}#pirate-harbor .cardArt{position:absolute;top:3%;left:0;width:100%;height:73%;object-fit:contain;object-position:center 25%;filter:drop-shadow(0 9px 10px #0007);z-index:1}#pirate-harbor .crewCard[data-id=scarlet] .cardArt{height:87%;top:-4%;object-position:50% 0}#pirate-harbor .cardOrnament{position:absolute;inset:8px;border:1px solid #dbb87333;pointer-events:none}#pirate-harbor .cardOrnament:before,#pirate-harbor .cardOrnament:after{content:'✧';color:var(--accent);position:absolute;top:-11px;font-size:19px}#pirate-harbor .cardOrnament:before{left:-6px}#pirate-harbor .cardOrnament:after{right:-6px}#pirate-harbor .levelSeal{position:absolute;top:9px;left:10px;z-index:3;color:#fff0bf;background:#071e2acf;min-width:32px;border-bottom:1px solid var(--accent);padding:4px 5px;text-align:center;font:700 18px var(--serif)}#pirate-harbor .levelSeal small{display:block;font:7px system-ui;letter-spacing:1px}#pirate-harbor .roleSeal{position:absolute;top:10px;right:11px;z-index:3;color:var(--accent)}#pirate-harbor .roleSeal svg{width:20px;height:20px;filter:drop-shadow(0 2px 2px #000)}#pirate-harbor .cardInfo{position:absolute;bottom:0;left:0;right:0;padding:25px 11px 9px;background:linear-gradient(transparent,#081e29 27%);z-index:2}#pirate-harbor .cardInfo h2{font:700 22px var(--serif);margin:0 0 1px;color:#fff0cf}#pirate-harbor .cardInfo .rarity{color:var(--accent);font-size:8px;letter-spacing:1.8px;text-transform:uppercase}#pirate-harbor .cardInfo .role{font-size:9px;color:#bed0cc}#pirate-harbor .starline{display:flex;gap:3px;color:#edca7c;align-items:center}#pirate-harbor .starline svg{width:16px;height:16px}#pirate-harbor .starline .off{opacity:.22}#pirate-harbor .cardInfo .starline{margin:5px 0}#pirate-harbor .fragTrack{height:3px;background:#38525a;margin-top:5px}#pirate-harbor .fragTrack i{display:block;background:#90dacb;height:100%}#pirate-harbor .fragText{font-size:8px;color:#a9c7c0;margin-top:4px;display:flex;justify-content:space-between}#pirate-harbor .collectionFoot{color:#c7d5c5;font-size:9px;letter-spacing:.5px;display:flex;justify-content:space-between;padding:0 4px}#pirate-harbor .empty{padding:40px;background:#082530c9;border:1px solid #caac6c66;text-align:center;margin:auto;color:#d9dfd0}#pirate-harbor .heroBody{position:absolute;top:57px;bottom:18px;left:0;right:0;display:grid;grid-template-columns:42% 58%}#pirate-harbor .heroStage{position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden}#pirate-harbor .stageGlow{position:absolute;width:85%;height:65%;bottom:0;background:radial-gradient(ellipse,#f8ca6e40,transparent 65%);filter:blur(8px)}#pirate-harbor .heroStage img{position:absolute;height:108%;width:94%;object-fit:contain;bottom:-3%;filter:drop-shadow(0 9px 10px #0008)}#pirate-harbor .heroStage canvas{position:absolute;inset:0;width:100%;height:100%;filter:drop-shadow(0 8px 12px #0006)}#pirate-harbor .stageBase{position:absolute;left:15%;right:15%;bottom:4px;border-bottom:1px solid #e8bd6f99;background:radial-gradient(ellipse,#f1cc7240,transparent 70%);height:18px}#pirate-harbor .stageCaption{position:absolute;bottom:9px;left:20px;font-size:8px;color:#e9debf;letter-spacing:1px;text-shadow:0 2px 4px #000}#pirate-harbor .heroPanel{position:relative;margin:5px 25px 0 0;padding:12px 18px 10px;overflow:auto;background:linear-gradient(110deg,#092831d9,#061d27ed);border-top:1px solid #ddbb78aa;border-bottom:1px solid #ddbb7866;box-shadow:0 7px 30px #0005}#pirate-harbor .heroPanel:before,#pirate-harbor .heroPanel:after{content:'◆';position:absolute;top:-9px;color:#e1c18a;font-size:12px}#pirate-harbor .heroPanel:before{left:0}#pirate-harbor .heroPanel:after{right:0}#pirate-harbor .heroHeading{display:flex;align-items:center;gap:12px}#pirate-harbor .heroHeading h2{font:700 30px/1 var(--serif);margin:0 0 4px}#pirate-harbor .heroHeading .starline{margin-left:auto}#pirate-harbor .heroSub{display:flex;gap:9px;align-items:center;font-size:10px;color:#b3c8c5}#pirate-harbor .rarityText{color:var(--accent);text-transform:uppercase;letter-spacing:1.3px;font-size:9px}#pirate-harbor .levelRow{display:flex;align-items:center;gap:9px;margin-top:11px;font-size:10px;color:#c5dbd2}#pirate-harbor .levelRow b{color:#fff0c9;font:700 17px var(--serif)}#pirate-harbor .xpbar{height:6px;flex:1;background:#06151d;border:1px solid #8fb1aa44;overflow:hidden}#pirate-harbor .xpbar i{height:100%;display:block;background:linear-gradient(90deg,#297f83,#a6ead7);box-shadow:0 0 7px #8cdfd0;transition:width .5s}#pirate-harbor .detailTabs{display:flex;gap:13px;border-bottom:1px solid #9f895444;margin-top:6px}#pirate-harbor .detailTabs .tabButton{font-size:12px;padding:5px 0;min-height:35px}#pirate-harbor .statGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:13px 0}#pirate-harbor .statItem{border-bottom:1px solid #d9b96944;padding-bottom:7px}#pirate-harbor .statItem small{display:block;font-size:8px;letter-spacing:1.3px;color:#a8c3c1;margin-bottom:2px}#pirate-harbor .statItem strong{font:700 22px var(--serif);color:#ffe9b8}#pirate-harbor .statItem svg{width:12px;height:12px;color:#c6aa70}#pirate-harbor .skillRows{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0}#pirate-harbor .skill{display:flex;gap:8px;align-items:center;padding:8px;border:1px solid #b0945b55;background:#35536322;font-size:10px}#pirate-harbor .skill svg{width:22px;height:22px;color:#e4c482}#pirate-harbor .skill small{font-size:8px;color:#b4c8c3;display:block}#pirate-harbor .fairness{display:flex;align-items:center;gap:6px;font-size:9px;color:#9dd4c5;margin:8px 0}#pirate-harbor .fairness svg{width:13px;height:13px}#pirate-harbor .panelActions{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}#pirate-harbor .panelActions button{flex:1;font-size:11px;white-space:nowrap}#pirate-harbor .muted{color:#9fbab9}#pirate-harbor .micro{font-size:8px;line-height:1.5;letter-spacing:.2px}#pirate-harbor .levelHeroName{position:absolute;top:5px;left:22px;text-shadow:0 2px 4px #000}#pirate-harbor .levelHeroName b{font:700 22px var(--serif)}#pirate-harbor .levelHeroName small{display:block;font-size:8px;color:#c0d4cf;letter-spacing:1.5px;margin-top:4px}#pirate-harbor .levelHeroName .starline{margin-top:5px}#pirate-harbor .upgradeTitle{font:700 23px var(--serif);margin:0 0 3px}#pirate-harbor .upgradeSubtitle{font-size:9px;color:#afcbc4}#pirate-harbor .levelJourney{display:flex;gap:15px;align-items:center;margin:10px 0}#pirate-harbor .levelMedal{width:58px;height:65px;display:grid;place-items:center;align-content:center;background:linear-gradient(#224953,#091d29);border:1px solid #a68a56;clip-path:polygon(50% 0,95% 18%,95% 76%,50% 100%,5% 76%,5% 18%);color:#f0d291}#pirate-harbor .levelMedal b{font:700 30px/1 var(--serif)}#pirate-harbor .levelMedal small{font-size:7px;letter-spacing:1.5px}#pirate-harbor .levelMedal.next{background:linear-gradient(#dab86e,#68451d);color:#fff4d2;border-color:#fff0ba;box-shadow:0 0 20px #f7cf6a66}#pirate-harbor .levelArrow{color:#e2be70;font:26px var(--serif)}#pirate-harbor .rewardSummary{margin-left:auto;text-align:right;font-size:9px;color:#adcac5}#pirate-harbor .rewardSummary b{font:700 23px var(--serif);display:block;color:#a6e8d4}#pirate-harbor .changes{width:100%;border-collapse:collapse;font-size:11px;margin:7px 0}#pirate-harbor .changes td{padding:5px 0;border-bottom:1px solid #8b80502e}#pirate-harbor .changes td:first-child{color:#b3cbc7;font-size:10px}#pirate-harbor .changes td:nth-child(2){color:#e0d8bd;text-align:right}#pirate-harbor .changes td:last-child{color:#a9e9d2;text-align:right;font:700 16px var(--serif)}#pirate-harbor .rewardRibbon{padding:9px 10px;border-left:2px solid #9dddc9;background:linear-gradient(90deg,#4f9a8e25,transparent);display:flex;align-items:center;gap:9px;font-size:10px}#pirate-harbor .rewardRibbon svg{width:22px;height:22px;color:#e0c378}#pirate-harbor .rewardRibbon b{display:block;font-size:11px}#pirate-harbor .rewardRibbon small{font-size:8px;color:#adc9c1}#pirate-harbor .upgradeDone{color:#ffe8aa;animation:celebrate .5s ease-out}#pirate-harbor .fragments{display:flex;gap:10px;align-items:center;margin:10px 0;padding:9px;border:1px solid #acbda255;background:linear-gradient(100deg,#2a4f58aa,#142e36aa)}#pirate-harbor .fragmentPortrait{width:45px;height:49px;object-fit:cover;object-position:50% 10%;background:#2c263f;border:1px solid #b39bce;clip-path:polygon(22% 0,78% 0,100% 25%,88% 85%,50% 100%,12% 85%,0 25%)}#pirate-harbor .fragmentCount{flex:1}#pirate-harbor .fragmentCount strong{font:700 24px var(--serif);color:#ffe8ae}#pirate-harbor .fragmentCount small{display:block;font-size:8px;color:#c5d1c4}#pirate-harbor .fragmentCount .fragTrack{height:5px}#pirate-harbor .costChips{display:flex;gap:6px;font-size:9px;margin-top:5px}#pirate-harbor .costChips span{padding:4px 7px;background:#0b252c;border:1px solid #b9a25c44;color:#bde4d1}#pirate-harbor .starJourney{display:flex;align-items:center;justify-content:space-between;margin:12px 0 5px;gap:5px}#pirate-harbor .starJourney .starline svg{width:21px;height:21px}#pirate-harbor .starJourney .arrow{font-size:22px;color:#eac775}#pirate-harbor .starJourney small{display:block;text-align:center;font-size:8px;color:#b1c3bd;margin-top:3px}#pirate-harbor .confirmSummary{font-size:10px;color:#f5dbb0;margin:8px 0;padding:8px;background:#a9863730;border:1px solid #cfa45466}#pirate-harbor .modalShade{position:absolute;inset:0;background:#02141dc9;display:grid;place-items:center;z-index:20;padding:18px;backdrop-filter:blur(5px)}#pirate-harbor .destination{position:relative;width:min(760px,94vw);max-height:92dvh;display:grid;grid-template-columns:34% 66%;border:1px solid #d9bc79;background:#092630;box-shadow:0 20px 80px #000c;animation:arrive .2s;overflow:auto}#pirate-harbor .destinationArt{position:relative;min-height:270px;background:#0c2932;overflow:hidden}#pirate-harbor .destinationArt canvas{width:100%;height:100%;position:absolute;object-fit:cover}#pirate-harbor .destinationArt:after{position:absolute;inset:0;content:'';background:linear-gradient(0deg,#08232b,transparent 35%)}#pirate-harbor .destinationTitle{position:absolute;bottom:18px;left:17px;right:15px;z-index:1;font:700 26px var(--serif);text-shadow:0 2px 5px #000}#pirate-harbor .destinationMain{padding:20px;position:relative}#pirate-harbor .destinationMain h2{font:700 25px var(--serif);margin:0 45px 6px 0}#pirate-harbor .destinationMain .round{position:absolute;right:12px;top:12px}#pirate-harbor .destDescription{color:#bdd0c7;font-size:11px;line-height:1.6;margin:10px 0}#pirate-harbor .destTiles{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin:12px 0}#pirate-harbor .destTile{min-height:58px;border:1px solid #bd9d5b66;background:linear-gradient(135deg,#21414a,#102c36);display:flex;align-items:center;padding:9px;gap:8px;text-align:left}#pirate-harbor .destTile svg{width:23px;height:23px;color:#e2bd76;flex-shrink:0}#pirate-harbor .destTile b{font:700 14px var(--serif);display:block}#pirate-harbor .destTile small{font-size:8px;color:#acc6bd}#pirate-harbor .toast{position:absolute;top:15px;left:50%;transform:translateX(-50%);z-index:50;color:#ffe5a4;background:#102f36f5;border:1px solid #d2b570;padding:10px 20px;font-size:12px;box-shadow:0 4px 20px #0008;animation:arrive .2s}#pirate-harbor .effectOverlay{position:absolute;inset:0;z-index:9;pointer-events:none;background:radial-gradient(at 70% 50%,#ffe79450,transparent 55%);animation:effectFade 1.2s forwards}#pirate-harbor .screenSeal{position:absolute;right:20px;bottom:3px;font-size:7px;letter-spacing:1px;color:#bcd0c388;pointer-events:none}#pirate-harbor .spriteNotice{font-size:8px;color:#bcd2c6;margin-top:9px}#pirate-harbor .notesPanel{max-width:650px;padding:24px;background:#0b2b35;border:1px solid #d0b778;max-height:90dvh;overflow:auto}#pirate-harbor .notesPanel h2{font:700 25px var(--serif);margin:0 0 8px}#pirate-harbor .notesPanel p,#pirate-harbor .notesPanel li{font-size:12px;color:#cfdbce;line-height:1.7}#pirate-harbor .notesPanel li{margin-bottom:7px}#pirate-harbor .notesPanel strong{color:#ffe9b1}#pirate-harbor .notesPanel .panelActions{position:sticky;bottom:0;background:#0b2b35}#pirate-harbor.reduce *{animation:none!important;transition:none!important}@keyframes arrive{from{opacity:0;translate:0 7px}to{opacity:1;translate:0 0}}@keyframes celebrate{50%{filter:brightness(1.6)}}@keyframes effectFade{to{opacity:0}}@media(max-height:390px){#pirate-harbor .pageTop{height:55px;padding:6px 17px}#pirate-harbor .pageTitle h1{font-size:21px}#pirate-harbor .collectionBody{top:57px;bottom:16px;gap:7px}#pirate-harbor .crewCard{min-height:223px}#pirate-harbor .heroBody{top:49px;bottom:13px}#pirate-harbor .heroPanel{padding:9px 14px;margin-right:18px}#pirate-harbor .heroHeading h2{font-size:26px}#pirate-harbor .statGrid{margin:9px 0}#pirate-harbor .statItem strong{font-size:20px}#pirate-harbor .levelJourney{margin:7px 0}#pirate-harbor .levelMedal{height:56px;width:50px}#pirate-harbor .levelMedal b{font-size:25px}#pirate-harbor .changes td{padding:4px 0}#pirate-harbor .fragments{margin:7px 0;padding:7px}#pirate-harbor .starJourney{margin:8px 0 4px}#pirate-harbor .upgradeTitle{font-size:21px}#pirate-harbor .panelActions{margin-top:7px}#pirate-harbor .spriteNotice{margin-top:5px}#pirate-harbor .heroSub{font-size:9px}#pirate-harbor .levelRow{margin-top:7px}}@media(max-width:740px){#pirate-harbor{font-size:12px}#pirate-harbor .hubTop{padding:10px 14px}#pirate-harbor .brand{font-size:17px}#pirate-harbor .brand small{font-size:8px}#pirate-harbor .wallet{font-size:12px;padding:7px 9px}#pirate-harbor .hubTools{gap:5px}#pirate-harbor .round{width:44px;height:44px;padding:12px}#pirate-harbor .hubBottom{left:14px;right:14px}#pirate-harbor .crewShortcut{height:44px}#pirate-harbor .crewShortcut img{height:57px;width:44px}#pirate-harbor .crewShortcut b{font-size:14px}#pirate-harbor .crewShortcut small{font-size:8px}#pirate-harbor .visitPlaque{width:260px;bottom:20px;padding:9px 11px}#pirate-harbor .visitPlaque h2{font-size:17px}#pirate-harbor .visitPlaque p{font-size:8px}#pirate-harbor .visitPlaque .goldButton{padding:7px 12px}#pirate-harbor .collectionBody{left:12px;right:12px}#pirate-harbor .collectionToolbar{gap:5px;flex-wrap:wrap}#pirate-harbor .tabButton{padding:6px 9px;font-size:12px}#pirate-harbor .filterSet{gap:4px}#pirate-harbor .filterSet select{font-size:9px;padding:5px 8px;max-width:98px}#pirate-harbor .heroGrid{gap:9px}#pirate-harbor .crewCard{min-width:139px}#pirate-harbor .heroBody{grid-template-columns:36% 64%}#pirate-harbor .heroPanel{margin-right:12px;padding:10px 12px}#pirate-harbor .heroHeading h2{font-size:25px}#pirate-harbor .heroHeading{gap:6px}#pirate-harbor .heroHeading .starline{gap:1px}#pirate-harbor .heroHeading .starline svg{width:12px}#pirate-harbor .heroSub{font-size:8px;gap:5px}#pirate-harbor .rarityText{font-size:8px}#pirate-harbor .statGrid{gap:6px}#pirate-harbor .statItem strong{font-size:19px}#pirate-harbor .statItem small{font-size:7px;letter-spacing:.6px}#pirate-harbor .levelRow{font-size:8px;gap:5px}#pirate-harbor .levelRow b{font-size:15px}#pirate-harbor .panelActions button{font-size:10px;padding:8px 9px}#pirate-harbor .detailTabs{gap:10px}#pirate-harbor .detailTabs .tabButton{font-size:11px}#pirate-harbor .stageCaption{left:12px;font-size:7px}#pirate-harbor .levelHeroName{left:13px}#pirate-harbor .levelHeroName b{font-size:18px}#pirate-harbor .upgradeTitle{font-size:21px}#pirate-harbor .rewardSummary b{font-size:19px}#pirate-harbor .rewardRibbon{padding:7px;font-size:9px}#pirate-harbor .rewardRibbon b{font-size:10px}#pirate-harbor .starJourney .starline svg{width:15px;height:15px}#pirate-harbor .starJourney{gap:3px}#pirate-harbor .fragments{gap:7px}#pirate-harbor .fragmentPortrait{width:37px;height:42px}#pirate-harbor .fragmentCount strong{font-size:20px}#pirate-harbor .costChips{font-size:8px;gap:3px}#pirate-harbor .costChips span{padding:4px}#pirate-harbor .collectionFoot{font-size:8px}#pirate-harbor .prototypeTag{font-size:7px}#pirate-harbor .destination{grid-template-columns:29% 71%;max-height:95dvh}#pirate-harbor .destinationMain{padding:15px}#pirate-harbor .destinationTitle{font-size:21px;left:12px}#pirate-harbor .destinationMain h2{font-size:22px}#pirate-harbor .destTiles{gap:6px}#pirate-harbor .destTile{padding:7px;min-height:52px}#pirate-harbor .destTile b{font-size:12px}#pirate-harbor .destTile svg{width:18px}#pirate-harbor .pageTop{padding-left:12px;padding-right:12px}#pirate-harbor .pageTop .right{gap:5px}#pirate-harbor .pageTitle small{font-size:8px}}@media(prefers-reduced-motion:reduce){#pirate-harbor *{animation:none!important;transition:none!important}}#pirate-harbor /* Compact upgrade layouts keep the reward and confirmation visible on a phone. */
+.heroPanel:has(.upgradeTitle) .levelJourney{margin:7px 0}#pirate-harbor .heroPanel:has(.upgradeTitle) .levelMedal{height:55px;width:50px}#pirate-harbor .heroPanel:has(.upgradeTitle) .levelMedal b{font-size:26px}#pirate-harbor .heroPanel:has(.upgradeTitle) .changes{margin:5px 0}#pirate-harbor .heroPanel:has(.upgradeTitle) .changes td{padding:4px 0}#pirate-harbor .heroPanel:has(.upgradeTitle) .rewardRibbon{padding:6px 8px}#pirate-harbor .heroPanel:has(.upgradeTitle) .panelActions{margin-top:7px}#pirate-harbor .heroPanel:has(.upgradeTitle) .fairness{margin:5px 0}#pirate-harbor .heroPanel:has(.upgradeTitle) .micro{margin:5px 0}#pirate-harbor .heroPanel:has(.upgradeTitle) .starJourney{margin:8px 0 3px}#pirate-harbor .heroPanel:has(.upgradeTitle) .fragments{margin:7px 0;padding:7px}#pirate-harbor .heroPanel:has(.upgradeTitle) .confirmSummary{margin:5px 0;padding:5px 8px}#pirate-harbor .heroPanel:has(.upgradeTitle) .panelActions{position:sticky;bottom:-10px;background:#092630;z-index:3;padding:4px 0}#pirate-harbor .heroPanel:has(.upgradeTitle) .changes td{padding:3px 0;line-height:1.1;height:23px}#pirate-harbor .heroPanel:has(.upgradeTitle) .changes td:last-child{font-size:15px;line-height:1.1}#pirate-harbor .heroPanel:has(.upgradeTitle) .rewardRibbon{padding:5px 8px;min-height:34px}#pirate-harbor .heroPanel:has(.upgradeTitle) .rewardRibbon span{line-height:1.1}#pirate-harbor .heroPanel:has(.upgradeTitle) .rewardRibbon small{display:block;margin-top:3px}#pirate-harbor .heroPanel:has(.upgradeTitle) .upgradeSubtitle{line-height:1.2}#pirate-harbor .heroPanel:has(.upgradeTitle) .fragments{min-height:55px}#pirate-harbor .heroPanel:has(.upgradeTitle) .fragmentPortrait{height:39px;width:36px}#pirate-harbor .hubBottom > .round{pointer-events:auto}#pirate-harbor .hubTop{padding-left:max(22px,env(safe-area-inset-left));padding-right:max(22px,env(safe-area-inset-right))}#pirate-harbor .pageTop{padding-left:max(20px,env(safe-area-inset-left));padding-right:max(20px,env(safe-area-inset-right))}
+
+#pirate-harbor[hidden]{display:none!important}.menu-screen.sf-menu>:not(#pirate-harbor){display:none!important}#pirate-harbor{position:fixed;inset:0;z-index:20;overflow:hidden;color:#fff0cd;font:14px/1.35 system-ui,sans-serif}#pirate-harbor .sf-app{position:absolute;inset:0}#pirate-harbor .migration{color:#e9d08e;font-size:10px;padding:8px;border:1px solid #b49b5b66}#pirate-harbor .selectHero{background:#163e43;border:1px solid #b4bf9b;color:#eff3d4;min-height:44px;padding:8px 12px}#pirate-harbor .hubTop{pointer-events:none}#pirate-harbor .hubTools{pointer-events:auto}#pirate-harbor .filterSet select{border-radius:0;background:#0c2933db;border:1px solid #8c784d80;font:11px system-ui;min-height:44px;padding:8px 24px 8px 10px;color:#ddd7c4}
+
+
+/* Premium hero review pass — original brasswork, existing authored portraits. */
+#pirate-harbor .screenRoot{background:#091d23}
+#pirate-harbor .roomBackdrop{object-position:center 55%;filter:saturate(.9)}
+#pirate-harbor .roomShade{background:linear-gradient(90deg,#06171f10 5%,#07151d52 40%,#06151de8 100%)}
+#pirate-harbor .pageTop{height:67px;background:linear-gradient(#06141eea,#081821b3 60%,transparent);gap:13px;padding:8px 24px}
+#pirate-harbor .pageTitle h1{font:600 29px/1.05 var(--serif);letter-spacing:.1px;color:#ffedc5;text-shadow:0 2px 8px #000}
+#pirate-harbor .pageTitle small{font-size:9px;letter-spacing:2.4px;color:#cbb689;margin-top:6px}
+#pirate-harbor .round{background:linear-gradient(145deg,#263c43ed,#091b24);border:1px solid #b89a60aa;box-shadow:inset 0 0 0 3px #0a1a22,0 2px 10px #0005;min-width:44px;min-height:44px}
+#pirate-harbor .prototypeTag{font-size:8px;color:#c7b58b;letter-spacing:1.3px}
+#pirate-harbor .collectionBody{top:69px;left:25px;right:25px;bottom:23px;gap:8px}
+#pirate-harbor .collectionToolbar{height:44px;flex-shrink:0;align-items:center;border-bottom:1px solid #c4a56a45;padding-bottom:4px}
+#pirate-harbor .segmented{background:#0b2029bb;border:1px solid #a68a5255;padding:0 4px}
+#pirate-harbor .tabButton{min-height:44px;padding:8px 14px;font-size:12px;color:#c4c9bd;background:transparent}
+#pirate-harbor .tabButton.active{color:#ffe0a2;text-shadow:0 0 14px #d4a24666;background:linear-gradient(transparent,#b894401e);box-shadow:inset 0 -2px #dab675}
+#pirate-harbor .filterSet select{min-height:40px;background:#0c2028b3;border:1px solid #a68a5255;font-size:10px}
+#pirate-harbor .heroGrid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;padding:2px;overflow:visible;min-height:0}
+#pirate-harbor .crewCard{width:100%;min-width:0;min-height:0;max-width:none;clip-path:none;border:0;border-radius:5px 5px 12px 12px;background:radial-gradient(ellipse at 50% 35%,color-mix(in srgb,var(--halo),transparent 57%),transparent 65%),linear-gradient(165deg,#193740e8,#06141df5 78%);overflow:visible;box-shadow:0 10px 20px #0009;transition:filter .2s}
+#pirate-harbor .crewCard:hover{transform:none}
+#pirate-harbor .crewCard[aria-current=true]{box-shadow:0 0 20px #efbd5b33,0 10px 18px #0008}
+#pirate-harbor .portraitFrame{position:absolute;inset:-2px;width:calc(100% + 4px);height:calc(100% + 4px);z-index:4;pointer-events:none;object-fit:fill}
+#pirate-harbor .cardHalo{position:absolute;inset:12% 5% 30%;background:radial-gradient(ellipse,var(--halo),transparent 68%);opacity:.38;filter:blur(10px)}
+#pirate-harbor .cardOrnament{position:absolute;inset:12px 10px 105px;opacity:.28;border:1px solid var(--accent);border-radius:50% 50% 0 0;transform:none}
+#pirate-harbor .cardArt,#pirate-harbor .crewCard[data-id=scarlet] .cardArt{top:12px;left:4%;width:92%;height:70%;object-fit:contain;object-position:center bottom;filter:drop-shadow(0 7px 4px #0008);z-index:1}
+#pirate-harbor .crewCard[data-id=scarlet] .cardArt{top:-2px;height:80%;width:100%;left:0}
+#pirate-harbor .cardInfo{padding:25px 13px 13px;bottom:0;left:3px;right:3px;background:linear-gradient(transparent,#0b1b23ed 20%,#07161efc 55%);border-radius:0 0 10px 10px;text-align:center}
+#pirate-harbor .cardInfo .rarity{font-size:8px;font-weight:650;letter-spacing:1.6px}
+#pirate-harbor .cardInfo h2{font:600 24px/1.1 var(--serif);letter-spacing:.1px;margin:3px 0;color:#ffeac6}
+#pirate-harbor .cardInfo .role{font-size:10px;color:#c5c9b9}
+#pirate-harbor .starline{display:inline-flex;color:#f7cb6e;gap:4px;filter:drop-shadow(0 1px 1px #301b09)}
+#pirate-harbor .starline svg{height:19px;width:19px;fill:#edc46d;stroke:#ffe1a2;stroke-width:.65}
+#pirate-harbor .starline svg.off{fill:#17272b;stroke:#b39d7477;opacity:1}
+#pirate-harbor .cardInfo .starline{display:flex;justify-content:center;margin:7px 0 6px;gap:3px}
+#pirate-harbor .cardInfo .starline svg{width:18px;height:18px}
+#pirate-harbor .fragTrack{height:4px;border:1px solid #a4ac8366;background:#020c13;margin:0 2px;border-radius:3px}
+#pirate-harbor .fragTrack i{background:linear-gradient(90deg,#427c7a,#a0d6c0);box-shadow:0 0 6px #86cbb666}
+#pirate-harbor .fragText{font-size:9px;color:#c5cebf;margin:4px 2px 0}
+#pirate-harbor .levelSeal{top:13px;left:11px;width:35px;height:39px;z-index:5;border:1px solid #dbb66c;background:linear-gradient(#17323b,#081b25);box-shadow:inset 0 0 0 2px #091b23;font:600 20px/1 var(--serif);text-align:center;display:flex;flex-direction:column;justify-content:center;clip-path:polygon(0 0,100% 0,100% 85%,50% 100%,0 85%)}
+#pirate-harbor .levelSeal small{font:7px/1.5 system-ui;letter-spacing:1px;color:#c9c3a4}
+#pirate-harbor .roleSeal{right:13px;top:17px;z-index:3;background:none;border:0;color:var(--accent);opacity:.9;width:20px;height:23px}
+#pirate-harbor .selectedPennant{position:absolute;top:58px;left:8px;right:8px;z-index:5;background:linear-gradient(90deg,#601c1de8,#9a3430ed,#601c1de8);border-top:1px solid #d2a66688;border-bottom:1px solid #d2a66688;color:#ffe9bb;text-align:center;font-size:8px;letter-spacing:1.2px;padding:4px 0}
+#pirate-harbor .collectionFoot{height:14px;flex-shrink:0;color:#c3c6b0;font-size:9px;letter-spacing:.6px;display:flex;justify-content:space-between}
+#pirate-harbor .heroBody{grid-template-columns:43% 57%;top:68px;bottom:22px}
+#pirate-harbor .heroStage{isolation:isolate;overflow:hidden}
+#pirate-harbor .heroPortrait,#pirate-harbor #heroIdle{position:absolute;inset:auto 6% 13px;width:88%;height:98%;object-fit:contain;object-position:center bottom;filter:drop-shadow(0 8px 9px #0009);z-index:2}
+#pirate-harbor .stageBase{display:none}
+#pirate-harbor .stageGlow{bottom:2%;height:80%;left:10%;right:0;background:radial-gradient(ellipse,#ffdb933b,transparent 68%);z-index:0;filter:blur(8px)}
+#pirate-harbor .stageCaption{position:absolute;bottom:0;left:12%;right:5%;z-index:4;text-align:center;color:#fff0c4;letter-spacing:3px;font:9px var(--serif);text-shadow:0 2px 4px #000}
+#pirate-harbor .heroPanel{margin:0 25px 0 0;padding:13px 19px;background:linear-gradient(115deg,#0b212be6,#081921f8);border:1px solid #bc955c88;box-shadow:inset 0 0 0 3px #0a1b2399,0 8px 30px #0005;overflow:auto;border-radius:2px}
+#pirate-harbor .heroPanel:before,#pirate-harbor .heroPanel:after{content:'';position:absolute;top:4px;width:18px;height:12px;border-top:1px solid #edc681}
+#pirate-harbor .heroPanel:before{left:4px;border-left:1px solid #edc681}
+#pirate-harbor .heroPanel:after{right:4px;border-right:1px solid #edc681}
+#pirate-harbor .heroHeading{align-items:center}
+#pirate-harbor .heroHeading h2{font:600 34px/.95 var(--serif);margin:0 0 5px}
+#pirate-harbor .heroSub{font-size:10px;gap:11px;color:#b7c3bd}
+#pirate-harbor .rarityText{color:#f0cd80;text-transform:uppercase;font-size:9px;letter-spacing:1.7px;border:0;padding:0;background:none}
+#pirate-harbor .levelRow{margin-top:10px;display:flex;flex-wrap:wrap;align-items:center;gap:9px;font-size:10px}
+#pirate-harbor .levelRow b{font-size:18px;font-family:var(--serif);min-width:43px}
+#pirate-harbor .xpbar{height:8px;background:#031017;border:1px solid #abbd9a70;border-radius:6px;overflow:hidden;box-shadow:inset 0 1px 4px #000}
+#pirate-harbor .levelRow .xpbar{flex:1}
+#pirate-harbor .xpbar i{background:linear-gradient(90deg,#2a6463,#8abda7,#d5d8a0);box-shadow:0 0 10px #b1d7a3;transition:width .6s}
+#pirate-harbor .detailTabs{margin-top:8px;gap:15px;border-bottom:1px solid #b9a36c44}
+#pirate-harbor .detailTabs .tabButton{font-size:11px;min-height:36px;padding:7px 0}
+#pirate-harbor .statGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:8px 0}
+#pirate-harbor .statItem{border:0;border-right:1px solid #c3a16544;background:transparent;padding:0 8px 0 0}
+#pirate-harbor .statItem:last-child{border-right:0}
+#pirate-harbor .statItem small{color:#b0c3ba;font-size:8px;letter-spacing:1.3px}
+#pirate-harbor .statItem small svg{width:13px;height:13px;color:#dec082;vertical-align:middle}
+#pirate-harbor .statItem strong{font:600 24px var(--serif);display:block;margin-top:2px;color:#fff2d1}
+#pirate-harbor .nextLevelPreview{border-top:1px solid #c8ac6d44;border-bottom:1px solid #c8ac6d44;padding:6px 0;color:#ddc68c;font-size:8px;letter-spacing:1px}
+#pirate-harbor .nextLevelPreview>div{display:flex;gap:12px;justify-content:space-between;margin:4px 0;letter-spacing:0;color:#b2c6bc;font-size:9px}
+#pirate-harbor .nextLevelPreview b{font-weight:500}
+#pirate-harbor .nextLevelPreview em{color:#e3e5be;font-style:normal;display:block;font-size:11px;margin-top:2px}
+#pirate-harbor .nextLevelPreview small{font-size:9px;letter-spacing:0;color:#c1cdc0}
+#pirate-harbor .fairness{font-size:9px;color:#adc7bd;margin:6px 0;display:flex;gap:6px;align-items:center}
+#pirate-harbor .fairness svg{width:12px;height:12px}
+#pirate-harbor .panelActions{display:flex;gap:8px;margin-top:7px}
+#pirate-harbor .goldButton{min-height:44px;background:linear-gradient(#f3d699,#c39248 55%,#a06b30);border:1px solid #f8dda0;box-shadow:inset 0 0 0 3px #9c6b3566,0 3px 7px #0005;color:#271c12;font-size:12px;font-weight:700;padding:9px 15px;border-radius:2px;text-shadow:0 1px #fff5}
+#pirate-harbor .quietButton{min-height:44px;background:linear-gradient(#243b42,#10252e);border:1px solid #bda36a88;color:#ead8ac;font-size:11px;padding:8px 12px;border-radius:2px;box-shadow:inset 0 0 0 2px #0b1c2466}
+#pirate-harbor .heroPanel:has(.upgradeTitle) .panelActions{background:transparent;position:static;padding:0;margin-top:8px}
+#pirate-harbor .levelHeroName{z-index:3;top:0;left:25px;background:linear-gradient(90deg,#071821c9,transparent);padding:7px 12px;border-left:2px solid #d3b477;text-shadow:0 2px 6px #000}
+#pirate-harbor .levelHeroName b{font:600 23px var(--serif)}
+#pirate-harbor .levelHeroName .starline{display:none}
+#pirate-harbor .levelHeroName small{font-size:9px;letter-spacing:.7px}
+#pirate-harbor .upgradeTitle{font:600 28px/1.1 var(--serif);margin:4px 0 5px;color:#ffedc8}
+#pirate-harbor .smallLabel{font-size:8px;letter-spacing:2px;color:#c3ae7c}
+#pirate-harbor .starJourney{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:9px 0!important;margin:3px 0 2px!important;border-bottom:1px solid #ad925d44}
+#pirate-harbor .starJourney .starline{gap:4px}
+#pirate-harbor .starJourney .starline svg{width:22px;height:22px}
+#pirate-harbor .starJourney .arrow{font:22px var(--serif);color:#c8b179}
+#pirate-harbor .changes{width:100%;font-size:11px;margin:5px 0!important;border-collapse:collapse}
+#pirate-harbor .heroPanel:has(.upgradeTitle) .changes td{padding:5px 0;height:28px;line-height:1.1;border-bottom:1px solid #b6b58515}
+#pirate-harbor .changes td:first-child{color:#bac9c0;width:40%;font-size:11px}
+#pirate-harbor .changes td:nth-child(2){color:#e3d9b9;text-align:right;font:16px var(--serif)}
+#pirate-harbor .heroPanel:has(.upgradeTitle) .changes td:last-child{text-align:right;font:17px var(--serif);color:#b6dcb2}
+#pirate-harbor .heroPanel:has(.upgradeTitle) .fragments{min-height:52px;margin:7px 0;padding:5px 9px;background:linear-gradient(90deg,#22403f77,#1c332e44);border:1px solid #a1af7e66;gap:10px}
+#pirate-harbor .fragmentCount strong{font:600 24px var(--serif);color:#e7edc4}
+#pirate-harbor .fragmentCount small{font-size:10px;color:#bdd0bd}
+#pirate-harbor .costChips{font-size:9px;color:#b9c8b1;gap:5px}
+#pirate-harbor .costChips span{border:1px solid #abbc8655;background:#0a1e2299;padding:4px 6px}
+#pirate-harbor .heroPanel:has(.upgradeTitle) .fragmentPortrait{width:35px;height:42px;object-fit:contain;background:#213e3c;border:1px solid #dac28377;clip-path:polygon(8px 0,100% 0,100% calc(100% - 8px),calc(100% - 8px) 100%,0 100%,0 8px)}
+#pirate-harbor .heroPanel:has(.upgradeTitle) .confirmSummary{padding:4px 0;margin:3px 0;color:#e4cf97;background:transparent;border:0;font-size:10px}
+#pirate-harbor .micro{font-size:9px}
+#pirate-harbor .rankCelebration{position:absolute;inset:0;display:grid;place-items:center;z-index:25;background:#06151c9c;pointer-events:none;animation:rankArrival 2.2s both}
+#pirate-harbor .rankBurst{position:absolute;width:75vmin;height:75vmin;background:repeating-conic-gradient(from 10deg,transparent 0deg 13deg,#eec36b33 14deg 16deg,transparent 17deg 26deg);border-radius:50%;mask-image:radial-gradient(#000,transparent 70%);animation:rankTurn 2.2s ease-out}
+#pirate-harbor .rankMessage{display:flex;flex-direction:column;align-items:center;gap:9px;color:#ffe4a4;text-shadow:0 2px 9px #000;z-index:1}
+#pirate-harbor .rankMessage small{font-size:10px;letter-spacing:4px}
+#pirate-harbor .rankMessage strong{font:600 34px var(--serif)}
+#pirate-harbor .rankMessage>span:last-child{color:#d3dbbd;font-size:12px}
+#pirate-harbor .rankMessage .starline svg{height:38px;width:38px}
+#pirate-harbor .rankMessage .starline svg:not(.off){animation:starIgnite .8s ease-out both}
+@keyframes rankArrival{0%{opacity:0}15%,75%{opacity:1}100%{opacity:0}}
+@keyframes rankTurn{from{transform:rotate(-20deg) scale(.6)}to{transform:rotate(25deg) scale(1.3)}}
+@keyframes starIgnite{0%{transform:scale(.4);filter:brightness(3)}65%{transform:scale(1.2)}100%{transform:scale(1)}}
+#pirate-harbor .screenSeal{font-size:7px;bottom:4px;color:#c4c5a6;letter-spacing:1px;right:25px}
+@media(max-width:740px){
+#pirate-harbor .pageTop{height:60px;padding:6px 13px;gap:9px}
+#pirate-harbor .pageTitle h1{font-size:24px}
+#pirate-harbor .pageTitle small{font-size:7px;letter-spacing:1.5px}
+#pirate-harbor .prototypeTag{display:none}
+#pirate-harbor .collectionBody{top:61px;left:14px;right:14px;bottom:23px;gap:7px}
+#pirate-harbor .collectionToolbar{flex-wrap:nowrap;height:44px;gap:3px}
+#pirate-harbor .segmented .tabButton{font-size:10px;padding:6px 10px}
+#pirate-harbor .filterSet select{font-size:9px;padding:5px 6px;max-width:94px;min-height:40px}
+#pirate-harbor .heroGrid{gap:9px}
+#pirate-harbor .cardInfo{padding:21px 7px 11px;left:2px;right:2px}
+#pirate-harbor .cardInfo h2{font-size:19px;margin:3px 0}
+#pirate-harbor .cardInfo .rarity{font-size:7px;letter-spacing:1px}
+#pirate-harbor .cardInfo .role{font-size:9px}
+#pirate-harbor .cardInfo .starline{gap:2px;margin:5px 0}
+#pirate-harbor .cardInfo .starline svg{height:14px;width:14px}
+#pirate-harbor .fragText{font-size:8px;margin:3px 0 0;gap:2px}
+#pirate-harbor .fragText>span:first-child{font-size:0}
+#pirate-harbor .fragText>span:first-child:after{content:'Fragments';font-size:8px}
+#pirate-harbor .levelSeal{left:9px;top:10px;width:29px;height:34px;font-size:17px}
+#pirate-harbor .levelSeal small{font-size:6px}
+#pirate-harbor .roleSeal{right:11px;top:14px;width:17px}
+#pirate-harbor .selectedPennant{top:49px;font-size:7px;padding:3px 0;letter-spacing:.6px}
+#pirate-harbor .collectionFoot{font-size:7px;letter-spacing:.1px}
+#pirate-harbor .heroBody{grid-template-columns:36% 64%;top:61px;bottom:23px}
+#pirate-harbor .heroPanel{margin-right:13px;padding:10px 13px}
+#pirate-harbor .heroHeading h2{font-size:28px}
+#pirate-harbor .heroHeading .starline svg{width:14px;height:14px}
+#pirate-harbor .heroHeading .starline{gap:2px}
+#pirate-harbor .heroSub{font-size:9px}
+#pirate-harbor .rarityText{font-size:8px;letter-spacing:1px}
+#pirate-harbor .levelRow{margin-top:8px;font-size:9px;gap:7px}
+#pirate-harbor .levelRow b{font-size:17px;min-width:39px}
+#pirate-harbor .detailTabs{margin-top:5px;gap:14px}
+#pirate-harbor .detailTabs .tabButton{font-size:10px;min-height:32px;padding:5px 0}
+#pirate-harbor .statGrid{margin:6px 0}
+#pirate-harbor .statItem small{font-size:7px;letter-spacing:.4px}
+#pirate-harbor .statItem strong{font-size:22px}
+#pirate-harbor .nextLevelPreview{padding:5px 0;font-size:7px;letter-spacing:.6px}
+#pirate-harbor .nextLevelPreview>div{gap:6px;margin:3px 0;font-size:8px}
+#pirate-harbor .nextLevelPreview em{font-size:10px}
+#pirate-harbor .nextLevelPreview small{font-size:8px}
+#pirate-harbor .fairness{font-size:8px;margin:5px 0}
+#pirate-harbor .panelActions{gap:6px;margin-top:6px}
+#pirate-harbor .panelActions button{font-size:10px;padding:6px 9px;min-height:44px;white-space:nowrap}
+#pirate-harbor .stageCaption{font-size:8px;letter-spacing:1.7px;left:5%}
+#pirate-harbor .heroPortrait,#pirate-harbor #heroIdle{width:106%;left:-3%;right:auto;height:94%;bottom:12px}
+#pirate-harbor .levelHeroName{left:14px;padding:5px 8px;top:0}
+#pirate-harbor .levelHeroName b{font-size:20px}
+#pirate-harbor .levelHeroName small{font-size:8px;letter-spacing:.3px}
+#pirate-harbor .upgradeTitle{font-size:24px;margin:4px 0}
+#pirate-harbor .smallLabel{font-size:7px;letter-spacing:1.5px}
+#pirate-harbor .starJourney{padding:7px 0!important;gap:7px}
+#pirate-harbor .starJourney .starline{gap:3px}
+#pirate-harbor .starJourney .starline svg{width:18px;height:18px}
+#pirate-harbor .heroPanel:has(.upgradeTitle) .changes td{height:26px;padding:4px 0}
+#pirate-harbor .heroPanel:has(.upgradeTitle) .fragments{margin:6px 0;padding:4px 7px;min-height:48px}
+#pirate-harbor .fragmentCount strong{font-size:22px}
+#pirate-harbor .fragmentCount small{font-size:9px}
+#pirate-harbor .costChips{font-size:8px}
+#pirate-harbor .heroPanel:has(.upgradeTitle) .confirmSummary{font-size:9px;padding:3px 0;margin:2px 0}
+#pirate-harbor .heroPanel:has(.upgradeTitle) .micro{font-size:8px;margin:4px 0}
+#pirate-harbor .heroPanel:has(.upgradeTitle) .panelActions{margin-top:6px}
+#pirate-harbor .screenSeal{font-size:6px;right:13px;letter-spacing:.5px}
+}
+/* Keep the complete upgrade decision above the landscape safe area. */
+#pirate-harbor .nextLevelPreview{line-height:1.15;padding:5px 0}
+#pirate-harbor .nextLevelPreview>span{display:block;font-size:8px;line-height:10px}
+#pirate-harbor .nextLevelPreview>div{line-height:14px;margin:3px 0;gap:5px}
+#pirate-harbor .nextLevelPreview b{display:inline-flex;align-items:center;gap:4px;white-space:nowrap;font-size:8px}
+#pirate-harbor .nextLevelPreview em{display:inline;font-size:10px;line-height:14px;margin:0}
+#pirate-harbor .nextLevelPreview small{display:block;font-size:9px;line-height:11px}
+#pirate-harbor .heroPanel:has(.upgradeTitle) .starJourney{height:34px;padding:2px 0!important;margin:3px 0!important}
+#pirate-harbor .heroPanel:has(.upgradeTitle) .changes{margin:2px 0!important}
+#pirate-harbor .heroPanel:has(.upgradeTitle) .changes td{height:24px;padding:3px 0}
+#pirate-harbor .heroPanel:has(.upgradeTitle) .fragments{height:48px;min-height:48px;margin:5px 0;padding:3px 9px}
+#pirate-harbor .heroPanel:has(.upgradeTitle) .fragmentPortrait{height:36px;width:32px}
+#pirate-harbor .heroPanel:has(.upgradeTitle) .confirmSummary{height:16px;padding:0;margin:3px 0;line-height:16px}
+#pirate-harbor .heroPanel:has(.upgradeTitle) .micro{line-height:11px;font-size:9px;margin:4px 0}
+#pirate-harbor .cardArt,#pirate-harbor .crewCard[data-id=scarlet] .cardArt{width:110%;left:-5%;height:78%;top:4px}
+#pirate-harbor .selectedPennant{top:auto;bottom:116px;left:10px;right:10px;font-size:7px;letter-spacing:1px;padding:3px 0}
+#pirate-harbor .fragText{margin-left:5px;margin-right:5px}
+@media(max-width:740px){
+#pirate-harbor .heroPanel{padding:9px 12px}
+#pirate-harbor .heroHeading h2{font-size:26px}
+#pirate-harbor .levelRow{margin-top:6px}
+#pirate-harbor .detailTabs{margin-top:3px}
+#pirate-harbor .statGrid{margin:4px 0}
+#pirate-harbor .statItem strong{font-size:21px}
+#pirate-harbor .nextLevelPreview{padding:4px 0}
+#pirate-harbor .nextLevelPreview>span{font-size:7px;line-height:9px}
+#pirate-harbor .nextLevelPreview>div{margin:2px 0;line-height:13px;gap:4px}
+#pirate-harbor .nextLevelPreview b{font-size:0;gap:0}
+#pirate-harbor .nextLevelPreview b:before{font-size:8px;margin-right:3px}
+#pirate-harbor .nextLevelPreview b:nth-child(1):before{content:'HP'}
+#pirate-harbor .nextLevelPreview b:nth-child(2):before{content:'ATK'}
+#pirate-harbor .nextLevelPreview b:nth-child(3):before{content:'DEF'}
+#pirate-harbor .nextLevelPreview em{font-size:9px;line-height:13px}
+#pirate-harbor .nextLevelPreview small{font-size:8px;line-height:10px}
+#pirate-harbor .fairness{margin:2px 0;font-size:8px}
+#pirate-harbor .panelActions{margin-top:4px}
+#pirate-harbor .heroPanel:has(.upgradeTitle) .smallLabel{display:none}
+#pirate-harbor .heroPanel:has(.upgradeTitle) .upgradeTitle{font-size:24px;line-height:27px;margin:0 0 3px}
+#pirate-harbor .heroPanel:has(.upgradeTitle) .starJourney{height:27px;margin:2px 0!important;padding:0!important}
+#pirate-harbor .heroPanel:has(.upgradeTitle) .changes{margin:2px 0!important}
+#pirate-harbor .heroPanel:has(.upgradeTitle) .changes td{height:22px;padding:2px 0}
+#pirate-harbor .heroPanel:has(.upgradeTitle) .changes td:last-child{font-size:16px}
+#pirate-harbor .heroPanel:has(.upgradeTitle) .fragments{height:46px;min-height:46px;margin:3px 0;padding:2px 7px}
+#pirate-harbor .heroPanel:has(.upgradeTitle) .confirmSummary{height:15px;line-height:15px;margin:2px 0}
+#pirate-harbor .heroPanel:has(.upgradeTitle) .micro{font-size:8px;line-height:10px;margin:3px 0}
+#pirate-harbor .heroPanel:has(.upgradeTitle) .panelActions{margin-top:4px}
+#pirate-harbor .selectedPennant{bottom:106px;font-size:6px;letter-spacing:.8px;padding:2px 0}
+#pirate-harbor .fragText{margin-left:3px;margin-right:3px;font-size:8px}
+}
+#pirate-harbor .heroPanel{padding-top:10px;padding-bottom:10px}
+#pirate-harbor .statGrid{margin-top:4px;margin-bottom:4px}
+#pirate-harbor .fairness{margin-top:3px;margin-bottom:3px}
+#pirate-harbor .heroPanel:has(.upgradeTitle) .changes td{height:23px;line-height:18px;padding:2px 0}
+#pirate-harbor .heroPanel:has(.upgradeTitle) .changes td:last-child{line-height:18px}
+#pirate-harbor .heroPanel:has(.upgradeTitle) .upgradeTitle{margin-top:2px;margin-bottom:3px}
+#pirate-harbor .heroPanel:has(.upgradeTitle) .smallLabel{display:block;line-height:10px;height:10px}
+#pirate-harbor .heroPanel:has(.upgradeTitle) .panelActions{margin-top:5px}
+@media(max-width:740px){#pirate-harbor .heroPanel{padding-top:9px;padding-bottom:9px}#pirate-harbor .heroPanel:has(.upgradeTitle) .smallLabel{display:none}#pirate-harbor .fairness{margin-top:2px;margin-bottom:2px}}
+#pirate-harbor .empty{grid-column:1/-1}
+#pirate-harbor .levelCelebration{position:absolute;top:72px;left:50%;transform:translateX(-50%);z-index:26;display:flex;flex-direction:column;align-items:center;gap:4px;pointer-events:none;padding:13px 25px;background:linear-gradient(115deg,#30443df7,#10272cf7);border:1px solid #e0bc71;box-shadow:0 0 35px #f1c05d44,0 5px 20px #0008;animation:arrive .3s}
+#pirate-harbor .levelCelebration small{font-size:8px;letter-spacing:2px;color:#eac982}
+#pirate-harbor .levelCelebration strong{font:600 23px var(--serif);white-space:nowrap;color:#ffebbe}
+#pirate-harbor .levelCelebration span{font-size:10px;color:#b9d8bc}
+#pirate-harbor .pageTop{padding-left:max(24px,env(safe-area-inset-left));padding-right:max(24px,env(safe-area-inset-right))}
+#pirate-harbor .cardInfo{padding-bottom:18px}
+#pirate-harbor .fragText{margin-left:7px;margin-right:7px}
+@media(max-width:740px){#pirate-harbor .pageTop{padding-left:max(13px,env(safe-area-inset-left));padding-right:max(13px,env(safe-area-inset-right))}#pirate-harbor .cardInfo{padding-bottom:16px}#pirate-harbor .fragText{margin-left:5px;margin-right:5px}}
+
+/* Hero identity and earned-power ceremony, PR104 review iteration2. */
+#pirate-harbor .cardScenery{position:absolute;inset:4px;width:calc(100% - 8px);height:calc(100% - 8px);object-fit:cover;object-position:center;opacity:.75;border-radius:8px;z-index:-1;filter:saturate(.9)}
+#pirate-harbor .crewCard{background:#071923;isolation:isolate}
+#pirate-harbor .crewCard[data-rarity=legendary]{box-shadow:0 0 16px #e6ac4050,0 6px 20px #000a}
+#pirate-harbor .crewCard[data-rarity=epic]{box-shadow:0 0 12px #ab79d844,0 6px 20px #000a}
+#pirate-harbor .crewCard[data-rarity=rare]{box-shadow:0 0 10px #6bbed02a,0 6px 20px #000a}
+#pirate-harbor .crewCard[data-rarity=legendary] .rarity{letter-spacing:1.4px;color:#ffe0a0}
+#pirate-harbor .crewCard[data-rarity=epic] .rarity{color:#e1baff}
+#pirate-harbor .crewCard[data-rarity=rare] .rarity{color:#b7e5ed}
+#pirate-harbor .cardInfo{background:linear-gradient(transparent,#071722e8 23%,#071722fc 55%)}
+#pirate-harbor .cardInfo .role{font-size:11px}
+#pirate-harbor .cardInfo .rarity{font-size:10px}
+#pirate-harbor .fragText{font-size:14px;line-height:18px;justify-content:center;margin:4px 5px 0;color:#f1e3c1;font-weight:600;font-variant-numeric:tabular-nums}
+#pirate-harbor .fragText span:first-child{display:none}
+#pirate-harbor .fragTrack{height:5px;margin-left:9px;margin-right:9px}
+#pirate-harbor .levelRow .xpReadout{font:600 13px/1.3 system-ui;color:#edebcc;white-space:nowrap;font-variant-numeric:tabular-nums}
+#pirate-harbor .levelRow>.muted{font-size:11px}
+#pirate-harbor .fragmentCount small{font-size:12px}
+#pirate-harbor .heroPanel:has(.upgradeTitle) .confirmSummary{font-size:12px;line-height:17px;height:17px;color:#ffdfa0}
+#pirate-harbor .heroPanel .panelActions button{font-size:12px}
+#pirate-harbor .heroBackdrop{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;opacity:.96;z-index:0}
+#pirate-harbor .heroSceneShade{position:absolute;inset:0;background:linear-gradient(90deg,#04131b22,transparent 60%,#071923c7),linear-gradient(transparent 55%,#061721cf);z-index:1}
+#pirate-harbor .heroStage{border-radius:3px;box-shadow:inset 0 0 0 1px #d3b37133;margin-right:10px}
+#pirate-harbor .heroStage .stageGlow{z-index:2;background:radial-gradient(ellipse,color-mix(in srgb,var(--hero-light),transparent 55%),transparent 70%);opacity:.8}
+#pirate-harbor .heroStage .heroPortrait,#pirate-harbor .heroStage #heroIdle{z-index:4}
+#pirate-harbor .heroStage .levelHeroName{z-index:6}
+#pirate-harbor .heroStage .stageCaption{z-index:6;bottom:3px;letter-spacing:2px;font-size:10px;color:#ffe7b4}
+#pirate-harbor .heroAtmosphere{position:absolute;inset:3px;overflow:hidden;pointer-events:none;color:var(--hero-light,var(--accent));z-index:3;border-radius:6px}
+#pirate-harbor .crewCard .heroAtmosphere{z-index:0;bottom:38%;--hero-light:var(--accent);opacity:.8}
+#pirate-harbor .effectParticles{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+#pirate-harbor .effectParticles i{position:absolute;left:var(--x);top:var(--y);width:3px;height:3px;border-radius:50%;background:currentColor;box-shadow:0 0 6px currentColor;opacity:.65;animation:crewDrift 6s var(--delay) ease-in-out infinite}
+#pirate-harbor .wind .effectParticles i{height:1px;width:34px;background:linear-gradient(90deg,transparent,#ddf6ff,transparent);border-radius:50%;box-shadow:none;animation-name:crewWind;animation-duration:7s}
+#pirate-harbor .bubbles .effectParticles i{width:7px;height:7px;background:transparent;border:1px solid #a7fff2aa;box-shadow:0 0 7px #76e9da66;animation-name:crewBubbles;animation-duration:8s}
+#pirate-harbor .storm .effectParticles i{height:15px;width:1px;transform:rotate(20deg);background:#afdaef88;animation-name:crewRain;animation-duration:3s;box-shadow:none}
+#pirate-harbor .themeCompass{position:absolute;width:76%;height:76%;left:12%;top:4%;opacity:.22;animation:crewCompass 60s linear infinite;stroke-width:.45}
+#pirate-harbor .stormFork{position:absolute;height:90%;width:80%;left:10%;top:0;fill:none;stroke:#d3f4ff;stroke-width:1.4;opacity:.22;filter:drop-shadow(0 0 4px #99dcff);animation:crewStorm 7s ease-in-out infinite}
+@keyframes crewDrift{0%,100%{transform:translate(0,8px);opacity:.15}50%{transform:translate(10px,-25px);opacity:.85}}
+@keyframes crewWind{0%{transform:translate(-45px,4px);opacity:0}45%{opacity:.55}100%{transform:translate(100px,-18px);opacity:0}}
+@keyframes crewBubbles{0%{transform:translate(0,38px) scale(.7);opacity:0}30%{opacity:.6}100%{transform:translate(10px,-90px) scale(1.15);opacity:0}}
+@keyframes crewRain{from{transform:translate(-8px,-30px) rotate(20deg);opacity:0}40%{opacity:.5}to{transform:translate(25px,75px) rotate(20deg);opacity:0}}
+@keyframes crewCompass{to{transform:rotate(360deg)}}
+@keyframes crewStorm{0%,65%,100%{opacity:.1}82%{opacity:.45}}
+
+#pirate-harbor .rankCelebration{display:block;position:absolute;inset:0;z-index:35;background:#06151b;opacity:1;animation:none;pointer-events:auto;isolation:isolate;overflow:hidden}
+#pirate-harbor .ascensionBackdrop{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;opacity:.65;filter:saturate(.8)}
+#pirate-harbor .ceremonyShade{position:absolute;inset:0;background:radial-gradient(ellipse at 25% 50%,#a7732422,transparent 58%),linear-gradient(90deg,#06151b22,#06151bf5 78%)}
+#pirate-harbor .ascensionStage{position:absolute;top:5%;bottom:7%;left:1%;width:46%;color:#ffdb88;isolation:isolate}
+#pirate-harbor .ascensionPortrait{position:absolute;width:93%;height:91%;object-fit:contain;object-position:50% 100%;left:3%;bottom:8%;z-index:3;filter:drop-shadow(0 0 13px #e7b25599);transition:filter .5s}
+#pirate-harbor .ascensionHalo{position:absolute;inset:5% -12%;z-index:1;background:radial-gradient(ellipse,#fff3b18c,#edbd5d44 37%,transparent 69%);opacity:.8;transition:opacity .6s;transform:scale(.9)}
+#pirate-harbor .ascensionStage .rankBurst{position:absolute;left:50%;top:45%;width:125%;height:125%;transform:translate(-50%,-50%);background:repeating-conic-gradient(from 10deg,transparent 0deg 12deg,#ffda8944 13deg 17deg,transparent 19deg 30deg);mask-image:radial-gradient(#000,transparent 68%);animation:ascensionRays 4s ease-out both;z-index:1}
+#pirate-harbor .ascensionShockwave{position:absolute;left:50%;top:48%;width:45%;aspect-ratio:1;border:2px solid #ffe8a0;border-radius:50%;box-shadow:0 0 24px #ffe59d,inset 0 0 24px #f4c779;opacity:0;transform:translate(-50%,-50%) scale(.3);z-index:2}
+#pirate-harbor .ascensionStage>.effectParticles{z-index:4;inset:0 -12%;color:#ffe4a0}
+#pirate-harbor .ascensionStage>.effectParticles i{height:4px;width:4px;animation:ascensionSpark 2.6s var(--delay) ease-out infinite;box-shadow:0 0 9px #ffe6a4}
+#pirate-harbor .awakenedStars{position:absolute;left:0;right:0;bottom:4%;z-index:5;text-align:center;filter:drop-shadow(0 3px 10px #000)}
+#pirate-harbor .awakenedStars .starline{gap:8px}
+#pirate-harbor .awakenedStars .starline svg{height:35px;width:35px;stroke-width:.8}
+#pirate-harbor .awakenedStars .newStar{filter:drop-shadow(0 0 10px #ffe38b);fill:#fff1b9}
+#pirate-harbor .ceremonyCaption{position:absolute;bottom:-2%;left:0;right:0;text-align:center;font:11px var(--serif);letter-spacing:3px;text-transform:uppercase;color:#eddbac}
+#pirate-harbor .ascensionSummary{position:absolute;top:8%;bottom:7%;left:49%;right:5%;display:flex;flex-direction:column;justify-content:center;gap:7px;color:#ffedc5;z-index:5;transition:opacity .4s,transform .4s}
+#pirate-harbor .ascensionEyebrow{font:10px/12px system-ui;letter-spacing:3px;color:#e7c987}
+#pirate-harbor .ascensionSummary h2{font:600 35px/1 var(--serif);color:#fff1c4;margin:0;text-shadow:0 0 22px #e6b04c55}
+#pirate-harbor .ascensionName{font:600 28px/1.05 var(--serif);color:var(--hero-light)}
+#pirate-harbor .ascensionRank{font:12px/20px system-ui;letter-spacing:2px;color:#d4c6a0}
+#pirate-harbor .ascensionRank>span{margin:0 10px;color:#f9d27f}
+#pirate-harbor .ascensionRank>b{color:#ffeab1;font-weight:600}
+#pirate-harbor .gainStats{border-top:1px solid #f2cc7b55;border-bottom:1px solid #f2cc7b55;padding:4px 0}
+#pirate-harbor .gainStats>div{display:grid;grid-template-columns:65px 1fr 52px;align-items:center;min-height:25px;gap:8px}
+#pirate-harbor .gainStats small{font:10px/1.2 system-ui;letter-spacing:1px;color:#d2d6bc}
+#pirate-harbor .gainStats strong{font:16px/1.2 var(--serif);font-variant-numeric:tabular-nums;color:#c5c5ad;white-space:nowrap}
+#pirate-harbor .gainStats strong>span{padding:0 6px;color:#a99f80}
+#pirate-harbor .gainStats em{font-style:normal;color:#fff0bf;font-size:19px}
+#pirate-harbor .gainStats b{color:#c7e5b6;font:600 12px system-ui;text-align:right;white-space:nowrap}
+#pirate-harbor .ascensionSummary p{margin:0;font:12px/16px system-ui;color:#e1d7b6}
+#pirate-harbor .rewardScope{font:10px/13px system-ui;color:#b9cbbd}
+#pirate-harbor .continueEffect{align-self:flex-start;min-width:155px;min-height:44px;margin-top:3px;font-size:13px}
+#pirate-harbor .rankCelebration[data-phase=gathering] .ascensionHalo{opacity:.2;transform:scale(.6)}
+#pirate-harbor .rankCelebration[data-phase=gathering] .ascensionPortrait{filter:brightness(.65) drop-shadow(0 0 4px #ffe199)}
+#pirate-harbor .rankCelebration[data-phase=gathering] .newStar{opacity:.12;transform:scale(.3)}
+#pirate-harbor .rankCelebration[data-phase=gathering] .ascensionSummary{opacity:.15;transform:translateY(7px)}
+#pirate-harbor .rankCelebration[data-phase=ignition] .newStar{animation:starAwakens .9s cubic-bezier(.16,.8,.3,1) both}
+#pirate-harbor .rankCelebration[data-phase=ignition] .ascensionShockwave{animation:ascensionWave .9s ease-out both}
+#pirate-harbor .rankCelebration[data-phase=ignition] .ascensionPortrait{animation:heroIgnites 1.1s ease-out both}
+#pirate-harbor .rankCelebration[data-phase=empowered] .newStar{animation:starAfterglow 2s ease-in-out both}
+@keyframes ascensionRays{from{transform:translate(-50%,-50%) rotate(-22deg) scale(.5);opacity:.1}to{transform:translate(-50%,-50%) rotate(18deg) scale(1.2);opacity:.8}}
+@keyframes ascensionWave{0%{opacity:.8;transform:translate(-50%,-50%) scale(.3)}100%{opacity:0;transform:translate(-50%,-50%) scale(3)}}
+@keyframes ascensionSpark{0%{transform:translate(0,35px) scale(.3);opacity:0}35%{opacity:1}100%{transform:translate(calc((var(--i) - 8)*5px),-50px) scale(.5);opacity:0}}
+@keyframes starAwakens{0%{transform:scale(.25) rotate(-30deg);opacity:.2;filter:drop-shadow(0 0 2px #ffe499)}55%{transform:scale(1.65) rotate(8deg);opacity:1;filter:drop-shadow(0 0 18px #fff2b8)}100%{transform:scale(1);opacity:1;filter:drop-shadow(0 0 10px #ffe38b)}}
+@keyframes heroIgnites{0%{filter:brightness(.8) drop-shadow(0 0 9px #ffdb88)}42%{filter:brightness(1.18) drop-shadow(0 0 23px #ffe499)}100%{filter:brightness(1) drop-shadow(0 0 14px #e9ba5e)}}
+@keyframes starAfterglow{0%,100%{filter:drop-shadow(0 0 8px #ffe499)}45%{filter:drop-shadow(0 0 16px #fff0ab)}}
+
+#pirate-harbor .levelCelebration{top:17%;left:50%;transform:translateX(-50%);width:min(540px,88%);padding:15px 22px 15px 115px;min-height:180px;display:block;background:linear-gradient(115deg,#183632f5,#091f2bf5);border:1px solid #ddc080;box-shadow:0 0 50px #e4b45344,0 10px 35px #000a;isolation:isolate;overflow:hidden;animation:levelRewardArrival .6s ease-out both}
+#pirate-harbor .levelRewardPortrait{position:absolute;left:10px;bottom:0;width:108px;height:95%;object-fit:contain;object-position:center bottom;filter:drop-shadow(0 0 9px var(--hero-light));z-index:1}
+#pirate-harbor .levelRewardCopy{position:relative;z-index:2}
+#pirate-harbor .levelRewardCopy>small{font:10px/13px system-ui;letter-spacing:2px;color:#eac981}
+#pirate-harbor .levelRewardCopy>strong{font:600 27px/1.1 var(--serif);display:block;margin:4px 0 6px}
+#pirate-harbor .levelRoute{position:absolute;right:2px;top:7px;font:22px/1 var(--serif);color:#c5c8ac;display:flex;gap:9px;align-items:center}
+#pirate-harbor .levelRoute>span{font-size:18px;color:#d9bf80}
+#pirate-harbor .levelRoute .levelReveal{font:600 40px/1 var(--serif);color:#ffdfa0;text-shadow:0 0 18px #ecb95188;animation:levelMedalReveals .9s .2s ease-out both}
+#pirate-harbor .levelRewardCopy .gainStats>div{min-height:24px;grid-template-columns:60px 1fr 42px;gap:5px}
+#pirate-harbor .levelRewardCopy .gainStats strong{font-size:14px}
+#pirate-harbor .levelRewardCopy .gainStats em{font-size:16px}
+#pirate-harbor .levelRewardCopy .rewardScope{display:block;margin-top:5px;font-size:10px}
+#pirate-harbor .levelSweep{position:absolute;inset:-50%;background:linear-gradient(110deg,transparent 42%,#fff0b644 49%,transparent 58%);animation:levelGoldSweep 1.4s ease-out both;z-index:0}
+@keyframes levelRewardArrival{from{opacity:0;transform:translateX(-50%) translateY(10px) scale(.96)}to{opacity:1;transform:translateX(-50%) translateY(0) scale(1)}}
+@keyframes levelMedalReveals{from{opacity:.2;transform:scale(1.6);filter:brightness(1.7)}to{opacity:1;transform:scale(1);filter:brightness(1)}}
+@keyframes levelGoldSweep{from{transform:translateX(-65%)}to{transform:translateX(65%)}}
+#pirate-harbor .page-inactive *{animation-play-state:paused!important}
+#pirate-harbor .rankCelebration[data-motion=still] *,#pirate-harbor .levelCelebration[data-motion=still],#pirate-harbor .levelCelebration[data-motion=still] *{animation:none!important;transition:none!important}
+#pirate-harbor .rankCelebration[data-motion=still] .effectParticles,#pirate-harbor .rankCelebration[data-motion=still] .rankBurst,#pirate-harbor .rankCelebration[data-motion=still] .ascensionShockwave,#pirate-harbor .levelCelebration[data-motion=still] .levelSweep{display:none}
+@media(max-width:740px){
+#pirate-harbor .cardInfo .rarity{font-size:9px;letter-spacing:.6px}
+#pirate-harbor .cardInfo .role{font-size:10px}
+#pirate-harbor .fragText{font-size:13px;line-height:17px;margin:3px 3px 0}
+#pirate-harbor .levelRow .xpReadout{font-size:12px}
+#pirate-harbor .levelRow{gap:5px}
+#pirate-harbor .levelRow>.muted{font-size:10px}
+#pirate-harbor .heroPanel .panelActions button{font-size:11px;padding:6px 8px}
+#pirate-harbor .fragmentCount small{font-size:12px}
+#pirate-harbor .heroPanel:has(.upgradeTitle) .confirmSummary{font-size:12px}
+#pirate-harbor .heroStage{margin-right:7px}
+#pirate-harbor .heroStage .stageCaption{font-size:9px;letter-spacing:1px}
+#pirate-harbor .ascensionStage{left:0;top:7%;bottom:9%;width:45%}
+#pirate-harbor .ascensionSummary{left:47%;right:4%;top:8%;bottom:8%;gap:6px}
+#pirate-harbor .ascensionEyebrow{font-size:9px;letter-spacing:2px;line-height:11px}
+#pirate-harbor .ascensionSummary h2{font-size:30px}
+#pirate-harbor .ascensionName{font-size:25px}
+#pirate-harbor .ascensionRank{font-size:11px;line-height:18px;letter-spacing:1px}
+#pirate-harbor .gainStats>div{grid-template-columns:59px 1fr 43px;min-height:23px;gap:4px}
+#pirate-harbor .gainStats small{font-size:9px;letter-spacing:.5px}
+#pirate-harbor .gainStats strong{font-size:14px}
+#pirate-harbor .gainStats em{font-size:17px}
+#pirate-harbor .gainStats b{font-size:11px}
+#pirate-harbor .gainStats strong>span{padding:0 4px}
+#pirate-harbor .ascensionSummary p{font-size:12px;line-height:15px}
+#pirate-harbor .rewardScope{font-size:10px;line-height:13px}
+#pirate-harbor .continueEffect{min-width:138px;margin-top:2px}
+#pirate-harbor .awakenedStars .starline{gap:5px}
+#pirate-harbor .awakenedStars .starline svg{height:28px;width:28px}
+#pirate-harbor .ceremonyCaption{font-size:10px;letter-spacing:2px;bottom:-3%}
+#pirate-harbor .levelCelebration{padding:12px 15px 12px 105px;min-height:175px;top:18%}
+#pirate-harbor .levelRewardPortrait{width:96px;left:6px}
+#pirate-harbor .levelRewardCopy>strong{font-size:24px}
+#pirate-harbor .levelRewardCopy>small{font-size:9px;letter-spacing:1.3px}
+}
+/* Scenery must not inherit the legacy portrait sizing rule. */
+#pirate-harbor .heroStage .heroBackdrop{position:absolute;inset:0;width:100%;height:100%;bottom:0;object-fit:cover;object-position:center;filter:none;opacity:.9}
+#pirate-harbor .ascensionHalo{background:radial-gradient(ellipse,#fff2b3b0,#efbd5b66 35%,transparent 69%);mix-blend-mode:screen}
+#pirate-harbor .ascensionStage .rankBurst{background:repeating-conic-gradient(from 10deg,transparent 0deg 12deg,#ffde9680 13deg 17deg,transparent 19deg 30deg);mix-blend-mode:screen}
+#pirate-harbor .ascensionStage>.effectParticles i{height:5px;width:5px;box-shadow:0 0 7px #fff2b0,0 0 14px #eeb650}
+#pirate-harbor .statItem small{font-size:9px;letter-spacing:.6px}
+#pirate-harbor .nextLevelPreview>span{font-size:9px;line-height:11px}
+#pirate-harbor .nextLevelPreview em{font-size:11px;line-height:14px}
+#pirate-harbor .nextLevelPreview small{font-size:10px;line-height:12px}
+@media(max-width:740px){
+#pirate-harbor .heroBody{top:60px;bottom:20px}
+#pirate-harbor .statItem small{font-size:9px;letter-spacing:0}
+#pirate-harbor .nextLevelPreview>span{font-size:8px;line-height:10px}
+#pirate-harbor .nextLevelPreview em{font-size:10px;line-height:13px}
+#pirate-harbor .nextLevelPreview small{font-size:9px;line-height:11px}
+}
+#pirate-harbor .crewCard[aria-current=true] .selectedPennant{top:15px;bottom:auto;left:51px;right:13px;font-size:8px;line-height:12px;padding:2px 0;letter-spacing:.8px}
+#pirate-harbor .crewCard[aria-current=true] .roleSeal{display:none}
+#pirate-harbor.page-inactive *{animation-play-state:paused!important}
+@media(max-width:740px){#pirate-harbor .crewCard[aria-current=true] .selectedPennant{top:12px;left:43px;right:9px;font-size:6px;line-height:10px;padding:1px 0;letter-spacing:.2px}}
+
+/* Readable rewards at every animation frame: effects never dim the information. */
+#pirate-harbor .ascensionSummary{background:#091e29;border:1px solid #d8b77399;padding:12px 16px;box-shadow:0 8px 30px #0008;opacity:1;transition:none;transform:none;border-radius:3px}
+#pirate-harbor .rankCelebration[data-phase=gathering] .ascensionSummary{opacity:1;transform:none}
+#pirate-harbor .ascensionSummary .ascensionName{color:#ffe6a8}
+#pirate-harbor .ascensionRank{color:#e6dbc0}
+#pirate-harbor .ascensionSummary .gainStats strong,#pirate-harbor .levelRewardCopy .gainStats strong{color:#e2dfcb}
+#pirate-harbor .ascensionSummary .gainStats b,#pirate-harbor .levelRewardCopy .gainStats b{color:#d3f2bc}
+#pirate-harbor .ascensionSummary .rewardScope,#pirate-harbor .levelRewardCopy .rewardScope{color:#cddfce}
+#pirate-harbor .levelCelebration{background:#0b2530;min-height:215px;animation:levelCardArrives .45s ease-out both;opacity:1}
+#pirate-harbor .levelRewardCopy{background:#0b2530}
+#pirate-harbor .levelRewardCopy>strong{color:#fff1cd}
+#pirate-harbor .levelSweep{inset:0 auto 0 0;width:112px;pointer-events:none}
+#pirate-harbor .levelRewardFooter{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:5px}
+#pirate-harbor .levelRewardFooter .rewardScope{max-width:60%;margin:0;line-height:13px}
+#pirate-harbor .levelSkip{min-height:44px;min-width:84px;font-size:12px;padding:6px 10px;pointer-events:auto}
+@keyframes levelCardArrives{from{transform:translateX(-50%) translateY(8px)}to{transform:translateX(-50%) translateY(0)}}
+@media(max-width:740px){#pirate-harbor .ascensionSummary{padding:10px 12px;gap:5px}#pirate-harbor .levelCelebration{min-height:210px}#pirate-harbor .levelRewardCopy .levelRoute{top:11px}#pirate-harbor .levelRewardFooter .rewardScope{font-size:10px}}
+@keyframes levelMedalReveals{from{transform:scale(1.25);filter:drop-shadow(0 0 12px #f0c579)}to{transform:scale(1);filter:drop-shadow(0 0 4px #dba84a)}}
+
+/* Live player profile and wallet on the interactive Freeport world. */
+#pirate-harbor .hubTop{height:92px;padding:15px 18px;align-items:center;gap:18px;background:linear-gradient(#03121cba,#03121c35,transparent)}
+#pirate-harbor .hubTop .brand{font-size:17px;align-self:flex-start;margin-top:7px;min-width:165px}
+#pirate-harbor .hubTop .wallet{pointer-events:auto;display:flex;align-items:center;gap:10px;min-width:136px;height:48px;border-radius:9px;padding:7px 16px;border:2px solid #b58a42;background:linear-gradient(160deg,#654326,#241b18 55%,#422b1e);box-shadow:inset 0 0 0 2px #f0c66b44,0 4px 9px #0008;color:#fff3ca;text-shadow:0 2px 2px #000;font:700 22px Georgia;margin-right:auto;overflow:hidden}
+#pirate-harbor .hubTop .wallet svg{width:27px;height:27px;flex:none;color:#f7cd62}#pirate-harbor .wallet strong{font:inherit;overflow:hidden;text-overflow:ellipsis}
+#pirate-harbor .playerProfile{pointer-events:auto;display:flex;align-items:center;gap:11px;width:264px;height:68px;border:2px solid #c99945;border-radius:12px 9px 9px 12px;background:linear-gradient(145deg,#65432a,#281d19 60%);box-shadow:inset 0 0 0 2px #f0c66b33,0 4px 10px #0008;padding:4px 10px 4px 3px;text-align:left;color:#fff1cb}
+#pirate-harbor .profilePortrait{position:relative;align-self:stretch;flex:0 0 61px;border:2px solid #d8ad5c;border-radius:50%;overflow:visible;background:#12262d}#pirate-harbor .profilePortrait img{height:100%;width:100%;border-radius:50%;object-fit:cover;object-position:center 20%}#pirate-harbor .profilePortrait b{position:absolute;left:-3px;bottom:-8px;min-width:28px;height:26px;border:2px solid #c7a052;border-radius:50%;background:#46301a;color:#ffe6ac;display:grid;place-items:center;font:700 16px Georgia}
+#pirate-harbor .profileCopy{display:flex;flex-direction:column;gap:4px;min-width:0;flex:1}#pirate-harbor .profileCopy strong{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font:700 20px Georgia}#pirate-harbor .profileCopy small{font:11px system-ui;color:#ebcd91;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}#pirate-harbor .profileXp{height:6px;border:1px solid #a77d40;background:#170f0d;border-radius:8px;overflow:hidden}#pirate-harbor .profileXp i{display:block;height:100%;background:linear-gradient(#ffe08d,#c48a28);max-width:100%}
+#pirate-harbor .harborScene>.hubTools{position:absolute;top:88px;left:18px;gap:7px;z-index:2}#pirate-harbor .harborScene>.hubTools .round{background:linear-gradient(#4a3421,#241d1a);border-color:#d8b05c}
+#pirate-harbor .landmarkName{pointer-events:all;cursor:pointer;opacity:0}#pirate-harbor .worldSvg.guides .landmarkName{opacity:1}#pirate-harbor .landmarkName rect{fill:#3a241beb;stroke:#c99a4c;stroke-width:2}#pirate-harbor .landmarkName text{fill:#ffedbd;font:bold 15px Georgia;text-shadow:0 2px 3px #000;pointer-events:none}
+#pirate-harbor .hubPlay{position:absolute;bottom:18px;left:50%;transform:translateX(-50%);width:190px;min-height:62px;display:flex;align-items:center;flex-direction:column;justify-content:center;gap:4px;border:2px solid #edbf5f;border-radius:12px;background:linear-gradient(#852e22,#481914);box-shadow:inset 0 0 0 3px #2f140c,0 5px 15px #0008;color:#ffe7aa;text-shadow:0 2px #3f160d}#pirate-harbor .hubPlay span{font:700 16px Georgia;letter-spacing:1px}#pirate-harbor .hubPlay strong{font:700 16px Georgia;border-radius:7px;background:linear-gradient(#ffdf78,#c98b29);color:#3e240e;text-shadow:none;padding:4px 20px}
+#pirate-harbor .hubBottom{pointer-events:none}#pirate-harbor .hubBottom>*{pointer-events:auto}#pirate-harbor .crewShortcut{background:linear-gradient(130deg,#533923,#211d1b);border:1px solid #c99d51}
+@media(max-width:760px){#pirate-harbor .hubTop{height:78px;padding:10px 12px;gap:9px}#pirate-harbor .hubTop .brand{font-size:12px;letter-spacing:1.6px;min-width:128px;margin-top:8px}#pirate-harbor .brand small{font-size:8px;letter-spacing:1.8px}#pirate-harbor .hubTop .wallet{min-width:110px;max-width:145px;height:46px;padding:6px 10px;font-size:18px;gap:6px}#pirate-harbor .hubTop .wallet svg{width:23px;height:23px}#pirate-harbor .playerProfile{width:211px;height:60px;gap:7px;padding-right:7px}#pirate-harbor .profilePortrait{flex-basis:49px}#pirate-harbor .profileCopy strong{font-size:17px}#pirate-harbor .profileCopy small{font-size:10px}#pirate-harbor .harborScene>.hubTools{top:78px;left:12px}#pirate-harbor .hubPlay{width:156px;min-height:58px;bottom:14px}#pirate-harbor .hubPlay span{font-size:14px}#pirate-harbor .hubBottom{padding:12px}#pirate-harbor .crewShortcut{max-width:190px}#pirate-harbor .crewShortcut b{font-size:18px}#pirate-harbor .crewShortcut small{font-size:9px}}
+/* Keep the Adventure action clear of every building entrance. */
+#pirate-harbor .hubPlay{top:16px;bottom:auto;left:52.5%;width:160px;min-height:58px}
+@media(max-width:760px){#pirate-harbor .hubPlay{top:12px;bottom:auto;width:136px;min-height:54px}}
+#pirate-harbor .hubPlay:active{transform:translateX(-50%) translateY(1px)}
+
+/* review-only labels are not shown in the game */
+#pirate-harbor .prototypeTag,#pirate-harbor .screenSeal,#pirate-harbor #artInfo,#pirate-harbor .harborScene>.status{display:none!important}
+
+/* Shared real player/wallet HUD above the living 3D harbor. */
+#pirate-harbor .h3dMode .playerProfile{position:absolute;top:max(10px,env(safe-area-inset-top));right:max(12px,env(safe-area-inset-right))}
+#pirate-harbor .h3dMode .wallet{position:absolute;top:max(16px,env(safe-area-inset-top));left:max(16px,env(safe-area-inset-left));display:flex;align-items:center;gap:10px;height:48px;min-width:120px;max-width:200px;padding:7px 16px;border:2px solid #b58a42;border-radius:10px;background:linear-gradient(160deg,#654326,#241b18 55%,#422b1e);box-shadow:inset 0 0 0 2px #f0c66b44,0 4px 9px #0008;color:#fff3ca;font:700 22px Georgia;overflow:hidden}
+#pirate-harbor .h3dMode .wallet svg{width:27px;height:27px;flex:none;color:#f7cd62}
+#pirate-harbor .h3dMode .h3dGear{top:auto;bottom:max(12px,env(safe-area-inset-bottom))}
+@media(max-width:760px){#pirate-harbor .h3dMode .wallet{height:44px;min-width:110px;max-width:160px;font-size:18px;padding:6px 10px}}

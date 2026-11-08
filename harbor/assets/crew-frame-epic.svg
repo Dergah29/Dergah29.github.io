@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 300" fill="none">
+<!-- Original Pirate Strike amethyst officer frame. -->
+<defs><linearGradient id="metal" x2="1" y2="1"><stop stop-color="#554266"/><stop offset=".25" stop-color="#dec8ee"/><stop offset=".5" stop-color="#8d65af"/><stop offset=".8" stop-color="#d3a8f0"/><stop offset="1" stop-color="#50365f"/></linearGradient></defs>
+<path d="M20 4H70L90 15 110 4H160L176 22V278L160 296H110L90 286 70 296H20L4 278V22Z" stroke="#06121c" stroke-width="7"/>
+<path d="M20 4H70L90 15 110 4H160L176 22V278L160 296H110L90 286 70 296H20L4 278V22Z" stroke="url(#metal)" stroke-width="4"/>
+<path d="M21 11H69L90 22 111 11H159L169 24V276L159 289H111L90 279 69 289H21L11 276V24Z" stroke="#d5b7ed" stroke-opacity=".65"/>
+<g stroke="url(#metal)" stroke-width="1.6"><path d="M12 53V25L25 13h31M124 13h31l13 12v28M12 247v28l13 12h31m68 0h31l13-12v-28M5 111l7 10-7 10m170-20-7 10 7 10M5 171l7 10-7 10m170-20-7 10 7 10"/><path d="m77 10 13 8 13-8-13-7zm0 280 13-8 13 8-13 7z" fill="#9870b9"/><path d="m18 20 7 7m-7 0 7-7m130 0 7 7m-7 0 7-7m-137 253 7 7m-7 0 7-7m130 0 7 7m-7 0 7-7"/></g></svg>

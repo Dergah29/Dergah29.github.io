@@ -1,0 +1,11 @@
+# Sunset Freeport 3D harbour — third-party assets
+
+| Folder | Source | Licence |
+|---|---|---|
+| `q/` | Quaternius — Ultimate Pirate Kit (quaternius.com). Copied from github.com/ibugithub/Pirate-Rpg `assets/pirateKit/glTF`, converted to meshopt GLB + WebP textures with gltf-transform. | CC0 1.0 |
+| `kenney/pirate/` | Kenney — Pirate Kit 2.1 (kenney.nl), via github.com/series-ai/jam-ready-assets | CC0 1.0 (`kenney/License-pirate-kit.txt`) |
+| `kenney/town/` | Kenney — Fantasy Town Kit (kenney.nl), via github.com/series-ai/jam-ready-assets | CC0 1.0 (`kenney/License-fantasy-town-kit.txt`) |
+| `waternormals.jpg` | three.js examples (`examples/textures/waternormals.jpg`), resized to 512 px | MIT (three.js authors) |
+
+The bundled renderer `../harbor3d.js` contains three.js r160 (MIT, © 2010-2023 three.js authors).
+Terrain, water, sky, piers, market stalls, the arena and banners are generated in code.

@@ -1,0 +1,115 @@
+{
+ "page": "env-fort.webp",
+ "scale": 2,
+ "size": [
+  1024,
+  512
+ ],
+ "items": {
+  "anvil": {
+   "rect": [
+    828,
+    0,
+    89,
+    80
+   ],
+   "world": [
+    44.3,
+    40
+   ],
+   "src": "PNG/Environment/Anvil.png"
+  },
+  "bucket": {
+   "rect": [
+    919,
+    0,
+    70,
+    76
+   ],
+   "world": [
+    34.9,
+    38
+   ],
+   "src": "PNG/Environment/Bucket.png"
+  },
+  "lantern": {
+   "rect": [
+    0,
+    0,
+    232,
+    340
+   ],
+   "world": [
+    115.8,
+    170
+   ],
+   "src": "PNG/Environment/Street_Lantern.png"
+  },
+  "relief": {
+   "rect": [
+    383,
+    0,
+    158,
+    156
+   ],
+   "world": [
+    79.2,
+    78
+   ],
+   "src": "PNG/Environment/Lion_Bas_Relief.png"
+  },
+  "rock_a": {
+   "rect": [
+    722,
+    0,
+    104,
+    102
+   ],
+   "world": [
+    52,
+    51.1
+   ],
+   "src": "PNG/Environment/Rock_01.png"
+  },
+  "rock_b": {
+   "rect": [
+    0,
+    342,
+    52,
+    40
+   ],
+   "world": [
+    26,
+    20.1
+   ],
+   "src": "PNG/Environment/Rock_05.png"
+  },
+  "sign_skull": {
+   "rect": [
+    234,
+    0,
+    147,
+    160
+   ],
+   "world": [
+    73.7,
+    80
+   ],
+   "src": "PNG/Environment/Sign_04.png"
+  },
+  "wall": {
+   "rect": [
+    543,
+    0,
+    177,
+    140
+   ],
+   "world": [
+    88.7,
+    70
+   ],
+   "src": "PNG/Environment/Fence.png"
+  }
+ },
+ "license": "CraftPix 'Free Medieval Ruins Cartoon 2D Tileset' (signs, broken wall, relief) and 'Free Market Cartoon 2D Game Tileset' (https://craftpix.net/file-licenses/): graded, resampled in-game atlas only; source archives are not shipped"
+}

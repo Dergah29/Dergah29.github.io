@@ -1,0 +1,55 @@
+/* Sunset Freeport 3D harbour: scene labels + HUD (main menu). */
+#pirate-harbor .h3dHost{position:absolute;inset:0;background:#0b5f88;overflow:hidden}
+#pirate-harbor .h3dHost[hidden]{display:none}
+#pirate-harbor .h3dCanvas{position:absolute;inset:0;width:100%;height:100%;display:block;touch-action:none}
+#pirate-harbor .h3dLabels{position:absolute;inset:0;pointer-events:none}
+#pirate-harbor .h3dLabels .lbl{position:absolute;left:0;top:0;pointer-events:auto;display:flex;align-items:center;gap:6px;padding:4px 12px 4px 4px;border-radius:16px;border:2px solid #e9b85e;background:linear-gradient(#3a2414f0,#1d1109f0);color:#fff3dc;font:700 14px Georgia,serif;box-shadow:0 5px 12px #0008;white-space:nowrap;opacity:0;transition:opacity .6s;min-height:32px}
+#pirate-harbor .h3dLabels .lbl i{width:22px;height:22px;border-radius:50%;background:#f2c14e;display:grid;place-items:center;color:#3a1d04;font:900 12px system-ui;font-style:normal}
+#pirate-harbor .h3dLabels .lbl.sel{border-color:#fff;box-shadow:0 0 0 3px #ffd36a,0 5px 14px #000a}
+#pirate-harbor .h3dLabels .lbl.main{flex-direction:column;gap:2px;padding:8px 22px 9px;border-radius:18px;border:3px solid #ffd36a;background:linear-gradient(#8a1f12,#4b0d08);font-size:22px;letter-spacing:2px;box-shadow:0 0 0 4px #0006,0 0 28px #ffcf5a,0 8px 16px #000a;animation:h3dPulse 1.4s ease-in-out infinite}
+#pirate-harbor .h3dLabels .lbl.main i{position:absolute;left:-16px;top:50%;margin-top:-17px;width:34px;height:34px;font-size:18px;border:3px solid #fff2c0}
+#pirate-harbor .h3dLabels .lbl.main em{font:900 13px system-ui;font-style:normal;letter-spacing:1px;color:#3a1d04;background:#ffd36a;border-radius:10px;padding:2px 10px}
+@keyframes h3dPulse{50%{box-shadow:0 0 0 4px #0006,0 0 44px #ffe08a,0 8px 16px #000a;filter:brightness(1.12)}}
+#pirate-harbor .h3dHost.h3dReady .lbl{opacity:1}
+#pirate-harbor .h3dHand{position:absolute;left:0;top:0;width:46px;height:46px;font-size:40px;pointer-events:none;opacity:0;transition:opacity .5s;filter:drop-shadow(0 3px 4px #0008);animation:h3dTap 1.1s ease-in-out infinite}
+#pirate-harbor .h3dHost.h3dReady .h3dHand{opacity:1;transition-delay:2.5s}
+@keyframes h3dTap{50%{transform:translate(-6px,-10px) scale(.92)}}
+#pirate-harbor .harborScene.h3dMode{background:transparent;pointer-events:none}
+#pirate-harbor .h3dMode .h3dUi{pointer-events:auto}
+#pirate-harbor .h3dLoading{position:absolute;left:50%;bottom:22px;transform:translateX(-50%);font:italic 13px Georgia,serif;color:#fff3dc;background:#1d1109cc;border:1px solid #d9a548;padding:6px 16px;border-radius:16px}
+#pirate-harbor .h3dWood{background:linear-gradient(#4a2c16f2,#24140af2);border:2px solid #d9a548;box-shadow:inset 0 1px 0 #ffffff22,0 4px 10px #0009;color:#fff3dc}
+#pirate-harbor .h3dProf{position:absolute;left:max(10px,env(safe-area-inset-left));top:8px;display:flex;align-items:center;background:none;border:0;padding:0;text-align:left}
+#pirate-harbor .h3dAva{position:relative;width:62px;height:62px;border-radius:50%;border:3px solid #f2c14e;box-shadow:0 0 0 2px #3a1d04,0 4px 10px #000a;overflow:hidden;background:radial-gradient(#7a3a20,#3a1a0c);z-index:2;flex:none}
+#pirate-harbor .h3dAva img{width:100%;height:118%;object-fit:cover;object-position:top}
+#pirate-harbor .h3dLvl{position:absolute;left:44px;top:46px;z-index:3;width:24px;height:24px;border-radius:50%;background:radial-gradient(#ffe27a,#c98a12);border:2px solid #3a1d04;color:#3a1d04;font:900 12px system-ui;display:grid;place-items:center}
+#pirate-harbor .h3dInfo{margin-left:-14px;padding:5px 14px 6px 22px;border-radius:0 14px 14px 0;min-width:118px}
+#pirate-harbor .h3dInfo b{display:block;font:700 15px Georgia,serif;letter-spacing:.3px}
+#pirate-harbor .h3dXp{margin-top:4px;height:7px;border-radius:4px;background:#0008;border:1px solid #d9a54888;overflow:hidden}
+#pirate-harbor .h3dXp i{display:block;height:100%;background:linear-gradient(90deg,#f7d36a,#e08a1e)}
+#pirate-harbor .h3dGold{position:absolute;top:22px;left:calc(max(10px,env(safe-area-inset-left)) + 222px);height:34px;padding:0 4px 0 8px;border-radius:17px;display:flex;align-items:center;gap:7px;font:800 15px system-ui}
+#pirate-harbor .h3dCoin{width:21px;height:21px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#fff3a0,#f2b52e 60%,#b07410);box-shadow:0 0 0 1px #7a4a08}
+#pirate-harbor .h3dPlus{width:26px;height:26px;border-radius:50%;background:linear-gradient(#5fc24a,#2d8a22);border:1px solid #bff0a0;color:#fff;font:900 16px system-ui;display:grid;place-items:center}
+#pirate-harbor .h3dGear{position:absolute;right:max(12px,env(safe-area-inset-right));top:10px;width:44px;height:44px;border-radius:12px;display:grid;place-items:center;padding:0}
+#pirate-harbor .h3dGear svg{width:22px;height:22px}
+#pirate-harbor .h3dQuest{position:absolute;left:max(10px,env(safe-area-inset-left));top:80px;width:150px;padding:7px 10px 8px 44px;border-radius:12px;font:600 11px system-ui;text-align:left}
+#pirate-harbor .h3dQuest:before{content:'📜';position:absolute;left:9px;top:8px;font-size:22px}
+#pirate-harbor .h3dQuest b{display:block;font:700 13px Georgia,serif;color:#ffd36a;margin-bottom:2px}
+#pirate-harbor .h3dQb{margin-top:5px;height:5px;border-radius:3px;background:#0008}
+#pirate-harbor .h3dQb i{display:block;height:100%;background:#f2c14e}
+#pirate-harbor .h3dCrew{position:absolute;left:max(10px,env(safe-area-inset-left));bottom:max(10px,env(safe-area-inset-bottom));padding:6px 10px 8px;border-radius:14px;text-align:left}
+#pirate-harbor .h3dCrew .ct{display:flex;align-items:center;gap:6px;font:700 14px Georgia,serif;margin-bottom:5px}
+#pirate-harbor .h3dCrew .ct:before{content:'⚓';color:#f2c14e}
+#pirate-harbor .h3dCrew .ct:after{content:'›';margin-left:auto;color:#f2c14e;font-size:18px}
+#pirate-harbor .h3dCrew .ps{display:flex;gap:6px}
+#pirate-harbor .h3dCrew .ps img{width:42px;height:42px;border-radius:9px;object-fit:cover;object-position:top;border:2px solid #d9a548;background:radial-gradient(#7a3a20,#2a120a)}
+#pirate-harbor .h3dCredit{position:absolute;right:8px;bottom:4px;font:9px system-ui;color:#fff9;text-shadow:0 1px 2px #000;pointer-events:none}
+@media(max-height:380px){#pirate-harbor .h3dCrew .ps img{width:36px;height:36px}#pirate-harbor .h3dQuest{top:76px}}
+#pirate-harbor .h3dInfo,#pirate-harbor .h3dXp,#pirate-harbor .h3dQb,#pirate-harbor .h3dCrew .ct{display:block}
+#pirate-harbor .h3dCrew .ct{display:flex}
+#pirate-harbor .h3dQuest{width:176px}
+#pirate-harbor .h3dGear{font-size:22px;color:#ffd36a}
+@media(max-width:700px),(max-height:380px){#pirate-harbor .h3dAva{width:52px;height:52px}#pirate-harbor .h3dLvl{left:36px;top:38px;width:22px;height:22px;font-size:11px}#pirate-harbor .h3dInfo b{font-size:13px}#pirate-harbor .h3dGold{top:16px;left:calc(max(10px,env(safe-area-inset-left)) + 196px);height:30px;font-size:13px}#pirate-harbor .h3dQuest{top:68px;width:150px;font-size:10px;padding:5px 8px 6px 38px}#pirate-harbor .h3dQuest:before{font-size:18px;left:8px;top:6px}#pirate-harbor .h3dQuest b{font-size:12px}#pirate-harbor .h3dLabels .lbl{font-size:12px;min-height:28px}#pirate-harbor .h3dLabels .lbl.main{font-size:19px;padding:6px 18px 7px}}
+#pirate-harbor .h3dQrow{display:block;width:100%;text-align:left;background:none;border:0;padding:3px 0;color:#fff3dc;font:600 11px system-ui;min-height:30px}
+#pirate-harbor .h3dQrow+.h3dQrow{border-top:1px solid #d9a54855;margin-top:3px;padding-top:5px}
+#pirate-harbor .h3dQrow.ok{color:#a6e8a0}
+#pirate-harbor .h3dQuest{width:184px}

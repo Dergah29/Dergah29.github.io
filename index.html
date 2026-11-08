@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Pirate Strike</title>
+    <meta charset="UTF-8"/>
+    <link rel="manifest" href="manifest.webmanifest">
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <meta name="theme-color" content="#000000" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+	<style>
+		body {
+			margin: 0;
+			padding: 0;
+			background-color: #000000;
+            overflow: hidden;
+		}
+        #canvasArea {
+            margin-left: auto;
+            margin-right: auto;
+            overflow: hidden;
+        }
+
+        
+	</style>
+    <!-- Libs and GDJS core files : -->
+		<script src="libs/jshashtable.js" crossorigin="anonymous"></script>
+	<script src="logger.js" crossorigin="anonymous"></script>
+	<script src="gd.js" crossorigin="anonymous"></script>
+	<script src="libs/rbush.js" crossorigin="anonymous"></script>
+	<script src="AsyncTasksManager.js" crossorigin="anonymous"></script>
+	<script src="inputmanager.js" crossorigin="anonymous"></script>
+	<script src="jsonmanager.js" crossorigin="anonymous"></script>
+	<script src="Model3DManager.js" crossorigin="anonymous"></script>
+	<script src="ResourceLoader.js" crossorigin="anonymous"></script>
+	<script src="ResourceCache.js" crossorigin="anonymous"></script>
+	<script src="timemanager.js" crossorigin="anonymous"></script>
+	<script src="polygon.js" crossorigin="anonymous"></script>
+	<script src="runtimeobject.js" crossorigin="anonymous"></script>
+	<script src="profiler.js" crossorigin="anonymous"></script>
+	<script src="RuntimeInstanceContainer.js" crossorigin="anonymous"></script>
+	<script src="runtimescene.js" crossorigin="anonymous"></script>
+	<script src="scenestack.js" crossorigin="anonymous"></script>
+	<script src="force.js" crossorigin="anonymous"></script>
+	<script src="RuntimeLayer.js" crossorigin="anonymous"></script>
+	<script src="layer.js" crossorigin="anonymous"></script>
+	<script src="RuntimeCustomObjectLayer.js" crossorigin="anonymous"></script>
+	<script src="timer.js" crossorigin="anonymous"></script>
+	<script src="runtimewatermark.js" crossorigin="anonymous"></script>
+	<script src="runtimegame.js" crossorigin="anonymous"></script>
+	<script src="variable.js" crossorigin="anonymous"></script>
+	<script src="variablescontainer.js" crossorigin="anonymous"></script>
+	<script src="oncetriggers.js" crossorigin="anonymous"></script>
+	<script src="runtimebehavior.js" crossorigin="anonymous"></script>
+	<script src="SpriteAnimator.js" crossorigin="anonymous"></script>
+	<script src="spriteruntimeobject.js" crossorigin="anonymous"></script>
+	<script src="affinetransformation.js" crossorigin="anonymous"></script>
+	<script src="CustomRuntimeObjectInstanceContainer.js" crossorigin="anonymous"></script>
+	<script src="CustomRuntimeObject.js" crossorigin="anonymous"></script>
+	<script src="CustomRuntimeObject2D.js" crossorigin="anonymous"></script>
+	<script src="indexeddb.js" crossorigin="anonymous"></script>
+	<script src="events-tools/commontools.js" crossorigin="anonymous"></script>
+	<script src="events-tools/variabletools.js" crossorigin="anonymous"></script>
+	<script src="events-tools/runtimescenetools.js" crossorigin="anonymous"></script>
+	<script src="events-tools/inputtools.js" crossorigin="anonymous"></script>
+	<script src="events-tools/objecttools.js" crossorigin="anonymous"></script>
+	<script src="events-tools/cameratools.js" crossorigin="anonymous"></script>
+	<script src="events-tools/soundtools.js" crossorigin="anonymous"></script>
+	<script src="events-tools/storagetools.js" crossorigin="anonymous"></script>
+	<script src="events-tools/stringtools.js" crossorigin="anonymous"></script>
+	<script src="events-tools/windowtools.js" crossorigin="anonymous"></script>
+	<script src="events-tools/networktools.js" crossorigin="anonymous"></script>
+	<script src="splash/gd-logo-light.js" crossorigin="anonymous"></script>
+	<script src="pixi-renderers/pixi.js" crossorigin="anonymous"></script>
+	<script src="pixi-renderers/pixi-filters-tools.js" crossorigin="anonymous"></script>
+	<script src="pixi-renderers/runtimegame-pixi-renderer.js" crossorigin="anonymous"></script>
+	<script src="pixi-renderers/runtimescene-pixi-renderer.js" crossorigin="anonymous"></script>
+	<script src="pixi-renderers/layer-pixi-renderer.js" crossorigin="anonymous"></script>
+	<script src="pixi-renderers/pixi-image-manager.js" crossorigin="anonymous"></script>
+	<script src="pixi-renderers/pixi-bitmapfont-manager.js" crossorigin="anonymous"></script>
+	<script src="pixi-renderers/spriteruntimeobject-pixi-renderer.js" crossorigin="anonymous"></script>
+	<script src="pixi-renderers/CustomRuntimeObject2DPixiRenderer.js" crossorigin="anonymous"></script>
+	<script src="pixi-renderers/DebuggerPixiRenderer.js" crossorigin="anonymous"></script>
+	<script src="pixi-renderers/loadingscreen-pixi-renderer.js" crossorigin="anonymous"></script>
+	<script src="pixi-renderers/pixi-effects-manager.js" crossorigin="anonymous"></script>
+	<script src="howler-sound-manager/howler.min.js" crossorigin="anonymous"></script>
+	<script src="howler-sound-manager/howler-sound-manager.js" crossorigin="anonymous"></script>
+	<script src="fontfaceobserver-font-manager/fontfaceobserver.js" crossorigin="anonymous"></script>
+	<script src="fontfaceobserver-font-manager/fontfaceobserver-font-manager.js" crossorigin="anonymous"></script>
+	<script src="gdjs-evtsext__advancedjump__advancedjump.js" crossorigin="anonymous"></script>
+	<script src="gdjs-evtsext__advancedjump__platformerconfigurationstack.js" crossorigin="anonymous"></script>
+	<script src="gdjs-evtsext__advancedjump__walljump.js" crossorigin="anonymous"></script>
+	<script src="gdjs-evtsext__camerashake__camerashake-func.js" crossorigin="anonymous"></script>
+	<script src="gdjs-evtsext__camerashake__create-func.js" crossorigin="anonymous"></script>
+	<script src="gdjs-evtsext__camerashake__delete-func.js" crossorigin="anonymous"></script>
+	<script src="gdjs-evtsext__camerashake__deleteall-func.js" crossorigin="anonymous"></script>
+	<script src="gdjs-evtsext__camerashake__frequency-func.js" crossorigin="anonymous"></script>
+	<script src="gdjs-evtsext__camerashake__isshaking-func.js" crossorigin="anonymous"></script>
+	<script src="gdjs-evtsext__camerashake__lacunarity-func.js" crossorigin="anonymous"></script>
+	<script src="gdjs-evtsext__camerashake__noise2d-func.js" crossorigin="anonymous"></script>
+	<script src="gdjs-evtsext__camerashake__noise3d-func.js" crossorigin="anonymous"></script>
+	<script src="gdjs-evtsext__camerashake__noise4d-func.js" crossorigin="anonymous"></script>
+	<script src="gdjs-evtsext__camerashake__octaves-func.js" crossorigin="anonymous"></script>
+	<script src="gdjs-evtsext__camerashake__onfirstsceneloaded-func.js" crossorigin="anonymous"></script>
+	<script src="gdjs-evtsext__camerashake__onsceneloaded-func.js" crossorigin="anonymous"></script>
+	<script src="gdjs-evtsext__camerashake__onscenepostevents-func.js" crossorigin="anonymous"></script>
+	<script src="gdjs-evtsext__camerashake__onscenepreevents-func.js" crossorigin="anonymous"></script>
+	<script src="gdjs-evtsext__camerashake__persistence-func.js" crossorigin="anonymous"></script>
+	<script src="gdjs-evtsext__camerashake__seed-func.js" crossorigin="anonymous"></script>
+	<script src="gdjs-evtsext__camerashake__setdefaultrotationamplitude-func.js" crossorigin="anonymous"></script>
+	<script src="gdjs-evtsext__camerashake__setdefaultshakingfrequency-func.js" crossorigin="anonymous"></script>
+	<script src="gdjs-evtsext__camerashake__setdefaulttranslationamplitude-func.js" crossorigin="anonymous"></script>
+	<script src="gdjs-evtsext__camerashake__setdefaultzoomamplitude-func.js" crossorigin="anonymous"></script>
+	<script src="gdjs-evtsext__camerashake__setfrequency-func.js" crossorigin="anonymous"></script>
+	<script src="gdjs-evtsext__camerashake__setlacunarity-func.js" crossorigin="anonymous"></script>
+	<script src="gdjs-evtsext__camerashake__setlayerrotationamplitude-func.js" crossorigin="anonymous"></script>
+	<script src="gdjs-evtsext__camerashake__setlayershakable-func.js" crossorigin="anonymous"></script>
+	<script src="gdjs-evtsext__camerashake__setlayershakingfrequency-func.js" crossorigin="anonymous"></script>
+	<script src="gdjs-evtsext__camerashake__setlayertranslationamplitude-func.js" crossorigin="anonymous"></script>
+	<script src="gdjs-evtsext__camerashake__setlayerzoomamplitude-func.js" crossorigin="anonymous"></script>
+	<script src="gdjs-evtsext__camerashake__setloopperiodx-func.js" crossorigin="anonymous"></script>
+	<script src="gdjs-evtsext__camerashake__setloopperiody-func.js" crossorigin="anonymous"></script>
+	<script src="gdjs-evtsext__camerashake__setoctaves-func.js" crossorigin="anonymous"></script>
+	<script src="gdjs-evtsext__camerashake__setpersistence-func.js" crossorigin="anonymous"></script>
+	<script src="gdjs-evtsext__camerashake__setseed-func.js" crossorigin="anonymous"></script>
+	<script src="gdjs-evtsext__camerashake__shakecamera-func.js" crossorigin="anonymous"></script>
+	<script src="gdjs-evtsext__camerashake__startshaking-func.js" crossorigin="anonymous"></script>
+	<script src="gdjs-evtsext__camerashake__stopshaking-func.js" crossorigin="anonymous"></script>
+	<script src="gdjs-evtsext__coordinateexchange__exchangexposition-func.js" crossorigin="anonymous"></script>
+	<script src="gdjs-evtsext__coordinateexchange__exchangeyposition-func.js" crossorigin="anonymous"></script>
+	<script src="gdjs-evtsext__ellipsemovement__ellipsemovement.js" crossorigin="anonymous"></script>
+	<script src="gdjs-evtsext__firebullet__firebullet.js" crossorigin="anonymous"></script>
+	<script src="gdjs-evtsext__flash__colortint-func.js" crossorigin="anonymous"></script>
+	<script src="gdjs-evtsext__flash__flash.js" crossorigin="anonymous"></script>
+	<script src="gdjs-evtsext__flash__flasheffect.js" crossorigin="anonymous"></script>
+	<script src="gdjs-evtsext__flash__istinted-func.js" crossorigin="anonymous"></script>
+	<script src="gdjs-evtsext__flash__togglecolortint-func.js" crossorigin="anonymous"></script>
+	<script src="gdjs-evtsext__flash__togglevisibility-func.js" crossorigin="anonymous"></script>
+	<script src="gdjs-evtsext__flashtransitionpainter__flashtransitionpainter.js" crossorigin="anonymous"></script>
+	<script src="gdjs-evtsext__followobjectswithcamera__followmultipleobjectswithcamera-func.js" crossorigin="anonymous"></script>
+	<script src="gdjs-evtsext__followobjectswithcamera__followobjectswithcamera-func.js" crossorigin="anonymous"></script>
+	<script src="gdjs-evtsext__repeateveryxseconds__deletetimer-func.js" crossorigin="anonymous"></script>
+	<script src="gdjs-evtsext__repeateveryxseconds__repeat-func.js" crossorigin="anonymous"></script>
+	<script src="gdjs-evtsext__repeateveryxseconds__repeatxtimes-func.js" crossorigin="anonymous"></script>
+	<script src="gdjs-evtsext__repeateveryxseconds__repetition-func.js" crossorigin="anonymous"></script>
+	<script src="gdjs-evtsext__shadowclones__animateshadowclones-func.js" crossorigin="anonymous"></script>
+	<script src="gdjs-evtsext__shadowclones__deleteshadowclones-func.js" crossorigin="anonymous"></script>
+	<script src="gdjs-evtsext__shakeobject__shakeobject_positionangle.js" crossorigin="anonymous"></script>
+	<script src="gdjs-evtsext__shakeobject__shakeobject_positionanglescale.js" crossorigin="anonymous"></script>
+	<script src="gdjs-evtsext__shockwaveeffect__ellipseshockwave.js" crossorigin="anonymous"></script>
+	<script src="gdjs-evtsext__shockwaveeffect__rgbmean-func.js" crossorigin="anonymous"></script>
+	<script src="gdjs-evtsext__shockwaveeffect__starshockwave.js" crossorigin="anonymous"></script>
+	<script src="Extensions/BitmapText/bitmaptextruntimeobject-pixi-renderer.js" crossorigin="anonymous"></script>
+	<script src="Extensions/BitmapText/bitmaptextruntimeobject.js" crossorigin="anonymous"></script>
+	<script src="Extensions/DebuggerTools/debuggertools.js" crossorigin="anonymous"></script>
+	<script src="Extensions/Firebase/A_firebasejs/A_firebase-base.js" crossorigin="anonymous"></script>
+	<script src="Extensions/Firebase/A_firebasejs/B_firebase-remote-config.js" crossorigin="anonymous"></script>
+	<script src="Extensions/Firebase/B_firebasetools/C_firebasetools.js" crossorigin="anonymous"></script>
+	<script src="Extensions/Firebase/B_firebasetools/D_remoteconfigtools.js" crossorigin="anonymous"></script>
+	<script src="Extensions/LinkedObjects/linkedobjects.js" crossorigin="anonymous"></script>
+	<script src="Extensions/ParticleSystem/particleemitterobject-pixi-renderer.js" crossorigin="anonymous"></script>
+	<script src="Extensions/ParticleSystem/particleemitterobject.js" crossorigin="anonymous"></script>
+	<script src="Extensions/ParticleSystem/pixi-particles-pixi-renderer.min.js" crossorigin="anonymous"></script>
+	<script src="Extensions/PlatformBehavior/platformerobjectruntimebehavior.js" crossorigin="anonymous"></script>
+	<script src="Extensions/PlatformBehavior/platformruntimebehavior.js" crossorigin="anonymous"></script>
+	<script src="Extensions/PlatformBehavior/platformtools.js" crossorigin="anonymous"></script>
+	<script src="Extensions/PrimitiveDrawing/pixi-graphics-extras/graphics-extras.min.js" crossorigin="anonymous"></script>
+	<script src="Extensions/PrimitiveDrawing/shapepainterruntimeobject-pixi-renderer.js" crossorigin="anonymous"></script>
+	<script src="Extensions/PrimitiveDrawing/shapepainterruntimeobject.js" crossorigin="anonymous"></script>
+	<script src="Extensions/TiledSpriteObject/tiledspriteruntimeobject-pixi-renderer.js" crossorigin="anonymous"></script>
+	<script src="Extensions/TiledSpriteObject/tiledspriteruntimeobject.js" crossorigin="anonymous"></script>
+	<script src="Extensions/TweenBehavior/TweenManager.js" crossorigin="anonymous"></script>
+	<script src="Extensions/TweenBehavior/tweenruntimebehavior.js" crossorigin="anonymous"></script>
+	<script src="Extensions/TweenBehavior/tweentools.js" crossorigin="anonymous"></script>
+	<script src="object-capabilities/AnimatableBehavior.js" crossorigin="anonymous"></script>
+	<script src="object-capabilities/EffectBehavior.js" crossorigin="anonymous"></script>
+	<script src="object-capabilities/FlippableBehavior.js" crossorigin="anonymous"></script>
+	<script src="object-capabilities/OpacityBehavior.js" crossorigin="anonymous"></script>
+	<script src="object-capabilities/ResizableBehavior.js" crossorigin="anonymous"></script>
+	<script src="object-capabilities/ScalableBehavior.js" crossorigin="anonymous"></script>
+	<script src="object-capabilities/TextContainerBehavior.js" crossorigin="anonymous"></script>
+	<script src="Extensions/Effects/black-and-white-pixi-filter.js" crossorigin="anonymous"></script>
+	<script src="Extensions/Effects/drop-shadow-pixi-filter.js" crossorigin="anonymous"></script>
+	<script src="Extensions/Effects/glow-pixi-filter.js" crossorigin="anonymous"></script>
+	<script src="Extensions/Effects/godray-pixi-filter.js" crossorigin="anonymous"></script>
+	<script src="Extensions/Effects/outline-pixi-filter.js" crossorigin="anonymous"></script>
+	<script src="Extensions/Effects/pixi-filters/filter-drop-shadow.js" crossorigin="anonymous"></script>
+	<script src="Extensions/Effects/pixi-filters/filter-glow.js" crossorigin="anonymous"></script>
+	<script src="Extensions/Effects/pixi-filters/filter-godray.js" crossorigin="anonymous"></script>
+	<script src="Extensions/Effects/pixi-filters/filter-kawase-blur.js" crossorigin="anonymous"></script>
+	<script src="Extensions/Effects/pixi-filters/filter-outline.js" crossorigin="anonymous"></script>
+	<script src="code0.js" crossorigin="anonymous"></script>
+	<script src="code1.js" crossorigin="anonymous"></script>
+	<script src="code2.js" crossorigin="anonymous"></script>
+	<script src="data.js" crossorigin="anonymous"></script>
+
+
+    <link rel="stylesheet" href="controls/pirate-touch-theme.css">
+</head>
+<body>
+    <script src="studio-splash.js"></script>
+<script src="adventure/runtime-current.js"></script>
+<script src="adventure/polish.js"></script>
+<script src="adventure/cursed-island.js"></script>
+<script src="adventure/levels/engine.js"></script>
+<script src="adventure/levels/env-art.js"></script>
+<script src="adventure/levels/art-fx.js"></script>
+<script src="adventure/levels/enemy-rig.js"></script>
+<script src="adventure/levels/enemy-sprite-atlas.js"></script>
+<script src="adventure/levels/enemy-anim.js"></script>
+<script src="adventure/levels/level-01.js"></script>
+<script src="adventure/levels/level-02.js"></script>
+<script src="adventure/levels/level-03.js"></script>
+<script src="adventure/levels/level-04.js"></script>
+<script src="adventure/levels/level-05.js"></script>
+<script src="adventure/levels/level-06.js"></script>
+<script src="adventure/levels/level-07.js"></script>
+<script src="adventure/levels/level-08.js"></script>
+<script src="adventure/levels/level-09.js"></script>
+<script src="adventure/levels/level-10.js"></script>
+<script src="adventure/levels/endless.js"></script>
+<script src="adventure/levels/ending.js"></script>
+<script src="adventure/levels/heroes.js"></script>
+<script src="adventure/levels/registry.js"></script>
+<script src="adventure/levels/worldmap.js"></script>
+<script src="adventure/levels/heroselect.js"></script>
+<script src="adventure/levels/music.js"></script>
+<script src="menu-v2/menu-v2.js"></script>
+<script src="shop/catalog.js"></script>
+<script src="shop/economy.js"></script>
+<script src="shop/cosmetics.js"></script>
+<script src="shop/shop.js"></script>
+<script src="arena-premium.js"></script>
+<script src="arena-view.js"></script>
+<script src="arena-treasure.js"></script>
+<script src="arena-puzzle.js"></script>
+<script src="arena-puzzle-view.js"></script>
+<script src="arena-cannon.js"></script>
+<script src="arena-race.js"></script>
+<script src="arena-course-view.js"></script>
+<script src="arena-territory.js"></script>
+<script src="arena-territory-view.js"></script>
+<script src="arena-costumes.js"></script>
+<script src="arena-presentation.js"></script>
+<script src="arena-sound.js"></script>
+<script src="arena-environment.js"></script>
+<script src="arena-combat-cues.js"></script>
+<script src="arena-classic-result.js"></script>
+<script src="arena-heroes.js"></script>
+<script src="harbor/i18n.js"></script>
+<script src="harbor/progression.js"></script>
+<script src="harbor/harbor.js"></script>
+<script src="tavern/quest.js"></script>
+<script src="tavern/contracts.js"></script>
+<script src="tavern/tavern.js"></script>
+<script src="story/story-data.js"></script>
+<script src="story/story-art.js"></script>
+<script src="story/story-intro.js"></script>
+<script src="arena-objectives.js"></script>
+<script src="arena-modes-core.js"></script>
+<script src="arena-friend.js"></script>
+<script src="arena-modes.js"></script>
+<script src="naval-duel.js"></script>
+
+    
+	<script>
+
+    (function() {
+        //Initialization
+        var game = new gdjs.RuntimeGame(gdjs.projectData, {});
+
+        //Create a renderer
+        game.getRenderer().createStandardCanvas(document.body);
+
+        //Bind keyboards/mouse/touch events
+        game.getRenderer().bindStandardEvents(game.getInputManager(), window, document);
+
+        //Load all assets and start the game
+        game.loadAllAssets(function() {
+            game.startGameLoop();
+        });
+    })();
+
+	</script>
+    <script src="controls/pirate-touch-theme.js"></script>
+</body>
+</html>

@@ -1,0 +1,379 @@
+{
+ "hero": {
+  "image": "hero.png",
+  "frameW": 64,
+  "frameH": 64,
+  "anchor": [
+   32,
+   61
+  ],
+  "scale": 2,
+  "anims": {
+   "idle": {
+    "start": 0,
+    "count": 4,
+    "fps": 6,
+    "loop": true
+   },
+   "run": {
+    "start": 4,
+    "count": 6,
+    "fps": 13,
+    "loop": true
+   },
+   "jump": {
+    "start": 10,
+    "count": 1,
+    "fps": 1,
+    "loop": false
+   },
+   "fall": {
+    "start": 11,
+    "count": 1,
+    "fps": 1,
+    "loop": false
+   },
+   "attackA": {
+    "start": 12,
+    "count": 2,
+    "fps": 18,
+    "loop": false
+   },
+   "attackB": {
+    "start": 14,
+    "count": 2,
+    "fps": 18,
+    "loop": false
+   },
+   "attackC": {
+    "start": 16,
+    "count": 2,
+    "fps": 14,
+    "loop": false
+   },
+   "block": {
+    "start": 18,
+    "count": 1,
+    "fps": 1,
+    "loop": false
+   },
+   "dash": {
+    "start": 19,
+    "count": 1,
+    "fps": 1,
+    "loop": false
+   },
+   "hurt": {
+    "start": 20,
+    "count": 1,
+    "fps": 1,
+    "loop": false
+   },
+   "throw": {
+    "start": 21,
+    "count": 2,
+    "fps": 14,
+    "loop": false
+   },
+   "ko": {
+    "start": 23,
+    "count": 1,
+    "fps": 1,
+    "loop": false
+   }
+  }
+ },
+ "skeleton": {
+  "image": "skeleton.png",
+  "frameW": 192,
+  "frameH": 192,
+  "anchor": [
+   96,
+   183
+  ],
+  "scale": 0.6666666666666666,
+  "smooth": true,
+  "anims": {
+   "idle": {
+    "start": 0,
+    "count": 2,
+    "fps": 3,
+    "loop": true
+   },
+   "walk": {
+    "start": 2,
+    "count": 4,
+    "fps": 8,
+    "loop": true
+   },
+   "windup": {
+    "start": 6,
+    "count": 1,
+    "fps": 1,
+    "loop": false
+   },
+   "strike": {
+    "start": 7,
+    "count": 2,
+    "fps": 12,
+    "loop": false
+   },
+   "hurt": {
+    "start": 9,
+    "count": 1,
+    "fps": 1,
+    "loop": false
+   },
+   "dead": {
+    "start": 10,
+    "count": 2,
+    "fps": 6,
+    "loop": false
+   }
+  }
+ },
+ "shield": {
+  "image": "shield.png",
+  "frameW": 192,
+  "frameH": 192,
+  "anchor": [
+   96,
+   183
+  ],
+  "scale": 0.6666666666666666,
+  "smooth": true,
+  "anims": {
+   "idle": {
+    "start": 0,
+    "count": 2,
+    "fps": 3,
+    "loop": true
+   },
+   "walk": {
+    "start": 2,
+    "count": 4,
+    "fps": 7,
+    "loop": true
+   },
+   "windup": {
+    "start": 6,
+    "count": 1,
+    "fps": 1,
+    "loop": false
+   },
+   "bash": {
+    "start": 7,
+    "count": 1,
+    "fps": 1,
+    "loop": false
+   },
+   "stun": {
+    "start": 8,
+    "count": 1,
+    "fps": 1,
+    "loop": false
+   },
+   "hurt": {
+    "start": 9,
+    "count": 1,
+    "fps": 1,
+    "loop": false
+   },
+   "dead": {
+    "start": 10,
+    "count": 2,
+    "fps": 6,
+    "loop": false
+   }
+  }
+ },
+ "archer": {
+  "image": "archer.png",
+  "frameW": 192,
+  "frameH": 192,
+  "anchor": [
+   96,
+   183
+  ],
+  "scale": 0.6666666666666666,
+  "smooth": true,
+  "anims": {
+   "idle": {
+    "start": 0,
+    "count": 2,
+    "fps": 3,
+    "loop": true
+   },
+   "draw": {
+    "start": 2,
+    "count": 2,
+    "fps": 3,
+    "loop": false
+   },
+   "release": {
+    "start": 4,
+    "count": 1,
+    "fps": 1,
+    "loop": false
+   },
+   "hurt": {
+    "start": 5,
+    "count": 1,
+    "fps": 1,
+    "loop": false
+   },
+   "dead": {
+    "start": 6,
+    "count": 2,
+    "fps": 6,
+    "loop": false
+   }
+  }
+ },
+ "guardian": {
+  "image": "guardian.png",
+  "frameW": 384,
+  "frameH": 384,
+  "anchor": [
+   192,
+   372
+  ],
+  "scale": 0.6666666666666666,
+  "smooth": true,
+  "anims": {
+   "idle": {
+    "start": 0,
+    "count": 2,
+    "fps": 3,
+    "loop": true
+   },
+   "walk": {
+    "start": 2,
+    "count": 4,
+    "fps": 6,
+    "loop": true
+   },
+   "windup": {
+    "start": 6,
+    "count": 1,
+    "fps": 1,
+    "loop": false
+   },
+   "slash": {
+    "start": 7,
+    "count": 1,
+    "fps": 1,
+    "loop": false
+   },
+   "crouch": {
+    "start": 8,
+    "count": 1,
+    "fps": 1,
+    "loop": false
+   },
+   "air": {
+    "start": 9,
+    "count": 1,
+    "fps": 1,
+    "loop": false
+   },
+   "stuck": {
+    "start": 10,
+    "count": 1,
+    "fps": 1,
+    "loop": false
+   },
+   "hurt": {
+    "start": 11,
+    "count": 1,
+    "fps": 1,
+    "loop": false
+   },
+   "roar": {
+    "start": 12,
+    "count": 1,
+    "fps": 1,
+    "loop": false
+   },
+   "dead": {
+    "start": 13,
+    "count": 1,
+    "fps": 1,
+    "loop": false
+   }
+  }
+ },
+ "guardianRage": {
+  "image": "guardian-rage.png",
+  "frameW": 384,
+  "frameH": 384,
+  "anchor": [
+   192,
+   372
+  ],
+  "scale": 0.6666666666666666,
+  "smooth": true,
+  "anims": {
+   "idle": {
+    "start": 0,
+    "count": 2,
+    "fps": 3,
+    "loop": true
+   },
+   "walk": {
+    "start": 2,
+    "count": 4,
+    "fps": 6,
+    "loop": true
+   },
+   "windup": {
+    "start": 6,
+    "count": 1,
+    "fps": 1,
+    "loop": false
+   },
+   "slash": {
+    "start": 7,
+    "count": 1,
+    "fps": 1,
+    "loop": false
+   },
+   "crouch": {
+    "start": 8,
+    "count": 1,
+    "fps": 1,
+    "loop": false
+   },
+   "air": {
+    "start": 9,
+    "count": 1,
+    "fps": 1,
+    "loop": false
+   },
+   "stuck": {
+    "start": 10,
+    "count": 1,
+    "fps": 1,
+    "loop": false
+   },
+   "hurt": {
+    "start": 11,
+    "count": 1,
+    "fps": 1,
+    "loop": false
+   },
+   "roar": {
+    "start": 12,
+    "count": 1,
+    "fps": 1,
+    "loop": false
+   },
+   "dead": {
+    "start": 13,
+    "count": 1,
+    "fps": 1,
+    "loop": false
+   }
+  }
+ }
+}

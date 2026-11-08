@@ -1,0 +1,22 @@
+{
+  "name": "Pirate Strike",
+  "short_name": "Pirate Strike",
+  "id": "az.dergahtech.platformfighter",
+  "description": "Pirate adventure and platform battles with bot practice and private friend duels.",
+  "orientation": "landscape",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "black",
+  "categories": [
+    "games",
+    "entertainment"
+  ],
+  "icons": [
+    {
+      "src": "PirateStrikeIcon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}

@@ -1,0 +1,245 @@
+{
+ "page": "env-ruins.webp",
+ "scale": 2,
+ "size": [
+  1024,
+  1024
+ ],
+ "items": {
+  "fill": {
+   "rect": [
+    650,
+    552,
+    128,
+    128
+   ],
+   "world": [
+    64,
+    64.0
+   ],
+   "src": "PNG/Platformer/Ground_06.png"
+  },
+  "grass_a": {
+   "rect": [
+    194,
+    682,
+    120,
+    60
+   ],
+   "world": [
+    60,
+    30.2
+   ],
+   "src": "PNG/Environment/Grass_01.png"
+  },
+  "grass_b": {
+   "rect": [
+    316,
+    682,
+    120,
+    60
+   ],
+   "world": [
+    60,
+    30.2
+   ],
+   "src": "PNG/Environment/Grass_02.png"
+  },
+  "relief": {
+   "rect": [
+    332,
+    314,
+    171,
+    168
+   ],
+   "world": [
+    85.3,
+    84
+   ],
+   "src": "PNG/Environment/Lion_Bas_Relief.png"
+  },
+  "rock_a": {
+   "rect": [
+    780,
+    552,
+    112,
+    110
+   ],
+   "world": [
+    56,
+    55.1
+   ],
+   "src": "PNG/Environment/Rock_01.png"
+  },
+  "rock_b": {
+   "rect": [
+    438,
+    682,
+    56,
+    43
+   ],
+   "world": [
+    28,
+    21.7
+   ],
+   "src": "PNG/Environment/Rock_05.png"
+  },
+  "ruin_a": {
+   "rect": [
+    325,
+    0,
+    372,
+    300
+   ],
+   "world": [
+    186.1,
+    150
+   ],
+   "src": "PNG/Environment/Decor_Ruins_01.png"
+  },
+  "ruin_b": {
+   "rect": [
+    0,
+    314,
+    330,
+    236
+   ],
+   "world": [
+    164.8,
+    118
+   ],
+   "src": "PNG/Environment/Decor_Ruins_02.png"
+  },
+  "side_left": {
+   "rect": [
+    390,
+    552,
+    128,
+    128
+   ],
+   "world": [
+    64,
+    64.0
+   ],
+   "src": "PNG/Platformer/Ground_05.png"
+  },
+  "side_right": {
+   "rect": [
+    520,
+    552,
+    128,
+    128
+   ],
+   "world": [
+    64,
+    64.0
+   ],
+   "src": "PNG/Platformer/Ground_07.png"
+  },
+  "sign": {
+   "rect": [
+    505,
+    314,
+    155,
+    168
+   ],
+   "world": [
+    77.3,
+    84
+   ],
+   "src": "PNG/Environment/Sign_01.png"
+  },
+  "sign_skull": {
+   "rect": [
+    662,
+    314,
+    155,
+    168
+   ],
+   "world": [
+    77.3,
+    84
+   ],
+   "src": "PNG/Environment/Sign_04.png"
+  },
+  "spikes": {
+   "rect": [
+    0,
+    682,
+    192,
+    96
+   ],
+   "world": [
+    96,
+    48
+   ],
+   "src": "PNG/Platformer/Spikes.png"
+  },
+  "statue": {
+   "rect": [
+    0,
+    0,
+    323,
+    312
+   ],
+   "world": [
+    161.7,
+    156
+   ],
+   "src": "PNG/Environment/Decor_Statue.png"
+  },
+  "top": {
+   "rect": [
+    0,
+    552,
+    128,
+    128
+   ],
+   "world": [
+    64,
+    64.0
+   ],
+   "src": "PNG/Platformer/Ground_02.png"
+  },
+  "top_left": {
+   "rect": [
+    130,
+    552,
+    128,
+    128
+   ],
+   "world": [
+    64,
+    64.0
+   ],
+   "src": "PNG/Platformer/Ground_04.png"
+  },
+  "top_right": {
+   "rect": [
+    260,
+    552,
+    128,
+    128
+   ],
+   "world": [
+    64,
+    64.0
+   ],
+   "src": "PNG/Platformer/Ground_08.png"
+  },
+  "wall": {
+   "rect": [
+    819,
+    314,
+    203,
+    160
+   ],
+   "world": [
+    101.4,
+    80
+   ],
+   "src": "PNG/Environment/Fence.png"
+  }
+ },
+ "license": "CraftPix 'Free Medieval Ruins Cartoon 2D Tileset' (https://craftpix.net/file-licenses/): graded, resampled in-game atlas only; source archive is not shipped"
+}
