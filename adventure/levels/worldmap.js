@@ -67,6 +67,7 @@ const CSS=`
 #pirate-world-map .wm-card .wm-btn{justify-content:center;flex:1}
 #pirate-world-map .wm-endless{position:absolute;right:max(12px,env(safe-area-inset-right));bottom:calc(max(10px,env(safe-area-inset-bottom)) + 66px);display:flex;gap:10px;align-items:stretch;pointer-events:none}
 #pirate-world-map .wm-endless[hidden]{display:none}
+#pirate-world-map .wm-chap:disabled{visibility:hidden}
 #pirate-world-map .go-endless{flex-direction:column;gap:0;line-height:1.1;background:linear-gradient(#2f8fb0,#1a5f7c 55%,#0f3d52);border-color:#06202c;box-shadow:0 5px 10px #000b,0 0 18px #4fd0ff88,inset 0 2px 0 #ffffff40}
 #pirate-world-map .go-endless small{font:700 clamp(11px,2vh,14px) Arial,sans-serif;color:#cff3ff;letter-spacing:0}
 #pirate-world-map .go-ending{font-size:clamp(13px,2.6vh,18px);padding:6px 14px}

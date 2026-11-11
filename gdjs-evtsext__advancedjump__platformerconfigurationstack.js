@@ -85,7 +85,7 @@ gdjs.evtsExt__AdvancedJump__PlatformerConfigurationStack.PlatformerConfiguration
 gdjs.evtsExt__AdvancedJump__PlatformerConfigurationStack.PlatformerConfigurationStack.prototype.onCreatedContext.GDObjectObjects1= [];
 
 
-gdjs.evtsExt__AdvancedJump__PlatformerConfigurationStack.PlatformerConfigurationStack.prototype.onCreatedContext.userFunc0x42d2918 = function GDJSInlineCode(runtimeScene, objects, eventsFunctionContext) {
+gdjs.evtsExt__AdvancedJump__PlatformerConfigurationStack.PlatformerConfigurationStack.prototype.onCreatedContext.userFunc0x40254a8 = function GDJSInlineCode(runtimeScene, objects, eventsFunctionContext) {
 "use strict";
 const behaviorName = eventsFunctionContext.getBehaviorName("Behavior");
 const object = objects[0];
@@ -118,7 +118,7 @@ gdjs.evtsExt__AdvancedJump__PlatformerConfigurationStack.PlatformerConfiguration
 gdjs.copyArray(eventsFunctionContext.getObjects("Object"), gdjs.evtsExt__AdvancedJump__PlatformerConfigurationStack.PlatformerConfigurationStack.prototype.onCreatedContext.GDObjectObjects1);
 
 const objects = gdjs.evtsExt__AdvancedJump__PlatformerConfigurationStack.PlatformerConfigurationStack.prototype.onCreatedContext.GDObjectObjects1;
-gdjs.evtsExt__AdvancedJump__PlatformerConfigurationStack.PlatformerConfigurationStack.prototype.onCreatedContext.userFunc0x42d2918(runtimeScene, objects, eventsFunctionContext);
+gdjs.evtsExt__AdvancedJump__PlatformerConfigurationStack.PlatformerConfigurationStack.prototype.onCreatedContext.userFunc0x40254a8(runtimeScene, objects, eventsFunctionContext);
 
 }
 
@@ -205,7 +205,7 @@ gdjs.evtsExt__AdvancedJump__PlatformerConfigurationStack.PlatformerConfiguration
 gdjs.evtsExt__AdvancedJump__PlatformerConfigurationStack.PlatformerConfigurationStack.prototype.RevertConfigurationContext.GDObjectObjects1= [];
 
 
-gdjs.evtsExt__AdvancedJump__PlatformerConfigurationStack.PlatformerConfigurationStack.prototype.RevertConfigurationContext.userFunc0x3ffedc8 = function GDJSInlineCode(runtimeScene, objects, eventsFunctionContext) {
+gdjs.evtsExt__AdvancedJump__PlatformerConfigurationStack.PlatformerConfigurationStack.prototype.RevertConfigurationContext.userFunc0x4025430 = function GDJSInlineCode(runtimeScene, objects, eventsFunctionContext) {
 "use strict";
 const behaviorName = eventsFunctionContext.getBehaviorName("Behavior");
 const object = objects[0];
@@ -267,7 +267,7 @@ gdjs.evtsExt__AdvancedJump__PlatformerConfigurationStack.PlatformerConfiguration
 gdjs.copyArray(eventsFunctionContext.getObjects("Object"), gdjs.evtsExt__AdvancedJump__PlatformerConfigurationStack.PlatformerConfigurationStack.prototype.RevertConfigurationContext.GDObjectObjects1);
 
 const objects = gdjs.evtsExt__AdvancedJump__PlatformerConfigurationStack.PlatformerConfigurationStack.prototype.RevertConfigurationContext.GDObjectObjects1;
-gdjs.evtsExt__AdvancedJump__PlatformerConfigurationStack.PlatformerConfigurationStack.prototype.RevertConfigurationContext.userFunc0x3ffedc8(runtimeScene, objects, eventsFunctionContext);
+gdjs.evtsExt__AdvancedJump__PlatformerConfigurationStack.PlatformerConfigurationStack.prototype.RevertConfigurationContext.userFunc0x4025430(runtimeScene, objects, eventsFunctionContext);
 
 }
 
@@ -355,7 +355,7 @@ gdjs.evtsExt__AdvancedJump__PlatformerConfigurationStack.PlatformerConfiguration
 gdjs.evtsExt__AdvancedJump__PlatformerConfigurationStack.PlatformerConfigurationStack.prototype.UsualSettingContext.GDObjectObjects1= [];
 
 
-gdjs.evtsExt__AdvancedJump__PlatformerConfigurationStack.PlatformerConfigurationStack.prototype.UsualSettingContext.userFunc0x41b7308 = function GDJSInlineCode(runtimeScene, objects, eventsFunctionContext) {
+gdjs.evtsExt__AdvancedJump__PlatformerConfigurationStack.PlatformerConfigurationStack.prototype.UsualSettingContext.userFunc0x3c4c6b8 = function GDJSInlineCode(runtimeScene, objects, eventsFunctionContext) {
 "use strict";
 const behaviorName = eventsFunctionContext.getBehaviorName("Behavior");
 const object = objects[0];
@@ -382,7 +382,7 @@ gdjs.evtsExt__AdvancedJump__PlatformerConfigurationStack.PlatformerConfiguration
 gdjs.copyArray(eventsFunctionContext.getObjects("Object"), gdjs.evtsExt__AdvancedJump__PlatformerConfigurationStack.PlatformerConfigurationStack.prototype.UsualSettingContext.GDObjectObjects1);
 
 const objects = gdjs.evtsExt__AdvancedJump__PlatformerConfigurationStack.PlatformerConfigurationStack.prototype.UsualSettingContext.GDObjectObjects1;
-gdjs.evtsExt__AdvancedJump__PlatformerConfigurationStack.PlatformerConfigurationStack.prototype.UsualSettingContext.userFunc0x41b7308(runtimeScene, objects, eventsFunctionContext);
+gdjs.evtsExt__AdvancedJump__PlatformerConfigurationStack.PlatformerConfigurationStack.prototype.UsualSettingContext.userFunc0x3c4c6b8(runtimeScene, objects, eventsFunctionContext);
 
 }
 
@@ -569,7 +569,7 @@ gdjs.evtsExt__AdvancedJump__PlatformerConfigurationStack.PlatformerConfiguration
 gdjs.evtsExt__AdvancedJump__PlatformerConfigurationStack.PlatformerConfigurationStack.prototype.ConfigureSettingContext.GDObjectObjects1= [];
 
 
-gdjs.evtsExt__AdvancedJump__PlatformerConfigurationStack.PlatformerConfigurationStack.prototype.ConfigureSettingContext.userFunc0x3ffeea0 = function GDJSInlineCode(runtimeScene, objects, eventsFunctionContext) {
+gdjs.evtsExt__AdvancedJump__PlatformerConfigurationStack.PlatformerConfigurationStack.prototype.ConfigureSettingContext.userFunc0x4180488 = function GDJSInlineCode(runtimeScene, objects, eventsFunctionContext) {
 "use strict";
 const behaviorName = eventsFunctionContext.getBehaviorName("Behavior");
 const object = objects[0];
@@ -610,7 +610,7 @@ gdjs.evtsExt__AdvancedJump__PlatformerConfigurationStack.PlatformerConfiguration
 gdjs.copyArray(eventsFunctionContext.getObjects("Object"), gdjs.evtsExt__AdvancedJump__PlatformerConfigurationStack.PlatformerConfigurationStack.prototype.ConfigureSettingContext.GDObjectObjects1);
 
 const objects = gdjs.evtsExt__AdvancedJump__PlatformerConfigurationStack.PlatformerConfigurationStack.prototype.ConfigureSettingContext.GDObjectObjects1;
-gdjs.evtsExt__AdvancedJump__PlatformerConfigurationStack.PlatformerConfigurationStack.prototype.ConfigureSettingContext.userFunc0x3ffeea0(runtimeScene, objects, eventsFunctionContext);
+gdjs.evtsExt__AdvancedJump__PlatformerConfigurationStack.PlatformerConfigurationStack.prototype.ConfigureSettingContext.userFunc0x4180488(runtimeScene, objects, eventsFunctionContext);
 
 }
 

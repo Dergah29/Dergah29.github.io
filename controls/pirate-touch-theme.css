@@ -51,6 +51,9 @@
 /* grid-placed buttons need a containing block for the artwork (absolutely placed ones already are one) */
 #pirate-level .pl-pad button.ps-control,
 #pirate-adventure .av-combat button.ps-control { position: relative; }
+/* Arena buttons sit in a flex row on phone layouts: give each its own box too. :where() keeps this at zero specificity,
+ * so the absolute placement of the desktop/custom layouts still wins. */
+:where(#fighter-ui .combat button.ps-control) { position: relative; }
 #fighter-ui .combat button.ps-control > :not(.ps-art),
 #pirate-level .pl-pad button.ps-control > :not(.ps-art),
 #pirate-adventure .av-combat button.ps-control > :not(.ps-art) { visibility: hidden !important; }

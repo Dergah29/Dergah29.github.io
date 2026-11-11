@@ -164,11 +164,11 @@ const rx=[
  [/^Upgrade · (\d+) fragments$/,{az:'Yüksəlt · $1 parça',tr:'Yükselt · $1 parça',ru:'Повысить · $1 осколков',pl:'Ulepsz · $1 fragmentów'}],
  [/^Confirm · spend (\d+)$/,{az:'Təsdiqlə · $1 xərclə',tr:'Onayla · $1 harca',ru:'Подтвердить · потратить $1',pl:'Potwierdź · wydaj $1'}],
  [/^Spend (\d+) fragments · (\d+) → (\d+) remaining$/,{az:'$1 parça xərclənir · $2 → $3 qalır',tr:'$1 parça harcanır · $2 → $3 kalır',ru:'Потратить $1 осколков · $2 → $3 останется',pl:'Wydaj $1 fragmentów · $2 → $3 zostanie'}],
+ [/^Preserve past voyages · review (\d+) XP and (\d+) fragments$/,{az:'Keçmiş səfərləri saxla · $1 XP və $2 parça',tr:'Geçmiş seferleri koru · $1 XP ve $2 parça',ru:'Сохранить прошлые плавания · $1 опыта и $2 осколков',pl:'Zachowaj dawne rejsy · $1 PD i $2 fragmentów'}],
  [/^(.+) fragments$/,{az:'$1 parçaları',tr:'$1 parçaları',ru:'Осколки: $1',pl:'Fragmenty: $1'}],
  [/^(.+) · Rank (\d)$/,{az:'$1 · $2-ci rütbə',tr:'$1 · $2. rütbe',ru:'$1 · ранг $2',pl:'$1 · ranga $2'}],
  [/^(.+) reached level (\d+)$/,{az:'$1 $2-ci səviyyəyə çatdı',tr:'$1 $2. seviyeye ulaştı',ru:'$1 достиг(ла) уровня $2',pl:'$1 osiąga poziom $2'}],
  [/^Enter (.+)$/,{az:'$1 — daxil ol',tr:'$1 — gir',ru:'$1 — войти',pl:'$1 — wejdź'}],
- [/^Preserve past voyages · review (\d+) XP and (\d+) fragments$/,{az:'Keçmiş səfərləri saxla · $1 XP və $2 parça',tr:'Geçmiş seferleri koru · $1 XP ve $2 parça',ru:'Сохранить прошлые плавания · $1 опыта и $2 осколков',pl:'Zachowaj dawne rejsy · $1 PD i $2 fragmentów'}],
  [/^Credit (\d+) XP and (\d+) fragments to (.+)\? Existing heroes, gold and costumes stay owned\. This can be claimed once\.$/,{az:'$1 XP və $2 parça $3 qəhrəmanına verilsin? Qəhrəmanlar, qızıl və geyimlər səndə qalır. Bunu yalnız bir dəfə almaq olar.',tr:'$1 XP ve $2 parça $3 kahramanına verilsin mi? Kahramanlar, altın ve kıyafetler sende kalır. Yalnızca bir kez alınabilir.',ru:'Начислить $1 опыта и $2 осколков герою $3? Герои, золото и костюмы остаются у тебя. Получить можно один раз.',pl:'Przyznać $1 PD i $2 fragmentów bohaterowi $3? Bohaterowie, złoto i stroje zostają. Można odebrać tylko raz.'}]
 ];
 function one(s,lang){const e=exact[s];if(e&&e[lang]!=null)return e[lang];for(const [r,t] of rx){const m=s.match(r);if(m&&t[lang]!=null)return t[lang].replace(/\$(\d)/g,(_,i)=>{const g=m[+i]||'';const sub=exact[g];return sub&&sub[lang]!=null?sub[lang]:g})}return null}

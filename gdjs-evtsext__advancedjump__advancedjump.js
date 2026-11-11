@@ -475,7 +475,7 @@ for (var i = 0, k = 0, l = gdjs.evtsExt__AdvancedJump__AdvancedJump.AdvancedJump
 gdjs.evtsExt__AdvancedJump__AdvancedJump.AdvancedJump.prototype.doStepPreEventsContext.GDObjectObjects2.length = k;
 if (isConditionTrue_0) {
 isConditionTrue_0 = false;
-{isConditionTrue_0 = eventsFunctionContext.getOnceTriggers().triggerOnce(72262228);
+{isConditionTrue_0 = eventsFunctionContext.getOnceTriggers().triggerOnce(72262548);
 }
 }
 }
@@ -504,7 +504,7 @@ for (var i = 0, k = 0, l = gdjs.evtsExt__AdvancedJump__AdvancedJump.AdvancedJump
 gdjs.evtsExt__AdvancedJump__AdvancedJump.AdvancedJump.prototype.doStepPreEventsContext.GDObjectObjects2.length = k;
 if (isConditionTrue_0) {
 isConditionTrue_0 = false;
-{isConditionTrue_0 = eventsFunctionContext.getOnceTriggers().triggerOnce(72266052);
+{isConditionTrue_0 = eventsFunctionContext.getOnceTriggers().triggerOnce(72266372);
 }
 }
 if (isConditionTrue_0) {
