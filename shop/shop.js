@@ -50,6 +50,7 @@ const CSS=`
 #pf-shop .disp{font-family:Georgia,"Noto Serif","Times New Roman",serif;font-weight:900;letter-spacing:.04em}
 /* top bar */
 #pf-shop .sh-back{position:absolute;left:calc(var(--sl) + var(--u)*1.2);top:calc(var(--u)*1);height:calc(var(--u)*6);min-height:40px;padding:0 calc(var(--u)*1.6) 0 calc(var(--u)*1);display:flex;align-items:center;gap:calc(var(--u)*.6);font-size:max(13px,calc(var(--u)*2));font-weight:800}
+#pf-shop .sh-back::after{content:'';position:absolute;inset:-2px}   /* 44px tap area, same look */
 #pf-shop .sh-back svg{width:calc(var(--u)*2.4);height:calc(var(--u)*2.4);color:#f6d27a}
 #pf-shop .sh-title{position:absolute;left:50%;top:calc(var(--u)*.4);transform:translateX(-50%);padding:calc(var(--u)*1.25) calc(var(--u)*6.4);white-space:nowrap;border:0 solid transparent;border-image:url(${A}ui-banner.png) 0 66 fill / 0 calc(var(--u)*5.6) stretch;filter:drop-shadow(0 calc(var(--u)*.5) calc(var(--u)*.8) #000c)}
 #pf-shop .sh-title b{font-size:max(15px,calc(var(--u)*2.9));display:block;line-height:1;overflow:hidden;text-overflow:ellipsis}
@@ -67,17 +68,17 @@ const CSS=`
 #pf-shop .sh-cat i{width:calc(var(--u)*2.7);height:calc(var(--u)*2.7);background-size:cover;filter:drop-shadow(0 2px 2px #000a)}
 #pf-shop .sh-cat.on{background:linear-gradient(180deg,#8a5a1e,#4a2a0c);border-color:#ffd76a;color:#fff6d8;box-shadow:inset 0 0 calc(var(--u)*1.4) #ffcf6a55,0 0 calc(var(--u)*1) #ffb84466}
 #pf-shop .sh-cat:active{transform:scale(.97)}
-#pf-shop .sh-cat span{flex:1;min-width:0;padding-right:max(10px,calc(var(--u)*1.3));line-height:1.05;overflow-wrap:anywhere}
+#pf-shop .sh-cat span{flex:1;min-width:0;padding-right:max(11px,calc(var(--u)*1.3));line-height:1.05;overflow-wrap:anywhere}
 #pf-shop .sh-cat em{position:absolute;right:calc(var(--u)*.5);top:calc(var(--u)*.3);font-style:normal;font-size:max(9px,calc(var(--u)*1.15));font-weight:800;color:#ffd76a;opacity:.9}
 /* centre */
 #pf-shop .sh-heroes{position:absolute;top:calc(var(--u)*8.2);display:flex;align-items:center;justify-content:center;gap:calc(var(--u)*1)}
-#pf-shop .sh-arrow{flex:none;width:max(40px,calc(var(--u)*5));height:max(40px,calc(var(--u)*5));border-radius:50%;border:calc(var(--u)*.28) solid #d8a84a;background:radial-gradient(circle at 40% 35%,#6a4220,#2a1608);color:#ffd76a;display:grid;place-items:center;padding:0;box-shadow:0 calc(var(--u)*.3) calc(var(--u)*.8) #000a}
+#pf-shop .sh-arrow{flex:none;width:max(44px,calc(var(--u)*5));height:max(44px,calc(var(--u)*5));border-radius:50%;border:calc(var(--u)*.28) solid #d8a84a;background:radial-gradient(circle at 40% 35%,#6a4220,#2a1608);color:#ffd76a;display:grid;place-items:center;padding:0;box-shadow:0 calc(var(--u)*.3) calc(var(--u)*.8) #000a}
 #pf-shop .sh-arrow svg{width:55%;height:55%}#pf-shop .sh-arrow.r svg{transform:scaleX(-1)}
 #pf-shop .sh-who{min-width:0;width:calc(var(--u)*17);height:max(40px,calc(var(--u)*5));padding:0 calc(var(--u)*1.4) 0 calc(var(--u)*.5);border-radius:999px;background:#1c0f06d8;border:calc(var(--u)*.24) solid #c99a44;display:flex;align-items:center;gap:calc(var(--u)*.8)}
 #pf-shop .sh-who div{min-width:0}#pf-shop .sh-who b{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 #pf-shop .sh-who img{width:calc(var(--u)*4);height:calc(var(--u)*4);border-radius:50%;object-fit:cover;border:2px solid #d8a84a;background:#21384c;image-rendering:auto}
 #pf-shop .sh-who b{font-size:max(14px,calc(var(--u)*2.2))}
-#pf-shop .sh-who small{display:block;font-size:max(10px,calc(var(--u)*1.25));color:#9fe0a8;font-weight:700}
+#pf-shop .sh-who small{display:block;font-size:max(11px,calc(var(--u)*1.25));color:#9fe0a8;font-weight:700}
 #pf-shop .sh-play{flex:none;padding:0 calc(var(--u)*1.2);height:max(40px,calc(var(--u)*4.2));border-radius:999px;border:calc(var(--u)*.22) solid #9fe0a8;background:linear-gradient(180deg,#2f7a44,#184a26);font-size:max(12px,calc(var(--u)*1.6));font-weight:800;color:#effff0;box-shadow:0 calc(var(--u)*.3) calc(var(--u)*.8) #000a}
 #pf-shop .sh-try{position:absolute;padding:calc(var(--u)*.35) calc(var(--u)*1.2);border-radius:999px;background:#1c0f06c8;border:1px solid #c99a4499;font-size:max(11px,calc(var(--u)*1.4));color:#ffe9a8;white-space:nowrap;pointer-events:none;transition:opacity .2s}
 #pf-shop .sh-anims{position:absolute;bottom:calc(var(--u)*1.2);display:flex;gap:calc(var(--u)*.6);padding:calc(var(--u)*.7);justify-content:center}
@@ -87,7 +88,7 @@ const CSS=`
 /* right: cards */
 #pf-shop .sh-shelf{top:calc(var(--u)*8.2);right:calc(var(--sr) + var(--u)*1.2);width:calc(var(--u)*34);bottom:calc(var(--u)*15.4);padding:calc(var(--u)*1.1) calc(var(--u)*.6) calc(var(--u)*1.1) calc(var(--u)*1.1)}
 #pf-shop .sh-shelf h3{margin:0 0 calc(var(--u)*.7);font-size:max(13px,calc(var(--u)*2));display:flex;align-items:center;gap:calc(var(--u)*.8)}
-#pf-shop .sh-shelf h3 small{font:700 max(10px,calc(var(--u)*1.3)) "Trebuchet MS",sans-serif;color:#c9b48a;-webkit-text-fill-color:#c9b48a}
+#pf-shop .sh-shelf h3 small{font:700 max(11px,calc(var(--u)*1.3)) "Trebuchet MS",sans-serif;color:#c9b48a;-webkit-text-fill-color:#c9b48a}
 #pf-shop .sh-filter{position:absolute;right:calc(var(--u)*1.1);top:calc(var(--u)*.7);width:min(55%,150px);min-width:72px;min-height:40px;padding:4px 3px;border:1px solid #d8a84a;border-radius:7px;background:#281708;color:#ffe7a8;font:700 max(11px,calc(var(--u)*1.4)) Arial,sans-serif;cursor:pointer}
 #pf-shop .sh-shelf h3{min-height:40px;padding-right:min(60%,158px)}
 #pf-shop .sh-shelf h3 b{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
@@ -103,8 +104,8 @@ const CSS=`
 @keyframes shshine{0%,40%{background-position:120% 0}100%{background-position:-120% 0}}
 #pf-shop .sh-card .ic{position:absolute;left:50%;top:calc(var(--u)*.5);width:calc(var(--u)*7.8);height:calc(var(--u)*7.8);transform:translateX(-50%);filter:drop-shadow(0 calc(var(--u)*.3) calc(var(--u)*.4) #000c)}
 #pf-shop .sh-card canvas.ic{width:calc(var(--u)*9);height:calc(var(--u)*7.8);top:calc(var(--u)*.6)}
-#pf-shop .sh-card .nm{position:relative;width:100%;text-align:center;padding:calc(var(--u)*.25) 0;background:linear-gradient(90deg,transparent,#0009 15%,#0009 85%,transparent);font-size:max(10.5px,calc(var(--u)*1.45));font-weight:800;line-height:1.05;color:#f6e6c0;text-shadow:0 1px 2px #000;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-#pf-shop .sh-card .pr{position:relative;margin-top:calc(var(--u)*.3);display:flex;align-items:center;gap:calc(var(--u)*.35);font-size:max(10.5px,calc(var(--u)*1.45));font-weight:900;color:#ffe08a}
+#pf-shop .sh-card .nm{position:relative;width:100%;text-align:center;padding:calc(var(--u)*.25) 0;background:linear-gradient(90deg,transparent,#0009 15%,#0009 85%,transparent);font-size:max(11px,calc(var(--u)*1.45));font-weight:800;line-height:1.05;color:#f6e6c0;text-shadow:0 1px 2px #000;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#pf-shop .sh-card .pr{position:relative;margin-top:calc(var(--u)*.3);display:flex;align-items:center;gap:calc(var(--u)*.35);font-size:max(11px,calc(var(--u)*1.45));font-weight:900;color:#ffe08a}
 #pf-shop .sh-card .pr svg{width:calc(var(--u)*1.9);height:calc(var(--u)*1.9)}
 #pf-shop .sh-card .pr.ok{color:#9fe0a8}#pf-shop .sh-card .pr.no{color:#e0a090}
 #pf-shop .sh-card .badge{position:absolute;right:calc(var(--u)*.45);top:calc(var(--u)*.85);width:calc(var(--u)*2.6);height:calc(var(--u)*2.6)}
@@ -115,9 +116,9 @@ const CSS=`
 #pf-shop .sh-info{right:calc(var(--sr) + var(--u)*1.2);width:calc(var(--u)*34);bottom:calc(var(--u)*1.2);height:calc(var(--u)*13.4);padding:calc(var(--u)*1) calc(var(--u)*1.3);display:grid;grid-template-columns:1fr auto;grid-template-rows:auto 1fr auto;column-gap:calc(var(--u)*1)}
 #pf-shop .sh-info .t{grid-column:1/3;display:flex;align-items:baseline;gap:calc(var(--u)*.8);min-width:0}
 #pf-shop .sh-info .t b{font-size:max(14px,calc(var(--u)*2.2));white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-#pf-shop .sh-info .t i{font-style:normal;font-size:max(10px,calc(var(--u)*1.3));font-weight:900;color:var(--rc);text-transform:uppercase}
+#pf-shop .sh-info .t i{font-style:normal;font-size:max(11px,calc(var(--u)*1.3));font-weight:900;color:var(--rc);text-transform:uppercase}
 #pf-shop .sh-info p{grid-column:1/2;margin:calc(var(--u)*.3) 0 0;font-size:max(11px,calc(var(--u)*1.45));line-height:1.25;color:#e6d4ae;overflow:hidden}
-#pf-shop .sh-info .req{grid-column:1/2;font-size:max(10.5px,calc(var(--u)*1.35));color:#f0b080;display:flex;align-items:center;gap:calc(var(--u)*.4);min-height:1em}
+#pf-shop .sh-info .req{grid-column:1/2;font-size:max(11px,calc(var(--u)*1.35));color:#f0b080;display:flex;align-items:center;gap:calc(var(--u)*.4);min-height:1em}
 #pf-shop .sh-info .req svg{width:calc(var(--u)*1.8);height:calc(var(--u)*1.8);flex:none}
 #pf-shop .sh-act{grid-column:2/3;grid-row:2/4;align-self:end;min-width:calc(var(--u)*12);height:max(44px,calc(var(--u)*5.6));padding:0 calc(var(--u)*1.4);border-radius:calc(var(--u)*.9);border:calc(var(--u)*.28) solid #ffe08a;background:linear-gradient(180deg,#f7c552,#c9821c 60%,#8a4e0c);color:#2a1404;font-weight:900;font-size:max(13px,calc(var(--u)*1.9));display:flex;align-items:center;justify-content:center;gap:calc(var(--u)*.5);box-shadow:0 calc(var(--u)*.4) 0 #4a2606,0 calc(var(--u)*.6) calc(var(--u)*1.2) #000a;text-shadow:0 1px 0 #ffe6a0;transition:transform .1s}
 #pf-shop .sh-act svg{width:calc(var(--u)*2.4);height:calc(var(--u)*2.4)}
@@ -164,7 +165,7 @@ const CSS=`
 #pf-shop .sh-card.equipped{box-shadow:inset 0 0 0 2px #b3e6ad,0 0 8px #7bd39880}
 #pf-shop .sh-card.equipped.sel{box-shadow:inset 0 0 0 2px #b3e6ad,0 0 12px #ffd76acc}
 #pf-shop .sh-card:focus-visible,#pf-shop button:focus-visible,#pf-shop select:focus-visible{outline:2px solid #fff4ba;outline-offset:2px}
-#pf-shop .sh-loadout{position:absolute;bottom:max(calc(var(--u)*2.6 + 46px),calc(var(--u)*7.8 + 6px));padding:3px 10px;max-width:100%;font-size:max(10.5px,calc(var(--u)*1.35));line-height:1.2;font-weight:800;color:#c7edbb;background:linear-gradient(180deg,#1b291aef,#101b10e8);border:1px solid #a0bd765e;border-radius:999px;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;pointer-events:none}
+#pf-shop .sh-loadout{position:absolute;bottom:max(calc(var(--u)*2.6 + 46px),calc(var(--u)*7.8 + 6px));padding:3px 10px;max-width:100%;font-size:max(11px,calc(var(--u)*1.35));line-height:1.2;font-weight:800;color:#c7edbb;background:linear-gradient(180deg,#1b291aef,#101b10e8);border:1px solid #a0bd765e;border-radius:999px;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;pointer-events:none}
 #pf-shop .sh-toast{position:absolute;left:50%;top:calc(var(--u)*15);transform:translate(-50%,-30%);opacity:0;padding:calc(var(--u)*.8) calc(var(--u)*2);border-radius:999px;background:#1c0f06ee;border:2px solid #d8a84a;font-weight:800;font-size:max(13px,calc(var(--u)*1.8));pointer-events:none;transition:opacity .25s,transform .25s;z-index:30;white-space:nowrap}
 #pf-shop .sh-toast.show{opacity:1;transform:translate(-50%,0)}
 #pf-shop .sh-toast.bad{border-color:#e07a5a;color:#ffd0c0}

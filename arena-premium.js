@@ -12,7 +12,7 @@ canvas.arena-native-viewport{width:min(100vw,calc((100dvh - 84px)*var(--arena-na
 #pirate-arena-modes{font-family:Georgia,serif}
 #pirate-arena-modes .am-lobby{background:linear-gradient(90deg,#071c25f5 0%,#071c25dc 46%,#071c2580),url(menu-v2/assets/harbor.webp) center/cover;padding:18px 24px}
 #pirate-arena-modes .am-lobby .am-head h1{font-size:clamp(24px,3.8vw,36px);letter-spacing:-.5px}
-#pirate-arena-modes .am-head small{color:#bca16a;letter-spacing:3px;font:10px Arial}
+#pirate-arena-modes .am-head small{color:#bca16a;letter-spacing:3px;font:11px Arial}
 #pirate-arena-modes .am-status{margin:7px 0 12px;color:#aac4c8}
 #pirate-arena-modes .am-crew{gap:8px!important;margin:10px 0!important}
 #pirate-arena-modes .am-crew button{position:relative;width:112px!important;min-height:114px!important;padding:5px!important;border-radius:4px;background:linear-gradient(#25434a80,#091e27d9);border-color:#8d795247;box-shadow:inset 0 -4px #050f1766}
