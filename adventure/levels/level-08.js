@@ -388,20 +388,22 @@ function makeBack(run){
  B.ships=canvas(900,240);x=B.ships.getContext('2d');x.fillStyle='#10223a';
  for(const [sx,h] of[[80,150],[330,190],[600,130],[790,170]]){x.beginPath();x.moveTo(sx-70,230);x.quadraticCurveTo(sx-80,200,sx-50,190);x.lineTo(sx+60,195);x.quadraticCurveTo(sx+80,210,sx+70,230);x.fill();x.fillRect(sx-3,230-h,6,h-30);x.fillRect(sx-40,240-h*.8,80,4);x.fillRect(sx+30,230-h*.7,4,h*.5);x.fillStyle='rgba(220,240,255,.25)';x.fillRect(sx-40,236-h*.8,80,3);x.fillStyle='#10223a'}
  return B}
+/* painted far plate (Higgsfield, see ASSET_MANIFEST): mirrored tiles with slow parallax; false when the image is missing */
+function drawPlate(run,c,src,cam){const im=run.images[src];if(!im)return false;const W=E.W,ph=H*1.08,pw=im.width*ph/im.height,py=H-ph+16-(cam.y-300)*.08,ox=-((cam.x*.15)%(pw*2));for(let k=-1;k<4;k++){const x=ox+k*pw;if(x>W||x+pw<0)continue;if(k%2){c.save();c.translate(x+pw,py);c.scale(-1,1);c.drawImage(im,0,0,pw,ph);c.restore()}else c.drawImage(im,x,py,pw,ph)}return true}
 function drawBackground(run,c){
  const W=E.W,cam=run.camera,t=run.time,B=run.back;
  if(!run.sky||run.skyW!==W){run.skyW=W;run.sky=canvas(W,H);const x=run.sky.getContext('2d'),g=x.createLinearGradient(0,0,0,H);g.addColorStop(0,'#030713');g.addColorStop(.5,'#0c1c38');g.addColorStop(.8,'#2a4766');g.addColorStop(1,'#16263c');x.fillStyle=g;x.fillRect(0,0,W,H)}
- c.drawImage(run.sky,0,0);
+ c.drawImage(run.sky,0,0);const painted=drawPlate(run,c,BASE+'assets/painted/level08-ice.webp',cam);
  const py=clamp((cam.y-300)*.05,-20,40);
- for(const [sx,sy,b,ph] of B.stars){const k=.6+.4*Math.sin(t*1.5+ph);c.fillStyle='rgba(230,240,255,'+(b*k)+')';c.fillRect(((sx*W*1.4-cam.x*.01)%W+W)%W,sy*H-py,1.6,1.6)}
+ if(!painted){for(const [sx,sy,b,ph] of B.stars){const k=.6+.4*Math.sin(t*1.5+ph);c.fillStyle='rgba(230,240,255,'+(b*k)+')';c.fillRect(((sx*W*1.4-cam.x*.01)%W+W)%W,sy*H-py,1.6,1.6)}}
  // aurora ribbons drift slowly
  c.save();c.globalCompositeOperation='lighter';const ox=-((cam.x*.02+t*8)%1024);c.globalAlpha=.75+.25*Math.sin(t*.4);for(let x=ox;x<W;x+=1024)c.drawImage(B.aurora,x,10-py);c.globalAlpha=.5;for(let x=ox*1.6%1024-1024;x<W;x+=1024)c.drawImage(B.aurora,x,40-py,1024,180);c.restore();
  // frozen sea to the horizon, cracks and pressure ridges
- const sy=320-py*2;const g=c.createLinearGradient(0,sy,0,H);g.addColorStop(0,'#5b84a8');g.addColorStop(.3,'#3a5f80');g.addColorStop(1,'#1c3450');c.fillStyle=g;c.fillRect(0,sy,W,H-sy);
- c.strokeStyle='rgba(230,245,255,.25)';c.lineWidth=1;for(let i=0;i<12;i++){const y=sy+8+i*i*2.2,ox2=(i*137-cam.x*(.05+i*.02))%(W+200);c.beginPath();c.moveTo(ox2-100,y);c.lineTo(ox2+80,y+2);c.lineTo(ox2+200,y-1);c.stroke()}
+ const sy=320-py*2;if(!painted){const g=c.createLinearGradient(0,sy,0,H);g.addColorStop(0,'#5b84a8');g.addColorStop(.3,'#3a5f80');g.addColorStop(1,'#1c3450');c.fillStyle=g;c.fillRect(0,sy,W,H-sy);}
+ if(!painted){c.strokeStyle='rgba(230,245,255,.25)';c.lineWidth=1;for(let i=0;i<12;i++){const y=sy+8+i*i*2.2,ox2=(i*137-cam.x*(.05+i*.02))%(W+200);c.beginPath();c.moveTo(ox2-100,y);c.lineTo(ox2+80,y+2);c.lineTo(ox2+200,y-1);c.stroke()}}
  // icebergs (parallax .12) and the ice-bound ships (.28)
- c.fillStyle='#8eb4d2';for(let i=0;i<10;i++){const wx=i*1100+300,x=wx-cam.x*.12;if(x<-260||x>W+260)continue;const h=50+(i*37)%60;c.beginPath();c.moveTo(x-120,sy+4);c.lineTo(x-60,sy-h);c.lineTo(x-10,sy-h*.7);c.lineTo(x+40,sy-h*1.1);c.lineTo(x+110,sy+4);c.fill();c.fillStyle='rgba(255,255,255,.35)';c.beginPath();c.moveTo(x-60,sy-h);c.lineTo(x-30,sy-h*.85);c.lineTo(x-50,sy);c.fill();c.fillStyle='#8eb4d2'}
- const off=-((cam.x*.28)%1800);for(let x=off;x<W;x+=1800)c.drawImage(B.ships,x+200,sy-200);
+ if(!painted){c.fillStyle='#8eb4d2';for(let i=0;i<10;i++){const wx=i*1100+300,x=wx-cam.x*.12;if(x<-260||x>W+260)continue;const h=50+(i*37)%60;c.beginPath();c.moveTo(x-120,sy+4);c.lineTo(x-60,sy-h);c.lineTo(x-10,sy-h*.7);c.lineTo(x+40,sy-h*1.1);c.lineTo(x+110,sy+4);c.fill();c.fillStyle='rgba(255,255,255,.35)';c.beginPath();c.moveTo(x-60,sy-h);c.lineTo(x-30,sy-h*.85);c.lineTo(x-50,sy);c.fill();c.fillStyle='#8eb4d2'}}
+ if(!painted){const off=-((cam.x*.28)%1800);for(let x=off;x<W;x+=1800)c.drawImage(B.ships,x+200,sy-200);}
  if(run.stormK>0){c.fillStyle='rgba(220,235,245,'+(run.stormK*.25)+')';c.fillRect(0,0,W,H)}
 }
 function drawBack(run,c){
@@ -535,7 +537,7 @@ class Rime{
 /* ------------------------------------------------------------------ the level definition */
 const def={
  id:8,name:{en:'Frozen Fleet',az:'Donmuş Donanma'},config:BASE+'level-08.json',base:BASE,
- images:[],
+ images:[BASE+'assets/painted/level08-ice.webp'],
  rig:{pose,LOOK,RR},
  title:lang=>text(lang,'title'),blurb:lang=>text(lang,'blurb'),text:(lang,k)=>text(lang,k),
  initialState:()=>({enc:{},blocks:[0,0,0],icewall:0,thawed:false,rimeDown:false,nest:false,cache:false}),

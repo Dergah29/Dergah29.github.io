@@ -432,23 +432,25 @@ function makeBack(run){
  x.fillStyle='#0d131b';x.fillRect(76,78,68,12);x.fillRect(84,40,52,38);x.beginPath();x.moveTo(80,40);x.lineTo(110,14);x.lineTo(140,40);x.fill();x.fillRect(108,4,4,12);
  x.fillStyle='#9dffb0';x.globalAlpha=.85;x.fillRect(90,46,40,26);x.globalAlpha=1;x.fillStyle='rgba(157,255,176,.5)';for(const y of[150,210,260])x.fillRect(106,y,7,10);
  B.ver=1;return B}
+/* painted far plate (Higgsfield, see ASSET_MANIFEST): mirrored tiles with slow parallax; false when the image is missing */
+function drawPlate(run,c,src,cam){const im=run.images[src];if(!im)return false;const W=E.W,ph=H*1.08,pw=im.width*ph/im.height,py=H-ph+16-(cam.y-300)*.08,ox=-((cam.x*.15)%(pw*2));for(let k=-1;k<4;k++){const x=ox+k*pw;if(x>W||x+pw<0)continue;if(k%2){c.save();c.translate(x+pw,py);c.scale(-1,1);c.drawImage(im,0,0,pw,ph);c.restore()}else c.drawImage(im,x,py,pw,ph)}return true}
 function drawBackground(run,c){
  const W=E.W,cam=run.camera,t=run.time,gk=run.goldK||0;
  if(!run.sky||run.skyW!==W){run.skyW=W;run.sky=canvas(W,H);const x=run.sky.getContext('2d'),g=x.createLinearGradient(0,0,0,H);g.addColorStop(0,'#02050b');g.addColorStop(.45,'#0b1624');g.addColorStop(.75,'#16272f');g.addColorStop(1,'#0b141a');x.fillStyle=g;x.fillRect(0,0,W,H);
   run.skyGold=canvas(W,H);const y=run.skyGold.getContext('2d'),h=y.createLinearGradient(0,0,0,H);h.addColorStop(0,'#0b0a18');h.addColorStop(.5,'#2a2440');h.addColorStop(.8,'#6a4a3a');h.addColorStop(1,'#2a1e1a');y.fillStyle=h;y.fillRect(0,0,W,H)}
- c.drawImage(run.sky,0,0);if(gk>0){c.globalAlpha=gk;c.drawImage(run.skyGold,0,0);c.globalAlpha=1}
+ c.drawImage(run.sky,0,0);if(gk>0){c.globalAlpha=gk;c.drawImage(run.skyGold,0,0);c.globalAlpha=1}const painted=drawPlate(run,c,BASE+'assets/painted/level07-coast.webp',cam);
  const py=clamp((cam.y-300)*.06,-20,40);
  // moon
- const mx=W*.24-cam.x*.012,my=92-py;run.fx.glow(c,mx,my,150,'rgba(170,200,230,',.35);c.fillStyle='#e9eef2';c.beginPath();c.arc(mx,my,30,0,TAU);c.fill();c.fillStyle='rgba(150,165,180,.5)';c.beginPath();c.arc(mx-8,my-6,7,0,TAU);c.arc(mx+9,my+7,5,0,TAU);c.arc(mx+4,my-12,3,0,TAU);c.fill();
+ const mx=W*.24-cam.x*.012,my=92-py;if(!painted){run.fx.glow(c,mx,my,150,'rgba(170,200,230,',.35);c.fillStyle='#e9eef2';c.beginPath();c.arc(mx,my,30,0,TAU);c.fill();c.fillStyle='rgba(150,165,180,.5)';c.beginPath();c.arc(mx-8,my-6,7,0,TAU);c.arc(mx+9,my+7,5,0,TAU);c.arc(mx+4,my-12,3,0,TAU);c.fill();}
  // lightning sheet behind the clouds
  if(run.skyFlash>0){c.fillStyle='rgba(200,220,255,'+(run.skyFlash*.25)+')';c.fillRect(0,0,W,H*.6)}
  // cloud bands (two speeds)
- const B=run.back;for(const [k,sp,y,a] of[[.03,6,30,.9],[.07,14,110,.7]]){let ox=-((cam.x*k+t*sp)%1024);c.globalAlpha=a;for(let x=ox;x<W;x+=1024)c.drawImage(B.cloud,x,y-py);c.globalAlpha=1}
+ const B=run.back;if(!painted)for(const [k,sp,y,a] of[[.03,6,30,.9],[.07,14,110,.7]]){let ox=-((cam.x*k+t*sp)%1024);c.globalAlpha=a;for(let x=ox;x<W;x+=1024)c.drawImage(B.cloud,x,y-py);c.globalAlpha=1}
  // sea and moon glitter
- const sy=330-py*2;c.fillStyle='#0a161d';c.fillRect(0,sy,W,H-sy);const sg=c.createLinearGradient(0,sy,0,sy+60);sg.addColorStop(0,'rgba(120,160,180,.25)');sg.addColorStop(1,'rgba(0,0,0,0)');c.fillStyle=sg;c.fillRect(0,sy,W,60);
- c.fillStyle='rgba(220,235,245,.5)';for(let i=0;i<26;i++){const k=Math.sin(t*1.7+i*2.1);if(k<.3)continue;const gx=mx+((i*37)%140)-70,gy=sy+6+i*3.4;c.globalAlpha=(k-.3)*.9;c.fillRect(gx-6-i,gy,12+i*.8,1.5)}c.globalAlpha=1;
+ const sy=330-py*2;if(!painted){c.fillStyle='#0a161d';c.fillRect(0,sy,W,H-sy);const sg=c.createLinearGradient(0,sy,0,sy+60);sg.addColorStop(0,'rgba(120,160,180,.25)');sg.addColorStop(1,'rgba(0,0,0,0)');c.fillStyle=sg;c.fillRect(0,sy,W,60);}
+ if(!painted){c.fillStyle='rgba(220,235,245,.5)';for(let i=0;i<26;i++){const k=Math.sin(t*1.7+i*2.1);if(k<.3)continue;const gx=mx+((i*37)%140)-70,gy=sy+6+i*3.4;c.globalAlpha=(k-.3)*.9;c.fillRect(gx-6-i,gy,12+i*.8,1.5)}c.globalAlpha=1;}
  // far crags (parallax .2) and the dark lighthouse (parallax .05) — hidden once you stand on its gallery
- c.fillStyle='#0d161e';c.beginPath();c.moveTo(0,H);for(let x=0;x<=W+40;x+=40){const wx=x+cam.x*.2;c.lineTo(x,sy-18-((Math.sin(wx*.004)+Math.sin(wx*.011+1))*22+24))}c.lineTo(W,H);c.fill();
+ if(!painted){c.fillStyle='#0d161e';c.beginPath();c.moveTo(0,H);for(let x=0;x<=W+40;x+=40){const wx=x+cam.x*.2;c.lineTo(x,sy-18-((Math.sin(wx*.004)+Math.sin(wx*.011+1))*22+24))}c.lineTo(W,H);c.fill();}
  const lt=def.lighthouseScreen(run);if(lt.vis>0){c.globalAlpha=lt.vis;c.drawImage(B.tower,lt.x-110,lt.y-50);
   // the rotating cursed beam in the sky (decorative outside the cliffs)
   if(!run.lensBroken){const a=t*.9;c.save();c.globalCompositeOperation='lighter';for(const s of[1,-1]){const ang=a+(s<0?Math.PI:0),dx=Math.cos(ang),k=Math.abs(dx);if(k<.08)continue;const len=600*k,g=c.createLinearGradient(lt.x,lt.y,lt.x+dx*len,lt.y);g.addColorStop(0,'rgba(157,255,176,.35)');g.addColorStop(1,'rgba(157,255,176,0)');c.fillStyle=g;c.beginPath();c.moveTo(lt.x,lt.y);c.lineTo(lt.x+dx*len,lt.y-50*k);c.lineTo(lt.x+dx*len,lt.y+50*k);c.closePath();c.fill()}c.restore()}
@@ -603,7 +605,7 @@ class Keeper{
 /* ------------------------------------------------------------------ the level definition */
 const def={
  id:7,name:{en:'The Dark Lighthouse',az:'Qaranlıq Mayak'},config:BASE+'level-07.json',base:BASE,
- images:[],
+ images:[BASE+'assets/painted/level07-coast.webp'],
  rig:{pose,LOOK,KR},   // exposed for the systems test (walk cycle / pose checks)
  title:lang=>text(lang,'title'),blurb:lang=>text(lang,'blurb'),text:(lang,k)=>text(lang,k),
  initialState:()=>({enc:{},lamps:{},lanterns:null,gate:false,crack:0,levers:{},mirrors:null,door:false,keeperDown:false,lens:false,ledge:false,alcove:false}),

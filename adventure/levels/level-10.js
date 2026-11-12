@@ -344,20 +344,22 @@ function makeBack(run){
  for(const [sx,h,burn] of[[100,150,1],[380,120,0],[640,170,1],[930,140,0]]){x.fillStyle='#0b0f18';x.beginPath();x.moveTo(sx-90,210);x.quadraticCurveTo(sx-100,180,sx-60,170);x.lineTo(sx+70,174);x.quadraticCurveTo(sx+100,190,sx+90,210);x.fill();x.fillRect(sx-3,210-h,6,h-36);x.fillRect(sx+36,200-h*.75,5,h*.6);x.fillRect(sx-46,220-h*.85,92,4);
   if(burn){const g=x.createRadialGradient(sx,170,4,sx,170,90);g.addColorStop(0,'rgba(255,150,60,.6)');g.addColorStop(1,'rgba(255,90,30,0)');x.fillStyle=g;x.fillRect(sx-100,80,200,140)}}
  return B}
+/* painted far plate (Higgsfield, see ASSET_MANIFEST): mirrored tiles with slow parallax; false when the image is missing */
+function drawPlate(run,c,src,cam){const im=run.images[src];if(!im)return false;const W=E.W,ph=H*1.08,pw=im.width*ph/im.height,py=H-ph+16-(cam.y-300)*.08,ox=-((cam.x*.15)%(pw*2));for(let k=-1;k<4;k++){const x=ox+k*pw;if(x>W||x+pw<0)continue;if(k%2){c.save();c.translate(x+pw,py);c.scale(-1,1);c.drawImage(im,0,0,pw,ph);c.restore()}else c.drawImage(im,x,py,pw,ph)}return true}
 function drawBackground(run,c){
  const W=E.W,cam=run.camera,t=run.time,B=run.back,fk=run.fireK||0;
  if(!run.sky||run.skyW!==W){run.skyW=W;run.sky=canvas(W,H);const x=run.sky.getContext('2d'),g=x.createLinearGradient(0,0,0,H);g.addColorStop(0,'#05070e');g.addColorStop(.55,'#161a2a');g.addColorStop(.82,'#3a2a2a');g.addColorStop(1,'#1a1418');x.fillStyle=g;x.fillRect(0,0,W,H)}
  c.drawImage(run.sky,0,0);
- if(fk>0){const g=c.createLinearGradient(0,0,0,H);g.addColorStop(0,'rgba(60,10,6,'+(.5*fk)+')');g.addColorStop(1,'rgba(160,50,16,'+(.35*fk)+')');c.fillStyle=g;c.fillRect(0,0,W,H)}
+const painted=drawPlate(run,c,BASE+'assets/painted/level10-fleet.webp',cam); if(fk>0){const g=c.createLinearGradient(0,0,0,H);g.addColorStop(0,'rgba(60,10,6,'+(.5*fk)+')');g.addColorStop(1,'rgba(160,50,16,'+(.35*fk)+')');c.fillStyle=g;c.fillRect(0,0,W,H)}
  const py=clamp((cam.y-300)*.05,-20,40);
- for(const [sx,sy,b,ph] of B.stars){const k=(.6+.4*Math.sin(t*1.5+ph))*(1-fk*.8);c.fillStyle='rgba(230,235,255,'+(b*k)+')';c.fillRect(((sx*W*1.4-cam.x*.01)%W+W)%W,sy*H-py,1.6,1.6)}
+ if(!painted){for(const [sx,sy,b,ph] of B.stars){const k=(.6+.4*Math.sin(t*1.5+ph))*(1-fk*.8);c.fillStyle='rgba(230,235,255,'+(b*k)+')';c.fillRect(((sx*W*1.4-cam.x*.01)%W+W)%W,sy*H-py,1.6,1.6)}}
  // storm clouds
  c.fillStyle='rgba(10,12,20,.65)';for(let i=0;i<7;i++){const x=((i*260-cam.x*.04-t*6)%(W+400)+W+400)%(W+400)-200;c.beginPath();c.ellipse(x,40+(i%3)*24-py,180,34,0,0,TAU);c.fill()}
  if(run.flashT>t){c.fillStyle='rgba(220,230,255,'+clamp((run.flashT-t)*2.2,0,.5)+')';c.fillRect(0,0,W,H)}
  // the sea and the burning fleet on the horizon
- const sy=300-py*2;const g=c.createLinearGradient(0,sy,0,H);g.addColorStop(0,fk>0?'#3a2620':'#1e2a3c');g.addColorStop(1,'#070a12');c.fillStyle=g;c.fillRect(0,sy,W,H-sy);
- c.strokeStyle='rgba(255,170,110,.18)';c.lineWidth=1;for(let i=0;i<10;i++){const y=sy+8+i*i*2.4,o=(i*137-cam.x*(.05+i*.02)+t*10)%(W+200);c.beginPath();c.moveTo(o-100,y);c.lineTo(o+70,y+2);c.lineTo(o+160,y-1);c.stroke()}
- const off=-((cam.x*.12)%1400);for(let x=off;x<W;x+=1400)c.drawImage(B.fleet,x,sy-190);
+ const sy=300-py*2;if(!painted){const g=c.createLinearGradient(0,sy,0,H);g.addColorStop(0,fk>0?'#3a2620':'#1e2a3c');g.addColorStop(1,'#070a12');c.fillStyle=g;c.fillRect(0,sy,W,H-sy);}
+ if(!painted){c.strokeStyle='rgba(255,170,110,.18)';c.lineWidth=1;for(let i=0;i<10;i++){const y=sy+8+i*i*2.4,o=(i*137-cam.x*(.05+i*.02)+t*10)%(W+200);c.beginPath();c.moveTo(o-100,y);c.lineTo(o+70,y+2);c.lineTo(o+160,y-1);c.stroke()}}
+ if(!painted){const off=-((cam.x*.12)%1400);for(let x=off;x<W;x+=1400)c.drawImage(B.fleet,x,sy-190);}
  // the escort ship that fires the broadsides (parallax .3, flashes when a mark appears)
  const ex=1600-cam.x*.3,ey=sy+6;if(ex>-400&&ex<W+400){c.fillStyle='#0a0d16';c.beginPath();c.moveTo(ex-260,ey);c.quadraticCurveTo(ex-280,ey-70,ex-200,ey-80);c.lineTo(ex+220,ey-70);c.quadraticCurveTo(ex+280,ey-40,ex+250,ey);c.fill();
   for(const [mx,h] of[[-120,250],[20,300],[150,220]]){c.fillRect(ex+mx-4,ey-80-h,8,h);c.fillStyle='rgba(30,30,40,.9)';c.fillRect(ex+mx-60,ey-60-h*.9,120,h*.5);c.fillStyle='#0a0d16'}
@@ -525,7 +527,7 @@ class Admiral{
 /* ------------------------------------------------------------------ the level definition */
 const def={
  id:10,name:{en:'The Black Admiral',az:'Qara Admiral'},config:BASE+'level-10.json',base:BASE,boss:true,
- images:[],
+ images:[BASE+'assets/painted/level10-fleet.webp'],
  rig:{pose,LOOK,AR},
  title:lang=>text(lang,'title'),blurb:lang=>text(lang,'blurb'),text:(lang,k)=>text(lang,k),
  initialState:()=>({enc:{},p3:false,admiralDown:false,nest:false,rewardClaimed:false}),

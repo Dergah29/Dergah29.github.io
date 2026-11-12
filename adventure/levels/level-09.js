@@ -360,17 +360,19 @@ function makeBack(run){
  for(const [tx,tw,th] of[[60,90,300],[300,70,240],[520,120,360],[800,80,260],[1020,110,330],[1260,90,280]]){x.fillRect(tx,420-th,tw,th);for(let k=0;k<tw;k+=18)x.fillRect(tx+k,420-th-12,10,12);x.fillStyle='rgba(255,180,120,.35)';x.fillRect(tx+tw*.4,420-th+40,8,14);x.fillStyle='#3a2a2e'}
  x.fillRect(0,330,1400,90);for(let k=0;k<1400;k+=20)x.fillRect(k,318,12,12);
  return B}
+/* painted far plate (Higgsfield, see ASSET_MANIFEST): mirrored tiles with slow parallax; false when the image is missing */
+function drawPlate(run,c,src,cam){const im=run.images[src];if(!im)return false;const W=E.W,ph=H*1.08,pw=im.width*ph/im.height,py=H-ph+16-(cam.y-300)*.08,ox=-((cam.x*.15)%(pw*2));for(let k=-1;k<4;k++){const x=ox+k*pw;if(x>W||x+pw<0)continue;if(k%2){c.save();c.translate(x+pw,py);c.scale(-1,1);c.drawImage(im,0,0,pw,ph);c.restore()}else c.drawImage(im,x,py,pw,ph)}return true}
 function drawBackground(run,c){
  const W=E.W,cam=run.camera,t=run.time,B=run.back,s=run.state;
  if(!run.sky||run.skyW!==W){run.skyW=W;run.sky=canvas(W,H);const x=run.sky.getContext('2d'),g=x.createLinearGradient(0,0,0,H);g.addColorStop(0,'#2c3a66');g.addColorStop(.35,'#8a5a78');g.addColorStop(.6,'#e88a5a');g.addColorStop(.75,'#f5c27a');g.addColorStop(1,'#6a5040');x.fillStyle=g;x.fillRect(0,0,W,H)}
- c.drawImage(run.sky,0,0);const py=clamp((cam.y-300)*.05,-20,40);
+ c.drawImage(run.sky,0,0);const py=clamp((cam.y-300)*.05,-20,40);const painted=drawPlate(run,c,BASE+'assets/painted/level09-fortress.webp',cam);
  // low sun and its path on the sea
- const sx=W*.68-cam.x*.01,sy=300-py;run.fx.glow(c,sx,sy,200,'rgba(255,200,120,',.6);c.fillStyle='#ffe2a0';c.beginPath();c.arc(sx,sy,34,0,TAU);c.fill();
- const off=-((cam.x*.04+t*5)%1024);c.globalAlpha=.85;for(let x=off;x<W;x+=1024)c.drawImage(B.cloud,x,40-py);c.globalAlpha=1;
- const sea=340-py*2;const g=c.createLinearGradient(0,sea,0,H);g.addColorStop(0,'#c9765a');g.addColorStop(.25,'#4a4a6a');g.addColorStop(1,'#1c2236');c.fillStyle=g;c.fillRect(0,sea,W,H-sea);
- c.fillStyle='rgba(255,220,160,.55)';for(let i=0;i<24;i++){const k=Math.sin(t*1.6+i*1.9);if(k<.3)continue;c.globalAlpha=(k-.3)*.8;c.fillRect(sx-30+((i*29)%60)-i,sea+6+i*3.2,14+i,1.6)}c.globalAlpha=1;
+ const sx=W*.68-cam.x*.01,sy=300-py;if(!painted){run.fx.glow(c,sx,sy,200,'rgba(255,200,120,',.6);c.fillStyle='#ffe2a0';c.beginPath();c.arc(sx,sy,34,0,TAU);c.fill();}
+ if(!painted){const off=-((cam.x*.04+t*5)%1024);c.globalAlpha=.85;for(let x=off;x<W;x+=1024)c.drawImage(B.cloud,x,40-py);c.globalAlpha=1;}
+ const sea=340-py*2;if(!painted){const g=c.createLinearGradient(0,sea,0,H);g.addColorStop(0,'#c9765a');g.addColorStop(.25,'#4a4a6a');g.addColorStop(1,'#1c2236');c.fillStyle=g;c.fillRect(0,sea,W,H-sea);}
+ if(!painted){c.fillStyle='rgba(255,220,160,.55)';for(let i=0;i<24;i++){const k=Math.sin(t*1.6+i*1.9);if(k<.3)continue;c.globalAlpha=(k-.3)*.8;c.fillRect(sx-30+((i*29)%60)-i,sea+6+i*3.2,14+i,1.6)}c.globalAlpha=1;}
  // the fortress skyline (parallax .1) and its three giant chains
- const fx=-(cam.x*.1)%1400-200;for(let x=fx;x<W+1400;x+=1400)c.drawImage(B.fort,x,sea-380);
+ if(!painted){const fx=-(cam.x*.1)%1400-200;for(let x=fx;x<W+1400;x+=1400)c.drawImage(B.fort,x,sea-380);}
  const chainX=[W*.3,W*.55,W*.8].map((x,i)=>x+(4000+i*2500-cam.x)*.06);
  chainX.forEach((x,i)=>{if(s.chains[i])return;c.strokeStyle='#2a1e22';c.lineWidth=7;c.setLineDash([14,6]);c.beginPath();c.moveTo(x,sea-300);c.quadraticCurveTo(x+60,sea-150,x+130,sea-20);c.stroke();c.setLineDash([])});
  // gulls
@@ -403,7 +405,7 @@ function weather(run,c){const W=E.W,t=run.time,inside=run.def.inside(run);if(ins
 
 /* ------------------------------------------------------------------ the level definition */
 const def={
- id:9,name:{en:'Chain Fortress',az:'Zəncirli Qala'},config:BASE+'level-09.json',base:BASE,images:[],
+ id:9,name:{en:'Chain Fortress',az:'Zəncirli Qala'},config:BASE+'level-09.json',base:BASE,images:[BASE+'assets/painted/level09-fortress.webp'],
  rig:{pose,LOOK},
  title:lang=>text(lang,'title'),blurb:lang=>text(lang,'blurb'),text:(lang,k)=>text(lang,k),
  initialState:()=>({enc:{},pins:[0,0,0],chains:[0,0,0],gears:null,gearGate:false,trap:false,aim:0,bridge:false,gateOpen:false,tower:false,keepLedge:false}),
