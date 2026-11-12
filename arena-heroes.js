@@ -70,7 +70,7 @@ function localSide(game){return game.__online?.role==='guest'?'Player2':'Player1
 /* Mari plays on the Sailor fighter's native body (moves, colliders, timing) and is drawn with her own Arena atlas.
    Only the local player's fighter can be Mari; arena-mari.js sets window.__pfArenaHero from her selection card. */
 function mariSelected(){return window.__pfArenaHero==='scarlet'}
-function arenaHero(object,image){const h=heroOf(image);if(h!=='sailor'||!mariSelected()||!object)return h;try{const game=object.getRuntimeScene().getGame();return object.getName().startsWith(localSide(game))?'scarlet':h}catch{return h}}
+function arenaHero(object,image){const h=heroOf(image);if(h!=='sailor'||!object)return h;try{const game=object.getRuntimeScene().getGame();const om=game.__online?.started&&game.__onlineMari;if(om)return om[object.getName().startsWith('Player1')?'host':'guest']?'scarlet':h;/* friend duel: each side's choice, the same on both screens */if(game.__online?.started||!mariSelected())return h;return object.getName().startsWith(localSide(game))?'scarlet':h}catch{return h}}
 function classic(hero){return{hero,outfit:'outfit-classic',weapon:'weapon-steel',hat:'hat-classic',...(hero==='scarlet'?{arena:true}:{})}}
 function loadout(hero,isLocal){
  if(!isLocal||hero==='scarlet')return classic(hero);

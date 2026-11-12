@@ -152,7 +152,7 @@ const codes={KeyA:'left',KeyD:'right',KeyW:'jump',KeyE:'interact',Space:'jump',S
 window.addEventListener('keydown',e=>{if(e.key==='Escape'&&!e.defaultPrevented&&root&&!root.hidden){e.preventDefault();model?pause():close();return}const action=codes[e.code]||map[e.key];if(root?.hidden===false&&model&&action){e.preventDefault();physicalKeys.set(e.code||e.key,action);refreshKeys();if(network&&audio?.state==='suspended')audio.resume();if(network)network.input(inputState())}});
 window.addEventListener('keyup',e=>{if(physicalKeys.delete(e.code||e.key)){refreshKeys();if(network)network.input(inputState())}});
 window.addEventListener('blur',()=>{clearInput();if(model)pause()});document.addEventListener('visibilitychange',()=>{if(document.hidden&&model)pause()});
-const api=window.PirateArenaModes={open,close,start,get state(){return model},get renderedHeroes(){return arts.map(a=>a.meta.hero)},get paused(){return paused},get presentationReady(){return !!props&&!!baseLayer},get presentationStats(){return{particles:effects.size,voices:audio?.activeVoices||0,resultShown,visualTime}}};
+const api=window.PirateArenaModes={open,close,start,modeTitle:(m,l)=>(LOBBY[l]||LOBBY.en)?.modes?.[m]?.[0]||null,get state(){return model},get renderedHeroes(){return arts.map(a=>a.meta.hero)},get paused(){return paused},get presentationReady(){return !!props&&!!baseLayer},get presentationStats(){return{particles:effects.size,voices:audio?.activeVoices||0,resultShown,visualTime}}};
 // The opaque Arena owns its own RAF/physics. Do not also step and render the
 // covered native scene (including its WebGL framebuffer) behind this canvas.
 // Guard this game instance only; never mutate pause/timeScale or scene state.
