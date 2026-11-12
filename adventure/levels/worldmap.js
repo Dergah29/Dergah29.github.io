@@ -97,7 +97,9 @@ class WorldMap{
   const hb=root.querySelector('.hero');hb.querySelector('span').textContent=tr(this.lang,'hero');hb.onclick=()=>window.PirateHeroSelect?window.PirateHeroSelect.open({lang:this.lang,onDone:()=>this.refreshHero()}):null;if(!window.PirateHeroSelect)hb.hidden=true;
   root.querySelector('.prev').onclick=()=>this.setChapter(this.chapter-1);root.querySelector('.next').onclick=()=>this.setChapter(this.chapter+1);
   const lg=root.querySelector('.wm-legend');tr(this.lang,'legend').forEach((t,i)=>{const s=document.createElement('span');const b=document.createElement('b');b.style.background=['radial-gradient(circle at 40% 30%,#7fe07a,#2f9a3e 55%,#14592a)','radial-gradient(circle at 40% 30%,#ffe27a,#e3a524 55%,#9a5c0e)','radial-gradient(circle at 40% 30%,#8e98a2,#56606b 55%,#2c333b)','radial-gradient(circle at 40% 30%,#e8574a,#a3191a 55%,#4e0606)'][i];s.append(b,t);lg.append(s)});
-  this.layout=await fetch(BASE+'island-chapter1.json').then(r=>r.json());
+  this.layout=await fetch(BASE+'island-chapter1.json').then(r=>r.json());this.layouts={1:this.layout};
+  // chapter 2 (Stormbreaker Island) has its own painted plate; if it fails to load, chapter 2 falls back to the stormy chapter-1 plate
+  this.layouts[2]=await fetch(BASE+'island-chapter2.json').then(r=>r.ok?r.json():null).catch(()=>null);
   await new Promise((ok,fail)=>{this.plate.onload=ok;this.plate.onerror=()=>fail(Error('map image'));this.plate.src=BASE+this.layout.image});
   this.stage.style.width=this.layout.width+'px';this.stage.style.height=this.layout.height+'px';this.fx.width=this.layout.width/2;this.fx.height=this.layout.height/2;
   this.bindPan();this.onResize=()=>this.fit();addEventListener('resize',this.onResize);
@@ -127,8 +129,9 @@ class WorldMap{
   const max=this.maxChapter();ch=Math.max(1,Math.min(max,ch));this.chapter=ch;
   const named=ch<=2&&(ch===1||[6,7,8,9,10].some(n=>this.L.isPlayable(n)));   // chapter 2 (Stormbreaker Island) is named once its first stage is built
   this.scrollEl.querySelector('h2').textContent=named?tr(this.lang,'ch'+ch):tr(this.lang,'chapter')+' '+ch;this.scrollEl.querySelector('p').textContent=named?tr(this.lang,'ch'+ch+'d'):tr(this.lang,'soonChapter');
-  // chapter 2 reuses the island plate under a storm: darker, colder, with rain and lightning (see tick)
-  this.plate.style.filter=ch===2?'brightness(.56) saturate(.42) contrast(1.1) hue-rotate(-10deg)':'';
+  // each chapter has its own plate and node layout; without one, chapter 2 reuses the island plate under a storm (see tick for rain and lightning)
+  const own=this.layouts?.[ch]||null;this.layout=own||this.layouts?.[1]||this.layout;const src=BASE+this.layout.image;if(!this.plate.src.endsWith(this.layout.image))this.plate.src=src;
+  this.plate.style.filter=ch===2&&!own?'brightness(.56) saturate(.42) contrast(1.1) hue-rotate(-10deg)':'';
   this.root.querySelector('.prev').disabled=ch<=1;this.root.querySelector('.next').disabled=ch>=max;
   this.stage.querySelectorAll('.wm-node,.wm-fog').forEach(e=>e.remove());
   const built=[1,2,3,4,5].map(i=>(ch-1)*5+i).some(n=>this.L.isPlayable(n));
@@ -198,8 +201,8 @@ this.offY=Math.max(vh-sh-bar*.7,Math.min(0,(vh-bar)-lowY*s));
    // torches and lava
    for(const [x,y] of lay.torches){const f=.75+Math.sin(t*9+x)*.15+Math.sin(t*23+y)*.1;const g=c.createRadialGradient(x,y,0,x,y,34*f);g.addColorStop(0,'rgba(255,200,90,.85)');g.addColorStop(1,'rgba(255,120,30,0)');c.fillStyle=g;c.fillRect(x-40,y-40,80,80)}
    if(this.chapter===2){// storm over the island: rain, scud and lightning instead of lava
-    c.fillStyle='rgba(8,22,40,.28)';c.fillRect(0,0,lay.width,lay.height);
-    c.strokeStyle='rgba(190,215,240,.35)';c.lineWidth=2;c.beginPath();for(let i=0;i<120;i++){const x=((i*173+t*260)%(lay.width+200))-100,y=((i*97+t*900)%(lay.height+100))-50;c.moveTo(x,y);c.lineTo(x-10,y-34)}c.stroke();
+    const painted=lay.image!=='island-chapter1.webp';if(!painted){c.fillStyle='rgba(8,22,40,.28)';c.fillRect(0,0,lay.width,lay.height)}   // the painted chapter-2 plate is already stormy
+    c.strokeStyle=painted?'rgba(190,215,240,.2)':'rgba(190,215,240,.35)';c.lineWidth=2;c.beginPath();for(let i=0;i<120;i++){const x=((i*173+t*260)%(lay.width+200))-100,y=((i*97+t*900)%(lay.height+100))-50;c.moveTo(x,y);c.lineTo(x-10,y-34)}c.stroke();
     const fl=Math.max(0,Math.sin(t*1.1)*Math.sin(t*2.7)-.82)*5;if(fl>0){c.fillStyle='rgba(210,230,255,'+(fl*.35).toFixed(2)+')';c.fillRect(0,0,lay.width,lay.height)}
     c.restore();return}
    const [lx,ly]=lay.lava,lp=.5+.5*Math.sin(t*1.3);const lg=c.createRadialGradient(lx,ly,20,lx,ly,260);lg.addColorStop(0,'rgba(255,80,40,'+(.18+lp*.18).toFixed(2)+')');lg.addColorStop(1,'rgba(255,60,20,0)');c.fillStyle=lg;c.fillRect(lx-270,ly-270,540,540);
