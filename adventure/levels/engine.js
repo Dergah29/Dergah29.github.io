@@ -305,6 +305,7 @@ class LevelRun{
   if(env.res>2){for(const n of ['props.png','tiles.png'])this.images[n]=shrink(this.images[n],2/env.res);env.res=2}
   const scaled=new Map();
   for(const [k,m] of Object.entries(sprites)){if(m.smooth&&m.scale<1){const img=scaled.get(m.image)||shrink(this.images[m.image],m.scale);scaled.set(m.image,img);const f=m.scale;this.sheets[k]=new Sheet(img,{...m,frameW:m.frameW*f,frameH:m.frameH*f,anchor:[m.anchor[0]*f,m.anchor[1]*f],scale:1});continue}this.sheets[k]=new Sheet(this.images[m.image],m)}
+  this.specialImgs??={};for(const k of ['storm','wave','volley','lunge','quake']){if(this.specialImgs[k])continue;const im=new Image();im.onload=()=>{this.specialImgs[k]=im};im.src='adventure/levels/assets/fx/special/'+k+'.webp'}   // painted special-power frames (optional)
   this.audioManifest=await json(a+'audio.json').catch(()=>({}));
   this.audio.ensure();
   this.audioReady=Promise.all([this.audio.load(a,this.audioManifest),this.audio.load('adventure/levels/assets/sfx/',{stageClear:'stage-clear.ogg'})]);   // shared jingles (Higgsfield, see ASSET_MANIFEST)
@@ -509,7 +510,7 @@ class LevelRun{
   const box=S.kind==='volley'?{x:cam.x,y:cam.y,w:W,h:H}:S.kind==='wave'||S.kind==='lunge'?{x:p.dir>0?cx:cx-S.r,y:cy-200,w:S.r,h:400}:{x:cx-S.r,y:cy-S.r*.7,w:S.r*2,h:S.r*1.4};
   if(this.def.strike?.(this,box,S.dmg*sc/3,3))hits++;
   for(const q of this.projectiles)if(q.owner==='enemy'&&overlap(box,q)){q.life=0;this.fx.spark(q.x,q.y,'#e9f2ff',8)}
-  this.specialFx={kind:S.kind,col:S.col,x:cx,y:cy,ground:p.y+p.h,dir:p.dir,r:S.kind==='volley'?W:S.r,t0:this.time,dur:S.kind==='volley'?.5:.65};
+  this.specialFx={kind:S.kind,col:S.col,x:cx,y:cy,ground:p.y+p.h,dir:p.dir,r:S.kind==='volley'?W:S.r,t0:this.time,dur:S.kind==='volley'?.85:.7,cam:{x:cam.x,y:cam.y}};
   // look and sound
   this.audio.play('swing3',{vol:1,rate:.7});this.audio.play('chest',{vol:.6,rate:.8});this.camera.shake=Math.max(this.camera.shake,S.kind==='quake'?14:10);this.hitStop(.1);
   if(S.kind==='volley'){for(let i=0;i<7;i++){const x=cam.x+60+i*(W-120)/6,y=cam.y+H*.55+((i*53)%60);this.fx.burst(x,y,S.col,14,1.4);this.fx.ring(x,y,'rgba(255,180,90,.9)',10,.5)}}
@@ -518,6 +519,14 @@ class LevelRun{
   return hits}
  drawSpecialFx(c){
   const s=this.specialFx;if(!s)return;const k=(this.time-s.t0)/s.dur;if(k>=1||k<0){this.specialFx=null;return}
+  const im=this.specialImgs?.[s.kind];
+  if(im){const fr=Math.min(5,Math.floor(k*6)),F=(x,y,w,h,flip,f=fr)=>{c.save();c.translate(x,y);if(flip)c.scale(-1,1);c.drawImage(im,f*256,0,256,256,-w/2,-h/2,w,h);c.restore()};c.save();
+   if(s.kind==='storm')F(s.x,s.y,s.r*1.7,s.r*1.7,s.dir<0);
+   else if(s.kind==='wave')F(s.x+s.dir*s.r*.5,s.ground-s.r*.36,s.r*1.15,s.r*1.15,s.dir<0);
+   else if(s.kind==='lunge')F(s.x+s.dir*s.r*.5,s.y,s.r*1.2,s.r*1.2,s.dir<0);
+   else if(s.kind==='quake')F(s.x,s.ground-s.r*.62,s.r*2.2,s.r*2.2,false);
+   else if(s.kind==='volley')for(let i=0;i<6;i++){const d=i*.06,f=Math.min(5,Math.max(0,Math.floor((k-d)/(1-d)*6)));if(k<d)continue;F(s.cam.x+90+i*(W-180)/5,s.cam.y+H*.48+((i*67)%90),240,240,false,f)}
+   c.restore();return}
   const A=(h,a)=>'rgba('+parseInt(h.slice(1,3),16)+','+parseInt(h.slice(3,5),16)+','+parseInt(h.slice(5,7),16)+','+a.toFixed(3)+')',a=1-k,R=s.r*(.25+.75*Math.sqrt(k));
   c.save();c.globalCompositeOperation='lighter';
   if(s.kind==='storm'||s.kind==='quake'){const g=c.createRadialGradient(s.x,s.y,R*.5,s.x,s.y,R);g.addColorStop(0,'rgba(0,0,0,0)');g.addColorStop(.8,A(s.col,.5*a));g.addColorStop(1,'rgba(0,0,0,0)');c.fillStyle=g;c.beginPath();c.arc(s.x,s.y,R,0,TAU);c.fill();
