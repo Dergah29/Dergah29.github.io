@@ -17,11 +17,11 @@ const PHYS={gravity:1300,run:225,blockRun:60,jump:510,maxFall:900,coyote:.1,buff
 const COMBAT={damage:[23,23,34],cool:.3,chain:.42,reach:84,throwDamage:18,dashDamage:16,ammo:3,reload:1};
 
 const TEXT={
-en:{endlessOpen:'Endless Sea unlocked!',pistol:'PISTOL',pause:'PAUSED',resume:'RESUME',sound:'SOUND',vibration:'VIBRATION',on:'ON',off:'OFF',map:'WORLD MAP',retry:'RETRY FROM CHECKPOINT',restart:'RESTART LEVEL',over:'DEFEATED',overHint:'Your progress in this level is kept at the last checkpoint.',complete:'LEVEL COMPLETE',gold:'Gold',time:'Time',enemies:'Enemies',secrets:'Secrets',chests:'Treasure',next:'CONTINUE',replay:'PLAY AGAIN',lives:'lives',sword:'SWORD',checkpoint:'CHECKPOINT',loading:'Loading level…',failed:'This level could not load. Please try again.',back:'BACK',unlocked:'unlocked',rotate:'Rotate your phone to landscape',block:'BLOCK',dash:'DASH',throw:'THROW',attack:'ATTACK',jump:'JUMP',blocked:'BLOCKED',newLife:'Lives',lifeUp:'+1 LIFE',lifeFull:'LIVES FULL +30'},
-az:{endlessOpen:'Sonsuz Dəniz açıldı!',pistol:'TAPANÇA',pause:'FASİLƏ',resume:'DAVAM ET',sound:'SƏS',vibration:'TİTRƏMƏ',on:'AÇIQ',off:'BAĞLI',map:'DÜNYA XƏRİTƏSİ',retry:'YOXLAMA NÖQTƏSİNDƏN',restart:'SƏVİYYƏNİ YENİDƏN BAŞLA',over:'MƏĞLUB OLDUN',overHint:'Bu səviyyədəki irəliləyişin son yoxlama nöqtəsində saxlanılıb.',complete:'SƏVİYYƏ TAMAMLANDI',gold:'Qızıl',time:'Vaxt',enemies:'Düşmənlər',secrets:'Sirlər',chests:'Xəzinə',next:'DAVAM ET',replay:'YENİDƏN OYNA',lives:'can',sword:'QILINC',checkpoint:'YOXLAMA NÖQTƏSİ',loading:'Səviyyə yüklənir…',failed:'Səviyyə yüklənmədi. Yenidən cəhd et.',back:'GERİ',unlocked:'açıldı',rotate:'Telefonu üfüqi vəziyyətə çevir',block:'BLOK',dash:'YAYIN',throw:'AT',attack:'VUR',jump:'TULLAN',blocked:'BLOK',newLife:'Can',lifeUp:'+1 CAN',lifeFull:'CAN DOLU +30'},
-tr:{endlessOpen:'Sonsuz Deniz açıldı!',pistol:'TABANCA',pause:'DURAKLATILDI',resume:'DEVAM',sound:'SES',vibration:'TİTREŞİM',on:'AÇIK',off:'KAPALI',map:'DÜNYA HARİTASI',retry:'KAYIT NOKTASINDAN',restart:'BÖLÜMÜ YENİDEN BAŞLAT',over:'YENİLDİN',overHint:'Bu bölümdeki ilerlemen son kayıt noktasında saklandı.',complete:'BÖLÜM TAMAMLANDI',gold:'Altın',time:'Süre',enemies:'Düşmanlar',secrets:'Sırlar',chests:'Hazine',next:'DEVAM',replay:'TEKRAR OYNA',lives:'can',sword:'KILIÇ',checkpoint:'KAYIT NOKTASI',loading:'Bölüm yükleniyor…',failed:'Bölüm yüklenemedi. Tekrar dene.',back:'GERİ',unlocked:'açıldı',rotate:'Telefonu yatay çevir',block:'BLOK',dash:'ATIL',throw:'FIRLAT',attack:'VUR',jump:'ZIPLA',blocked:'BLOK',newLife:'Can',lifeUp:'+1 CAN',lifeFull:'CAN DOLU +30'},
-ru:{endlessOpen:'Открыто Бескрайнее море!',pistol:'ПИСТОЛЕТ',pause:'ПАУЗА',resume:'ПРОДОЛЖИТЬ',sound:'ЗВУК',vibration:'ВИБРАЦИЯ',on:'ВКЛ',off:'ВЫКЛ',map:'КАРТА МИРА',retry:'С КОНТРОЛЬНОЙ ТОЧКИ',restart:'ЗАНОВО',over:'ПОРАЖЕНИЕ',overHint:'Прогресс уровня сохранён на последней контрольной точке.',complete:'УРОВЕНЬ ПРОЙДЕН',gold:'Золото',time:'Время',enemies:'Враги',secrets:'Тайники',chests:'Сокровища',next:'ДАЛЕЕ',replay:'ЕЩЁ РАЗ',lives:'жизни',sword:'МЕЧ',checkpoint:'КОНТРОЛЬНАЯ ТОЧКА',loading:'Загрузка уровня…',failed:'Не удалось загрузить уровень.',back:'НАЗАД',unlocked:'открыт',rotate:'Поверните телефон горизонтально',block:'БЛОК',dash:'РЫВОК',throw:'БРОСОК',attack:'УДАР',jump:'ПРЫЖОК',blocked:'БЛОК',newLife:'Жизни',lifeUp:'+1 ЖИЗНЬ',lifeFull:'ЖИЗНИ ПОЛНЫ +30'},
-pl:{endlessOpen:'Odblokowano Bezkresne Morze!',pistol:'PISTOLET',pause:'PAUZA',resume:'WZNÓW',sound:'DŹWIĘK',vibration:'WIBRACJE',on:'WŁ',off:'WYŁ',map:'MAPA ŚWIATA',retry:'OD PUNKTU KONTROLNEGO',restart:'OD NOWA',over:'PORAŻKA',overHint:'Postęp poziomu zapisano w ostatnim punkcie kontrolnym.',complete:'POZIOM UKOŃCZONY',gold:'Złoto',time:'Czas',enemies:'Wrogowie',secrets:'Sekrety',chests:'Skarby',next:'DALEJ',replay:'ZAGRAJ PONOWNIE',lives:'życia',sword:'MIECZ',checkpoint:'PUNKT KONTROLNY',loading:'Wczytywanie poziomu…',failed:'Nie udało się wczytać poziomu.',back:'WRÓĆ',unlocked:'odblokowany',rotate:'Obróć telefon poziomo',block:'BLOK',dash:'ZRYW',throw:'RZUT',attack:'ATAK',jump:'SKOK',blocked:'BLOK',newLife:'Życia',lifeUp:'+1 ŻYCIE',lifeFull:'ŻYCIA PEŁNE +30'}};
+en:{powerReady:'SPECIAL READY — hold attack',endlessOpen:'Endless Sea unlocked!',pistol:'PISTOL',pause:'PAUSED',resume:'RESUME',sound:'SOUND',vibration:'VIBRATION',on:'ON',off:'OFF',map:'WORLD MAP',retry:'RETRY FROM CHECKPOINT',restart:'RESTART LEVEL',over:'DEFEATED',overHint:'Your progress in this level is kept at the last checkpoint.',complete:'LEVEL COMPLETE',gold:'Gold',time:'Time',enemies:'Enemies',secrets:'Secrets',chests:'Treasure',next:'CONTINUE',replay:'PLAY AGAIN',lives:'lives',sword:'SWORD',checkpoint:'CHECKPOINT',loading:'Loading level…',failed:'This level could not load. Please try again.',back:'BACK',unlocked:'unlocked',rotate:'Rotate your phone to landscape',block:'BLOCK',dash:'DASH',throw:'THROW',attack:'ATTACK',jump:'JUMP',blocked:'BLOCKED',newLife:'Lives',lifeUp:'+1 LIFE',lifeFull:'LIVES FULL +30'},
+az:{powerReady:'ÖZƏL GÜC HAZIRDIR — hücumu basıb saxla',endlessOpen:'Sonsuz Dəniz açıldı!',pistol:'TAPANÇA',pause:'FASİLƏ',resume:'DAVAM ET',sound:'SƏS',vibration:'TİTRƏMƏ',on:'AÇIQ',off:'BAĞLI',map:'DÜNYA XƏRİTƏSİ',retry:'YOXLAMA NÖQTƏSİNDƏN',restart:'SƏVİYYƏNİ YENİDƏN BAŞLA',over:'MƏĞLUB OLDUN',overHint:'Bu səviyyədəki irəliləyişin son yoxlama nöqtəsində saxlanılıb.',complete:'SƏVİYYƏ TAMAMLANDI',gold:'Qızıl',time:'Vaxt',enemies:'Düşmənlər',secrets:'Sirlər',chests:'Xəzinə',next:'DAVAM ET',replay:'YENİDƏN OYNA',lives:'can',sword:'QILINC',checkpoint:'YOXLAMA NÖQTƏSİ',loading:'Səviyyə yüklənir…',failed:'Səviyyə yüklənmədi. Yenidən cəhd et.',back:'GERİ',unlocked:'açıldı',rotate:'Telefonu üfüqi vəziyyətə çevir',block:'BLOK',dash:'YAYIN',throw:'AT',attack:'VUR',jump:'TULLAN',blocked:'BLOK',newLife:'Can',lifeUp:'+1 CAN',lifeFull:'CAN DOLU +30'},
+tr:{powerReady:'ÖZEL GÜÇ HAZIR — saldırıyı basılı tut',endlessOpen:'Sonsuz Deniz açıldı!',pistol:'TABANCA',pause:'DURAKLATILDI',resume:'DEVAM',sound:'SES',vibration:'TİTREŞİM',on:'AÇIK',off:'KAPALI',map:'DÜNYA HARİTASI',retry:'KAYIT NOKTASINDAN',restart:'BÖLÜMÜ YENİDEN BAŞLAT',over:'YENİLDİN',overHint:'Bu bölümdeki ilerlemen son kayıt noktasında saklandı.',complete:'BÖLÜM TAMAMLANDI',gold:'Altın',time:'Süre',enemies:'Düşmanlar',secrets:'Sırlar',chests:'Hazine',next:'DEVAM',replay:'TEKRAR OYNA',lives:'can',sword:'KILIÇ',checkpoint:'KAYIT NOKTASI',loading:'Bölüm yükleniyor…',failed:'Bölüm yüklenemedi. Tekrar dene.',back:'GERİ',unlocked:'açıldı',rotate:'Telefonu yatay çevir',block:'BLOK',dash:'ATIL',throw:'FIRLAT',attack:'VUR',jump:'ZIPLA',blocked:'BLOK',newLife:'Can',lifeUp:'+1 CAN',lifeFull:'CAN DOLU +30'},
+ru:{powerReady:'СУПЕРУДАР ГОТОВ — удерживай атаку',endlessOpen:'Открыто Бескрайнее море!',pistol:'ПИСТОЛЕТ',pause:'ПАУЗА',resume:'ПРОДОЛЖИТЬ',sound:'ЗВУК',vibration:'ВИБРАЦИЯ',on:'ВКЛ',off:'ВЫКЛ',map:'КАРТА МИРА',retry:'С КОНТРОЛЬНОЙ ТОЧКИ',restart:'ЗАНОВО',over:'ПОРАЖЕНИЕ',overHint:'Прогресс уровня сохранён на последней контрольной точке.',complete:'УРОВЕНЬ ПРОЙДЕН',gold:'Золото',time:'Время',enemies:'Враги',secrets:'Тайники',chests:'Сокровища',next:'ДАЛЕЕ',replay:'ЕЩЁ РАЗ',lives:'жизни',sword:'МЕЧ',checkpoint:'КОНТРОЛЬНАЯ ТОЧКА',loading:'Загрузка уровня…',failed:'Не удалось загрузить уровень.',back:'НАЗАД',unlocked:'открыт',rotate:'Поверните телефон горизонтально',block:'БЛОК',dash:'РЫВОК',throw:'БРОСОК',attack:'УДАР',jump:'ПРЫЖОК',blocked:'БЛОК',newLife:'Жизни',lifeUp:'+1 ЖИЗНЬ',lifeFull:'ЖИЗНИ ПОЛНЫ +30'},
+pl:{powerReady:'MOC GOTOWA — przytrzymaj atak',endlessOpen:'Odblokowano Bezkresne Morze!',pistol:'PISTOLET',pause:'PAUZA',resume:'WZNÓW',sound:'DŹWIĘK',vibration:'WIBRACJE',on:'WŁ',off:'WYŁ',map:'MAPA ŚWIATA',retry:'OD PUNKTU KONTROLNEGO',restart:'OD NOWA',over:'PORAŻKA',overHint:'Postęp poziomu zapisano w ostatnim punkcie kontrolnym.',complete:'POZIOM UKOŃCZONY',gold:'Złoto',time:'Czas',enemies:'Wrogowie',secrets:'Sekrety',chests:'Skarby',next:'DALEJ',replay:'ZAGRAJ PONOWNIE',lives:'życia',sword:'MIECZ',checkpoint:'PUNKT KONTROLNY',loading:'Wczytywanie poziomu…',failed:'Nie udało się wczytać poziomu.',back:'WRÓĆ',unlocked:'odblokowany',rotate:'Obróć telefon poziomo',block:'BLOK',dash:'ZRYW',throw:'RZUT',attack:'ATAK',jump:'SKOK',blocked:'BLOK',newLife:'Życia',lifeUp:'+1 ŻYCIE',lifeFull:'ŻYCIA PEŁNE +30'}};
 
 /* ------------------------------------------------------------------ audio */
 class Audio{
@@ -238,7 +238,7 @@ class FX{
 class LevelRun{
  constructor(def,opts){
   this.def=def;this.opts=opts||{};this.host=this.opts.host||null;this.lang=(this.host?.u?.lang)||localStorage.getItem('pf-lang')||document.documentElement.lang||'en';if(!TEXT[this.lang])this.lang='en';
-  this.audio=new Audio(this);this.fx=new FX(this);this.images={};this.sheets={};this.inputs=new Set();this.axis=0;this.down=false;this.jumpBuffer=0;this.dashRequest=false;this.throwRequest=false;this.attackHeld=false;
+  this.audio=new Audio(this);this.fx=new FX(this);this.images={};this.sheets={};this.inputs=new Set();this.axis=0;this.down=false;this.jumpBuffer=0;this.dashRequest=false;this.throwRequest=false;this.attackHeld=false;this.power=0;this.powerHold=0;this.powerReady=false;
   this.phase='loading';this.time=0;this.acc=0;this.last=0;this.camera={x:0,y:0,shake:0};this.freeze=0;this.warnings=[];this.saveKey='pf-level-'+String(def.id).padStart(2,'0')+'-v1';this.enemyFocus=null;this.focusT=0;
   this.raf=this.loop.bind(this);
  }
@@ -258,7 +258,7 @@ class LevelRun{
 #pirate-level .pl-stick{position:absolute;left:max(18px,env(safe-area-inset-left));bottom:max(14px,env(safe-area-inset-bottom));width:clamp(116px,30vh,160px);height:clamp(116px,30vh,160px);border-radius:50%;border:3px solid #b9cfe066;background:radial-gradient(circle,#1d3a5a66,#0b1a2a99);pointer-events:auto;touch-action:none;box-shadow:inset 0 0 22px #0008}
 #pirate-level .pl-knob{position:absolute;left:30%;top:30%;width:40%;height:40%;border-radius:50%;background:radial-gradient(circle at 35% 30%,#e9f4ff,#8fb2d4 55%,#4b6f93);box-shadow:0 4px 10px #0009;pointer-events:none}
 #pirate-level .pl-pad{position:absolute;right:max(14px,env(safe-area-inset-right));bottom:max(12px,env(safe-area-inset-bottom));display:grid;grid-template-columns:repeat(3,auto);grid-template-areas:". block dash" "throw attack jump";gap:clamp(6px,1.6vh,12px);align-items:end;pointer-events:auto;touch-action:none}
-#pirate-level .pl-pad button{pointer-events:auto;touch-action:none;width:clamp(58px,14vh,84px);height:clamp(58px,14vh,84px);border-radius:50%;border:3px solid #9fb6cc55;background:radial-gradient(circle at 40% 30%,#2b4258b0,#101c2bb8);color:#f2f5ff;font:800 clamp(11px,2.7vh,16px)/1.05 Arial,sans-serif;letter-spacing:.5px;box-shadow:0 5px 14px #000a,inset 0 2px 3px #ffffff18;padding:0}
+#pirate-level .pl-pad button[data-k=attack].pl-ready{outline:4px solid #ffd36b;outline-offset:3px;border-radius:50%;filter:drop-shadow(0 0 10px rgba(255,211,107,1)) drop-shadow(0 0 22px rgba(255,170,60,.9)) brightness(1.15)!important;animation:plReady .6s ease-in-out infinite alternate}@keyframes plReady{to{outline-color:#fff6d0;outline-offset:8px}}#pirate-level .pl-pad button{pointer-events:auto;touch-action:none;width:clamp(58px,14vh,84px);height:clamp(58px,14vh,84px);border-radius:50%;border:3px solid #9fb6cc55;background:radial-gradient(circle at 40% 30%,#2b4258b0,#101c2bb8);color:#f2f5ff;font:800 clamp(11px,2.7vh,16px)/1.05 Arial,sans-serif;letter-spacing:.5px;box-shadow:0 5px 14px #000a,inset 0 2px 3px #ffffff18;padding:0}
 #pirate-level .pl-pad button.pressed{transform:scale(.93);filter:brightness(1.35)}
 #pirate-level .pl-pad [data-k=attack]{grid-area:attack;width:clamp(70px,18vh,100px);height:clamp(70px,18vh,100px);opacity:.92;background:radial-gradient(circle at 40% 30%,#ffd36b,#f0a12b 60%,#b86b12);color:#2a1606;border-color:#ffe6a3}
 #pirate-level .pl-pad [data-k=block]{grid-area:block}#pirate-level .pl-pad [data-k=dash]{grid-area:dash}#pirate-level .pl-pad [data-k=throw]{grid-area:throw}#pirate-level .pl-pad [data-k=jump]{grid-area:jump}
@@ -462,6 +462,8 @@ class LevelRun{
   else if(p.dash>0){p.vx=p.dir*PHYS.dashSpeed;p.vy=Math.min(p.vy,40);this.dashStrike();if(Math.floor(p.dash*60)%2===0)this.fx.ghost({index:this.sheets.hero.frame('dash',0),x:p.x+p.w/2,y:p.y+p.h,dir:p.dir,life:.22,max:.22})}
   else{const speed=blocking?PHYS.blockRun:PHYS.run;const target=axis*speed;p.vx=lerp(p.vx,target,Math.min(1,dt*(p.ground?18:9)));if(Math.abs(p.vx)<4&&!axis)p.vx=0;if(axis&&!blocking&&p.attack<=0)p.dir=Math.sign(axis)}
   // attack: tap or hold; consecutive presses within the chain window build the A-B-C combo
+  // special power: hold attack ~0.5 s with a full power bar (a short hold keeps the usual auto-attack)
+  if(this.inputs.has('attack')&&!blocking&&p.hurtT<=0&&!p.dead){this.powerHold+=dt;if(this.power>=100&&this.powerHold>=.5){this.powerHold=-1e9;this.special()}}else this.powerHold=0;
   if(this.attackPress){this.attackBuffer=p.cool>0&&p.hurtT<=0&&!blocking?Math.max(.16,Math.min(.52,p.cool+.04)):.16;this.attackPress=false}if(blocking)this.attackBuffer=0;this.attackBuffer=Math.max(0,(this.attackBuffer||0)-dt);const wantAttack=(this.attackBuffer>0||this.inputs.has('attack'))&&!blocking&&p.hurtT<=0;
   if(wantAttack&&p.cool<=0){this.attackBuffer=0;p.combo=p.chain>0?(p.combo%3)+1:1;const step=p.combo;p.attack=step===3?.3:.22;p.cool=step===3?.48:c.cool;p.chain=c.chain+p.cool;p.attackAnim=['attackA','attackB','attackC'][step-1];p.animT=0;this.audio.play('swing'+step,{vol:.7,rate:.95+Math.random()*.1});this.fx.slash(p.x+p.w/2+p.dir*16,p.y+p.h*.45,p.dir,step);this.heroStrike(step);if(p.ground)p.vx+=p.dir*(step===3?120:50)}
   if(this.throwRequest){this.throwRequest=false;if(p.ammo>0&&p.throwT<=0&&!blocking&&p.hurtT<=0){p.ammo--;p.reload=0;p.throwT=.32;p.animT=0;if(this.skin?.ranged==='pistol'){const m=this.skin.muzzle(p);const front=this.enemies.filter(e=>!e.dead&&Math.sign(e.cx-m.x)===p.dir&&Math.abs(e.cx-m.x)<570&&Math.abs(e.y+e.h*.5-m.y)<190).sort((a,b)=>Math.abs(a.cx-m.x)-Math.abs(b.cx-m.x))[0];const target=front?front.hurtBox():null;const dx=front?front.cx-m.x:p.dir*500,dy=target?(target.y+target.h*.5-m.y):0;const slope=clamp(dy/Math.max(45,Math.abs(dx)),-.68,.68),rate=980/Math.hypot(1,slope);const b=this.skin.barrel?.(p)||m;this.projectiles.push({kind:'bullet',owner:'hero',x:m.x,y:m.y,vx:p.dir*rate,vy:rate*slope,w:16,h:8,dmg:(c.throwDamage+4)*(this.attackScale||1),life:.68,x0:m.x,barrel:[b.x-m.x,b.y-m.y]});this.fx.muzzle(b.x,b.y,p.dir);p.vx-=p.dir*60;this.camera.shake=Math.max(this.camera.shake,2.5);this.audio.play('pistol',{vol:.8})}else{this.projectiles.push({kind:'sword',owner:'hero',x:p.x+p.w/2+p.dir*20,y:p.y+p.h*.42,vx:p.dir*640,vy:0,w:30,h:10,dmg:c.throwDamage*(this.attackScale||1),life:.62,spin:0});this.audio.play('throw',{vol:.65})}}}
@@ -492,12 +494,45 @@ class LevelRun{
   if(hit){this.audio.play('swing3',{vol:.6,rate:1.15});this.hitStop(.04)}
   return hit;
  }
+ gainPower(n){if(this.power>=100)return;this.power=Math.min(100,this.power+n);if(this.power>=100){this.powerReady=true;const p=this.p;this.audio.play('checkpoint',{vol:.5,rate:1.6});this.powerMsg={until:this.time+2.6,text:this.t('powerReady')};this.fx.ring(p.x+p.w/2,p.y+p.h*.5,'rgba(255,211,107,.9)',14,.6);this.syncPowerButton()}}
+ syncPowerButton(){const b=this.root?.querySelector('.pl-pad button[data-k="attack"]');if(b)b.classList.toggle('pl-ready',this.power>=100)}
+ /* each hero's special power: scarlet blade storm, sailor anchor shockwave, captain cannon volley, shark lunge, crab quake.
+    Bosses (reached through def.strike) take a third of the damage so fights keep their shape. */
+ special(){
+  const p=this.p,cx=p.x+p.w/2,cy=p.y+p.h*.5,cam=this.camera,sc=this.attackScale||1;this.power=0;this.powerReady=false;this.specials=(this.specials||0)+1;this.powerMsg=null;this.syncPowerButton();
+  const S=({scarlet:{kind:'storm',r:300,dmg:70,col:'#ff4a5a'},sailor:{kind:'wave',r:440,dmg:60,col:'#7fd8ff',push:520},captain:{kind:'volley',r:0,dmg:45,col:'#ffb347'},shark:{kind:'lunge',r:400,dmg:65,col:'#4ad7ff'},crab:{kind:'quake',r:420,dmg:45,col:'#ff8a3a'}})[this.heroId]||{kind:'storm',r:300,dmg:60,col:'#ffd36b'};
+  p.inv=Math.max(p.inv,S.kind==='lunge'?1:.6);if(S.kind==='lunge'){p.vx=p.dir*900;p.dash=Math.max(p.dash||0,.3)}
+  let hits=0;
+  for(const e of this.enemies){if(e.dead)continue;const dx=e.cx-cx,dy=e.y+e.h/2-cy;
+   const ok=S.kind==='volley'?e.cx>cam.x-40&&e.cx<cam.x+W+40&&e.y<cam.y+H&&e.y+e.h>cam.y:S.kind==='wave'||S.kind==='lunge'?Math.sign(dx||p.dir)===p.dir&&Math.abs(dx)<S.r&&Math.abs(dy)<200:Math.hypot(dx,dy*1.4)<S.r;
+   if(!ok)continue;const dir=Math.sign(dx)||p.dir,dmg=S.dmg*sc;if(e.damage(dmg,dir,'heavyBack')==='hit'){hits++;this.fx.text(String(Math.round(dmg)),e.cx,e.y-14,S.col,true);this.fx.burst(e.cx,e.y+e.h*.4,S.col,10,1.2);if(!e.dead){if(S.push)e.kb=dir*S.push;if(S.kind==='quake')e.vy=-320}}}
+  const box=S.kind==='volley'?{x:cam.x,y:cam.y,w:W,h:H}:S.kind==='wave'||S.kind==='lunge'?{x:p.dir>0?cx:cx-S.r,y:cy-200,w:S.r,h:400}:{x:cx-S.r,y:cy-S.r*.7,w:S.r*2,h:S.r*1.4};
+  if(this.def.strike?.(this,box,S.dmg*sc/3,3))hits++;
+  for(const q of this.projectiles)if(q.owner==='enemy'&&overlap(box,q)){q.life=0;this.fx.spark(q.x,q.y,'#e9f2ff',8)}
+  this.specialFx={kind:S.kind,col:S.col,x:cx,y:cy,ground:p.y+p.h,dir:p.dir,r:S.kind==='volley'?W:S.r,t0:this.time,dur:S.kind==='volley'?.5:.65};
+  // look and sound
+  this.audio.play('swing3',{vol:1,rate:.7});this.audio.play('chest',{vol:.6,rate:.8});this.camera.shake=Math.max(this.camera.shake,S.kind==='quake'?14:10);this.hitStop(.1);
+  if(S.kind==='volley'){for(let i=0;i<7;i++){const x=cam.x+60+i*(W-120)/6,y=cam.y+H*.55+((i*53)%60);this.fx.burst(x,y,S.col,14,1.4);this.fx.ring(x,y,'rgba(255,180,90,.9)',10,.5)}}
+  else{for(let i=0;i<3;i++)this.fx.ring(S.kind==='wave'||S.kind==='lunge'?cx+p.dir*S.r*(i+1)/4:cx,cy,S.col,S.r*(.3+i*.25),.5+i*.12);this.fx.burst(cx,cy,S.col,26,1.8)}
+  this.host?.g?.__combatFeedback?.haptic?.(performance.now());
+  return hits}
+ drawSpecialFx(c){
+  const s=this.specialFx;if(!s)return;const k=(this.time-s.t0)/s.dur;if(k>=1||k<0){this.specialFx=null;return}
+  const A=(h,a)=>'rgba('+parseInt(h.slice(1,3),16)+','+parseInt(h.slice(3,5),16)+','+parseInt(h.slice(5,7),16)+','+a.toFixed(3)+')',a=1-k,R=s.r*(.25+.75*Math.sqrt(k));
+  c.save();c.globalCompositeOperation='lighter';
+  if(s.kind==='storm'||s.kind==='quake'){const g=c.createRadialGradient(s.x,s.y,R*.5,s.x,s.y,R);g.addColorStop(0,'rgba(0,0,0,0)');g.addColorStop(.8,A(s.col,.5*a));g.addColorStop(1,'rgba(0,0,0,0)');c.fillStyle=g;c.beginPath();c.arc(s.x,s.y,R,0,TAU);c.fill();
+   if(s.kind==='storm'){c.lineCap='round';for(let i=0;i<8;i++){const an=i*TAU/8+k*10;c.strokeStyle=A(i%2?'#ffffff':s.col,.9*a);c.lineWidth=7-i%2*3;c.beginPath();c.arc(s.x,s.y,R*(.55+.12*(i%3)),an,an+.8);c.stroke()}}
+   else{c.strokeStyle=A(s.col,.95*a);c.lineWidth=6;for(let i=0;i<9;i++){const d=(i-4)/4;c.beginPath();c.moveTo(s.x+d*30,s.ground);c.lineTo(s.x+d*R*.6,s.ground+(i%2?-14:10));c.lineTo(s.x+d*R,s.ground);c.stroke()}const g2=c.createLinearGradient(0,s.ground-120,0,s.ground);g2.addColorStop(0,'rgba(0,0,0,0)');g2.addColorStop(1,A(s.col,.35*a));c.fillStyle=g2;c.fillRect(s.x-R,s.ground-120,R*2,120)}}
+  else if(s.kind==='wave'||s.kind==='lunge'){for(let j=0;j<3;j++){const x=s.x+s.dir*s.r*Math.min(1,Math.max(0,k*1.3-j*.12));c.strokeStyle=A(j?'#ffffff':s.col,.85*a);c.lineWidth=12-j*3;c.beginPath();c.ellipse(x,s.y,36+j*12,120-j*24,0,-Math.PI/2,Math.PI/2,s.dir<0);c.stroke()}
+   const g=c.createLinearGradient(s.x,0,s.x+s.dir*s.r,0);g.addColorStop(0,A(s.col,.35*a));g.addColorStop(1,'rgba(0,0,0,0)');c.fillStyle=g;c.fillRect(Math.min(s.x,s.x+s.dir*s.r*k),s.y-90,s.r*k,180)}
+  else if(s.kind==='volley'){c.fillStyle=A(s.col,.3*a);c.fillRect(this.camera.x,this.camera.y,W,H)}
+  c.restore()}
  heroStrike(step){
   const p=this.p,dmg=COMBAT.damage[step-1]*(this.attackScale||1);
   const box={x:p.dir>0?p.x+p.w*.4:p.x+p.w*.6-COMBAT.reach,y:p.y-6,w:COMBAT.reach,h:p.h+4};
   let hit=false;
-  for(const e of this.enemies){if(e.dead||!overlap(box,e.hurtBox()))continue;const r=e.damage(dmg,p.dir,step===3&&e.dir===p.dir?'heavyBack':'melee');if(r==='hit'){hit=true;this.fx.spark(e.cx-p.dir*6,p.y+p.h*.4,'#ffd36b',12);this.fx.text(String(Math.round(dmg)),e.cx,e.y-14,step===3?'#ffd36b':'#ffffff',step===3)}}
-  if(this.def.strike?.(this,box,dmg,step))hit=true;
+  for(const e of this.enemies){if(e.dead||!overlap(box,e.hurtBox()))continue;const r=e.damage(dmg,p.dir,step===3&&e.dir===p.dir?'heavyBack':'melee');if(r==='hit'){hit=true;this.gainPower(e.dead?12:6);this.fx.spark(e.cx-p.dir*6,p.y+p.h*.4,'#ffd36b',12);this.fx.text(String(Math.round(dmg)),e.cx,e.y-14,step===3?'#ffd36b':'#ffffff',step===3)}}
+  if(this.def.strike?.(this,box,dmg,step)){hit=true;this.gainPower(5)}
   for(const q of this.projectiles)if(q.owner==='enemy'&&overlap(box,q)){q.life=0;this.fx.spark(q.x,q.y,'#e9f2ff',8);this.audio.play('deflect',{vol:.6});hit=true}
   if(hit){this.hitStop(step===3?.07:.045);this.camera.shake=Math.max(this.camera.shake,step===3?5:3);this.host?.g?.__combatFeedback?.haptic?.(performance.now())}
  }
@@ -520,9 +555,9 @@ class LevelRun{
   const p=this.p,guarding=!unblockable&&p.block&&dir!==0&&p.dir===-dir,parry=guarding&&p.blockT>0&&this.def.blockCounter;
   if(p.dead||this.phase!=='play')return false;if(!unblockable&&p.inv>0&&!parry)return false;
   if(parry){
-   p.blockT=0;p.inv=Math.max(p.inv,.12);this.audio.play('deflect',{vol:.7});this.fx.spark(p.x+p.w/2+p.dir*18,p.y+p.h*.4,'#a9eaff',14);this.fx.text(this.t('blocked'),p.x+p.w/2,p.y-6,'#a9eaff');this.def.blockCounter(this,source);
+   p.blockT=0;p.inv=Math.max(p.inv,.12);this.audio.play('deflect',{vol:.7});this.fx.spark(p.x+p.w/2+p.dir*18,p.y+p.h*.4,'#a9eaff',14);this.fx.text(this.t('blocked'),p.x+p.w/2,p.y-6,'#a9eaff');this.def.blockCounter(this,source);this.gainPower(15);
   }
-  else if(guarding){amount=Math.ceil(amount*.2);this.audio.play('block',{vol:.8});this.fx.spark(p.x+p.w/2+p.dir*18,p.y+p.h*.4,'#cfe3ff',10);p.vx=dir*90;p.inv=Math.max(p.inv,.25);this.fx.text('-'+Math.round(amount),p.x+p.w/2,p.y-6,'#cfe3ff')}
+  else if(guarding){amount=Math.ceil(amount*.2);this.gainPower(8);this.audio.play('block',{vol:.8});this.fx.spark(p.x+p.w/2+p.dir*18,p.y+p.h*.4,'#cfe3ff',10);p.vx=dir*90;p.inv=Math.max(p.inv,.25);this.fx.text('-'+Math.round(amount),p.x+p.w/2,p.y-6,'#cfe3ff')}
   else{this.audio.play('hurt',{vol:.8});p.hurtT=.32;this.attackBuffer=0;this.attackPress=false;p.inv=1;p.invFx=true;p.vx=dir*knock;p.vy=dir?-200:p.vy;this.fx.text('-'+Math.round(amount),p.x+p.w/2,p.y-6,'#ff7d6b');this.camera.shake=Math.max(this.camera.shake,4);this.fx.burst(p.x+p.w/2,p.y+p.h*.4,'#ff8b7a',8)}
   if(!parry){amount*=1-(this.damageReduction||0);p.hp-=amount;if(p.hp<=0)this.heroDown()}return true;
  }
@@ -630,7 +665,7 @@ class LevelRun{
   this.def.drawActors?.(this,c);
   this.drawHero(c);
   this.drawProjectiles(c);
-  this.fx.drawWorld(c);
+  this.fx.drawWorld(c);this.drawSpecialFx(c);
   this.def.drawFront?.(this,c);
   c.restore();
   this.def.drawLighting?.(this,c);
@@ -744,6 +779,7 @@ class LevelRun{
   let name=window.PirateHeroes?.get?.(this.heroId)?.name||'Captain';
   c.textAlign='left';c.textBaseline='alphabetic';c.font='800 19px Arial, sans-serif';c.fillStyle='#ffffff';c.fillText(name,92,36);const nw=c.measureText(name).width;c.fillStyle='#ffd36b';c.font='800 17px Arial, sans-serif';c.fillText(Math.ceil(p.hp)+'/'+Math.ceil(this.maxHP||100),98+nw,36);
   this.bar(c,92,44,170,13,p.hp/(this.maxHP||100),'#3bd67a','#1a7a45');
+  { const k=this.power/100,full=k>=1,gl=full?.6+.4*Math.sin(this.time*6):0;c.fillStyle='#0b1220aa';c.beginPath();c.roundRect(92,59,170,6,3);c.fill();c.fillStyle=full?'rgba(255,'+Math.round(200+40*gl)+',110,1)':'#b48cff';c.beginPath();c.roundRect(92,59,Math.max(0,170*k),6,3);c.fill();if(full){c.strokeStyle='rgba(255,230,150,'+gl+')';c.lineWidth=1.5;c.beginPath();c.roundRect(91,58,172,8,4);c.stroke()} }   // special-power bar
   c.font='600 14px Arial, sans-serif';c.fillStyle='#dfe8ee';this.drawLifeHearts(c,92,73,p.lives);
   const rl=this.skin?.ranged==='pistol'?this.t('pistol'):this.t('sword');c.fillText(rl,156,78);const ax=Math.max(238,164+c.measureText(rl).width);for(let i=0;i<COMBAT.ammo;i++){c.fillStyle=i<p.ammo?'#ffffff':'#ffffff33';c.beginPath();c.arc(ax+i*12,73,4,0,TAU);c.fill()}
   // top centre: zone, gold, objective
@@ -755,6 +791,7 @@ class LevelRun{
   // enemy panel (top-right): last engaged enemy or the boss
   const foe=this.def.bossHud?.(this)?null:(this.focusT>0&&this.enemyFocus&&!this.enemyFocus.dead?this.enemyFocus:null);
   if(foe){const x=W-296,y=10;this.panel(c,x,y,224,70);const sh=this.sheets[foe.type];if(sh){c.save();c.beginPath();c.roundRect(x+8,y+8,50,54,8);c.clip();c.fillStyle='#2a2236';c.fillRect(x+8,y+8,50,54);sh.draw(c,0,x+33,y+76,1,{scale:.85});c.restore()}c.textAlign='left';c.fillStyle='#fff';const nm=foe.def.name[this.lang]||foe.def.name.en;let fs=15;c.font='800 15px Arial, sans-serif';while(fs>11&&c.measureText(nm).width>150){fs--;c.font='800 '+fs+'px Arial, sans-serif'}c.fillText(nm,x+66,y+24);c.font='800 15px Arial, sans-serif';c.fillStyle='#ffd36b';c.fillText(Math.max(0,Math.ceil(foe.hp))+'/'+foe.max,x+66,y+42);this.bar(c,x+66,y+48,148,10,foe.hp/foe.max,'#3bd67a','#1a7a45',true)}
+  if(this.powerMsg&&this.time<this.powerMsg.until){const left=this.powerMsg.until-this.time,al=Math.min(1,left/.4,(2.6-left)/.2);c.save();c.globalAlpha=Math.max(0,al);c.textAlign='center';c.font='900 26px Georgia, serif';c.lineWidth=6;c.strokeStyle='#1a0f04';const y=this.objY?this.objY+52:150;c.strokeText(this.powerMsg.text,W/2-20,y);c.fillStyle='#ffd36b';c.fillText(this.powerMsg.text,W/2-20,y);c.restore()}
   this.def.drawHud?.(this,c);
   c.restore();
  }
