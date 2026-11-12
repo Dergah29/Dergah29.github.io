@@ -307,7 +307,7 @@ class LevelRun{
   for(const [k,m] of Object.entries(sprites)){if(m.smooth&&m.scale<1){const img=scaled.get(m.image)||shrink(this.images[m.image],m.scale);scaled.set(m.image,img);const f=m.scale;this.sheets[k]=new Sheet(img,{...m,frameW:m.frameW*f,frameH:m.frameH*f,anchor:[m.anchor[0]*f,m.anchor[1]*f],scale:1});continue}this.sheets[k]=new Sheet(this.images[m.image],m)}
   this.audioManifest=await json(a+'audio.json').catch(()=>({}));
   this.audio.ensure();
-  this.audioReady=this.audio.load(a,this.audioManifest);
+  this.audioReady=Promise.all([this.audio.load(a,this.audioManifest),this.audio.load('adventure/levels/assets/sfx/',{stageClear:'stage-clear.ogg'})]);   // shared jingles (Higgsfield, see ASSET_MANIFEST)
   this.heroId=this.opts.hero||window.PirateLevels?.hero?.()||'captain';
   window.PirateHeroProgress?.resolve(this,this.readSave());
   // Captain's Wardrobe (shop/economy.js): small upgrades only (coin pull radius, checkpoint healing)

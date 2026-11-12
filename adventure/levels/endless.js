@@ -24,6 +24,7 @@ pl:{title:'Bezkresne Morze',blurb:'Wciąż inne wyspy, coraz silniejsze załogi'
 const text=(lang,k,v)=>{let s=(L[lang]||L.en)[k]??L.en[k]??k;if(v)for(const [a,b] of Object.entries(v))s=s.replace('{'+a+'}',b);return s};
 
 /* biome cycle: plate art, sky, terrain style, music, enemy pool (home level = AI helpers + animation binding) */
+const AE='adventure/levels/assets/endless/';   // painted biome plates (Higgsfield, owner's account — see ASSET_MANIFEST)
 const B=(id,home,plate,music,style,sky,tint,pool)=>({id,home,plate,music,style,sky,tint,pool});
 const BIOMES=[
  B('jungle',2,A+'level-02/plate-ruins.webp','level2','ground',['#5d9fd8','#bfe0ef'],null,['pirate','gunner']),
@@ -31,10 +32,10 @@ const BIOMES=[
  B('cove',4,A+'level-04/plate-dock.webp','level4','rock',['#22344a','#6a8aa2'],null,['pirate','gunner','duelist','brute']),
  B('cursed',5,A+'level-05/plate-shrine.webp','level5','ground',['#2b2244','#86688a'],'rgba(60,20,80,.18)',['skeleton','archer','shield','ghost']),
  B('storm',6,A+'level-06/plate-beach.webp','level6','rock',['#2c3a4a','#8696a0'],null,['storm','thunder','raider']),
- B('lighthouse',7,A+'level-06/plate-lighthouse.webp','level7','stone',['#0e1426','#3a4868'],'rgba(10,16,44,.34)',['wrecker','tideBrute','lookout']),
- B('ice',8,A+'level-06/plate-cliffs.webp','level8','stone',['#7393b4','#dceaf5'],'rgba(160,210,255,.22)',['skater','harpooner','revenant']),
+ B('lighthouse',7,AE+'plate-lighthouse.webp','level7','stone',['#0e1426','#3a4868'],'rgba(10,16,44,.12)',['wrecker','tideBrute','lookout']),
+ B('ice',8,AE+'plate-ice.webp','level8','stone',['#7393b4','#dceaf5'],null,['skater','harpooner','revenant']),
  B('fortress',9,A+'level-03/plate-gate.webp','level9','temple',['#4a2e2a','#c98352'],'rgba(90,34,10,.18)',['shieldguard','halberdier','bombardier']),
- B('warship',10,A+'level-04/plate-ship.webp','level10','stone',['#1c1210','#64301c'],'rgba(70,14,0,.22)',['marine','deckgunner'])];
+ B('warship',10,AE+'plate-warship.webp','level10','stone',['#1c1210','#64301c'],'rgba(70,14,0,.08)',['marine','deckgunner'])];
 const HOME={pirate:2,gunner:2,skeleton:3,archer:3,shield:3,duelist:4,brute:4,ghost:5,storm:6,thunder:6,raider:6,wrecker:7,tideBrute:7,lookout:7,skater:8,harpooner:8,revenant:8,shieldguard:9,halberdier:9,bombardier:9,marine:10,deckgunner:10};
 /* melee types whose AI needs no level helper: mixed into later stages for variety */
 const EXTRAS=['skeleton','duelist','raider','marine','halberdier','storm'];
@@ -118,7 +119,7 @@ const def={
  music(run){run.audio.playMusic(run.def.biome.music,1.4)},
  async advance(run,fresh){
   if(run.stageSwap)return;run.stageSwap=true;const st=run.endless;
-  if(!fresh){st.cleared++;st.stage++;st.score=st.cleared*1000+run.stats.kills*50+run.gold;def.record(run);run.audio.play('checkpoint',{vol:.8})}
+  if(!fresh){st.cleared++;st.stage++;st.score=st.cleared*1000+run.stats.kills*50+run.gold;def.record(run);run.audio.play('stageClear',{vol:.8})||run.audio.play('checkpoint',{vol:.8})}
   const prev=run.phase;run.phase='loading';
   try{await run.nextStage(def.generate(run))}catch(e){run.warn?.('endless stage '+e.message)}
   run.stageSwap=false;if(run.phase==='closed')return;run.phase=prev==='loading'?'play':prev;run.endless.started=true;

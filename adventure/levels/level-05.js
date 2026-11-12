@@ -167,8 +167,18 @@ function drawGhost(run,c,e){
  if(!e.dead&&st==='windup')run.fx.glow(c,e.cx+e.dir*26,fy-ih*.55,60,'rgba(255,80,60,',.4);
  if(!e.dead&&e.hp<e.max){c.fillStyle='#0b0f18cc';c.fillRect(e.cx-30,fy-ih-14,60,7);c.fillStyle='#7af0d0';c.fillRect(e.cx-29,fy-ih-13,58*e.hp/e.max,5)}
  return true}
+/* painted bat: 6 frames of 200px — flap up/level/down, dive, screech, dead (assets/level-05/bat-sheet.webp) */
+const BAT_FLAP=[0,1,2,1];
+function drawBatSprite(run,c,e,im,x,y,alpha){
+ const dead=e.dead,f=dead?5:e.state==='dive'?3:e.state==='screech'?4:BAT_FLAP[Math.floor(run.time*12+e.home*3)&3],D=126,sc=e.state==='screech'&&!dead?1.1:1;
+ c.save();c.globalAlpha=alpha;c.translate(x,y);if(e.dir<0)c.scale(-1,1);if(dead)c.rotate(Math.sin(e.deadT*7)*.5);c.scale(sc,sc);
+ if(e.state==='dive'&&!dead){c.globalAlpha=alpha*.22;for(let i=1;i<3;i++)c.drawImage(im,f*200,0,200,200,-D/2-i*18,-D/2,D,D);c.globalAlpha=alpha}
+ c.drawImage(im,f*200,0,200,200,-D/2,-D/2,D,D);c.restore()}
 function drawBat(run,c,e){
  const t=run.time,dead=e.dead,fall=dead?e.deadT*e.deadT*700:0,alpha=dead?clamp(1-(e.deadT-.4)/.6,0,1):1;if(alpha<=0)return true;
+ const sheet=run.images[A5+'bat-sheet.webp'];if(sheet){const x=e.cx,y=e.y+e.h/2+fall;drawBatSprite(run,c,e,sheet,x,y,alpha);
+  if(!dead){run.fx.glow(c,x,y-4,30,e.state==='screech'?'rgba(255,70,50,':'rgba(120,255,190,',e.state==='screech'?.55:.2);if(e.state==='screech'){c.save();c.strokeStyle='rgba(255,80,60,.7)';c.lineWidth=2;const r=22+(.55-e.timer)*60;c.beginPath();c.arc(x,y,r,0,TAU);c.stroke();c.restore()}}
+  return true}
  const x=e.cx,y=e.y+e.h/2+fall,flap=Math.sin(t*(e.state==='dive'?30:16)+e.home)*(dead?.2:1),sc=e.state==='screech'?1.12:1;
  c.save();c.globalAlpha=alpha;c.translate(x,y);if(e.dir<0)c.scale(-1,1);c.rotate(dead?e.deadT*6:e.state==='dive'?.35:0);c.scale(sc,sc);
  if(e.state==='dive'&&!dead){c.globalAlpha=.25;c.fillStyle='#7a3a9a';for(let i=1;i<4;i++){c.beginPath();c.ellipse(-i*16,0,22-i*4,8,0,0,TAU);c.fill()}c.globalAlpha=alpha}
@@ -408,7 +418,7 @@ function drawSpikes(run,c,sp){c.fillStyle='#2a1a10';c.fillRect(sp.x,sp.y-6,sp.w,
 /* ------------------------------------------------------------------ level */
 const ZONES=['shore','jungle','cliffs','shrine'],PLATES={shore:'plate-shore.webp',jungle:'plate-jungle.webp',cliffs:'plate-cliffs.webp',shrine:'plate-shrine.webp'},DARK={shore:.2,jungle:.42,cliffs:.3,shrine:.46},SKY={shore:['#120a26','#5c1f46'],jungle:['#0a1418','#2a5a48'],cliffs:['#0e0814','#3a1020'],shrine:['#06080e','#1a1636']};
 const IMAGES=[...Object.values(PLATES),'plate-dawn.webp','mid-jungle.webp','sand-fill.webp','sand-cap.png','earth-fill.webp','moss-cap.png','basalt-fill.webp','ash-cap.png','shrine-fill.webp','shrine-cap.png','altar.png','totem.png','totem-gold.png','idol.png','gate-post.png',
- 'shaman-body.png','shaman-head.png','shaman-arm.png','shaman-arm-back.png','shaman-staff.png'].map(n=>A5+n).concat([A4+'wood-deck.png',A4+'hull-side.webp',A2+'pirate-sword.png']);
+ 'shaman-body.png','shaman-head.png','shaman-arm.png','shaman-arm-back.png','shaman-staff.png','bat-sheet.webp'].map(n=>A5+n).concat([A4+'wood-deck.png',A4+'hull-side.webp',A2+'pirate-sword.png']);
 const SFX={teleport:'sfx-teleport.ogg',orb:'sfx-orb.ogg',orbPop:'sfx-orbPop.ogg',runeErupt:'sfx-runeErupt.ogg',runeWarn:'sfx-runeWarn.ogg',shieldBreak:'sfx-shieldBreak.ogg',totemPlace:'sfx-totemPlace.ogg',totemPickup:'sfx-totemPickup.ogg',chant:'sfx-chant.ogg',thunder:'sfx-thunder.ogg',geyser:'sfx-geyser.ogg',geyserWarn:'sfx-geyserWarn.ogg',batScreech:'sfx-batScreech.ogg',batFlap:'sfx-batFlap.ogg',jumpPad:'sfx-jumpPad.ogg',quicksand:'sfx-quicksand.ogg',spiritGate:'sfx-spiritGate.ogg',curseLifted:'sfx-curseLifted.ogg',bossFall:'sfx-bossFall.ogg',
  cursed:'../music/cursed.ogg',shaman:'../music/island.ogg',rage:'../music/shaman-rage.ogg',triumph:'../music/triumph.ogg'};
 const def={

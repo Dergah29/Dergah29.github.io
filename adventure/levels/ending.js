@@ -6,7 +6,8 @@
  * the world map can replay it. No video files: everything is drawn live. */
 (()=>{'use strict';if(window.PirateEnding)return;
 const SEEN='pf-ending-seen',S='story/assets/',P='harbor/assets/portraits/';
-const IMG={ship:S+'ship-base.webp',sails:S+'ship-sails.webp',fore:S+'ship-foretop.webp',main:S+'ship-maintop.webp',enemy:S+'enemy-base.webp',enemySails:S+'enemy-sails.webp',
+const E='adventure/levels/assets/ending/';   // painted backdrops (Higgsfield, see ASSET_MANIFEST)
+const IMG={night:E+'night.webp',dawn:E+'dawn.webp',harbour:E+'harbour.webp',ship:S+'ship-base.webp',sails:S+'ship-sails.webp',fore:S+'ship-foretop.webp',main:S+'ship-maintop.webp',enemy:S+'enemy-base.webp',enemySails:S+'enemy-sails.webp',
  flag0:S+'flag-0.webp',flag1:S+'flag-1.webp',flag2:S+'flag-2.webp',flag3:S+'flag-3.webp',scarlet:P+'scarlet.webp',sailor:P+'sailor.webp',captain:P+'captain.webp',shark:P+'shark.webp',crab:P+'crab.webp'};
 const T={
 en:{skip:'SKIP',go:'CONTINUE',a1:'The Admiral\'s flagship goes down…',a2:'The seas are free again',a3:'Mari and her crew',a4:'Thank you for playing!',teaser:'⚓ ENDLESS SEA UNLOCKED',teaser2:'New islands and crews every voyage — how far can you sail?',made:'A game by Dergah Aztech',art:'Art and models: original art made for this game · Quaternius (CC0) · Kenney (CC0) · CraftPix · Pixel Frog (CC0)',music:'Engine: GDevelop template + Pirate Strike level engine'},
@@ -30,13 +31,15 @@ function drawSea(c,W,H,t,sky,sea,horizon){
  const g=c.createLinearGradient(0,0,0,horizon);sky.forEach((col,i)=>g.addColorStop(i/(sky.length-1),col));c.fillStyle=g;c.fillRect(0,0,W,horizon+2);
  const s=c.createLinearGradient(0,horizon,0,H);s.addColorStop(0,sea[0]);s.addColorStop(1,sea[1]);c.fillStyle=s;c.fillRect(0,horizon,W,H-horizon);
  c.strokeStyle='rgba(255,255,255,.13)';c.lineWidth=2;for(let i=0;i<14;i++){const y=horizon+12+i*i*3.2,off=(t*(20+i*6)+i*97)%120;c.beginPath();for(let x=-120+off;x<W+120;x+=120){c.moveTo(x,y);c.quadraticCurveTo(x+30,y-4-i*.3,x+60,y)}c.stroke()}}
+/* a painted backdrop with a slow push-in; returns false when the painting is missing (the drawn sky and sea take over) */
+function paint(c,W,H,img,k){if(!img)return false;const z=1.04+.05*k,w=W*z,h=H*z;c.drawImage(img,(W-w)/2,(H-h)*.7,w,h);return true}
 function ship(c,im,layers,x,y,s,rock,flag,flip){c.save();c.translate(x,y);c.rotate(rock);if(flip)c.scale(-1,1);const w=619*s,h=500*s;for(const L of layers)if(im[L])c.drawImage(im[L],-w/2,-h,w,h);if(flag&&im[flag])c.drawImage(im[flag],-w*.03,-h*1.0,46*s*1.6,43*s*1.6);c.restore()}
 
 function frame(c,W,H,t,im,tx,hero){
  c.clearRect(0,0,W,H);const hz=H*.62;
  if(t<7.5){// 1. night battle aftermath: the Admiral's ship burns and sinks
-  drawSea(c,W,H,t,['#05070f','#121a33','#3a1c1c'],['#0c1424','#03060c'],hz);
-  for(let i=0;i<40;i++){const x=(i*233)%W,y=(i*71)%(hz*.7);c.fillStyle='rgba(255,255,255,'+(.3+.3*Math.sin(t*2+i))+')';c.fillRect(x,y,2,2)}
+  if(!paint(c,W,H,im.night,t/7.5)){drawSea(c,W,H,t,['#05070f','#121a33','#3a1c1c'],['#0c1424','#03060c'],hz);
+  for(let i=0;i<40;i++){const x=(i*233)%W,y=(i*71)%(hz*.7);c.fillStyle='rgba(255,255,255,'+(.3+.3*Math.sin(t*2+i))+')';c.fillRect(x,y,2,2)}}
   const sink=seg(t,1.5,7.2),x=W*.58,y=hz+40+sink*220,rock=.05+sink*.35;
   c.save();c.beginPath();c.rect(0,0,W,hz+44);c.clip();ship(c,im,['enemy','enemySails'],x,y,.95,rock,null,true);c.restore();
   c.save();c.globalCompositeOperation='lighter';
@@ -48,15 +51,15 @@ function frame(c,W,H,t,im,tx,hero){
   ship(c,im,['ship','sails','fore','main'],W*.2,hz+70,.62,Math.sin(t*1.2)*.02,'flag'+(Math.floor(t*8)%4),false);
   caption(c,W,H,tx.a1,seg(t,.6,1.6)*(1-seg(t,6.6,7.4)))}
  else if(t<15){// 2. dawn: Mari's ship sails into the sunrise
-  const k=(t-7.5)/7.5;drawSea(c,W,H,t,['#2b3a6b','#c86a5a','#ffcf86'],['#2f5a7a','#0f2436'],hz);
+  const k=(t-7.5)/7.5;if(!paint(c,W,H,im.dawn,k)){drawSea(c,W,H,t,['#2b3a6b','#c86a5a','#ffcf86'],['#2f5a7a','#0f2436'],hz);
   const sx=W*.5,sy=hz-30+(1-seg(k,0,.8))*80;const sun=c.createRadialGradient(sx,sy,10,sx,sy,260);sun.addColorStop(0,'rgba(255,240,190,1)');sun.addColorStop(.25,'rgba(255,200,120,.8)');sun.addColorStop(1,'rgba(255,170,90,0)');c.fillStyle=sun;c.fillRect(0,0,W,hz);
-  c.fillStyle='rgba(255,226,160,.35)';for(let i=0;i<12;i++){const y=hz+8+i*i*3;c.fillRect(sx-60+i*4-((t*30+i*13)%20),y,120-i*8,3)}
+  c.fillStyle='rgba(255,226,160,.35)';for(let i=0;i<12;i++){const y=hz+8+i*i*3;c.fillRect(sx-60+i*4-((t*30+i*13)%20),y,120-i*8,3)}}
   const x=W*(.05+.6*ease(k)),s=.82-.32*ease(k);ship(c,im,['ship','sails','fore','main'],x,hz+80-30*ease(k),s,Math.sin(t*1.4)*.025,'flag'+(Math.floor(t*8)%4),false);
-  for(let i=0;i<3;i++){const gx=(W*.2+i*W*.25+t*40)%W,gy=hz*.3+i*30+Math.sin(t*2+i)*8;c.strokeStyle='#2a1a14';c.lineWidth=2;c.beginPath();c.moveTo(gx-10,gy);c.quadraticCurveTo(gx-5,gy-6,gx,gy);c.quadraticCurveTo(gx+5,gy-6,gx+10,gy);c.stroke()}
+  if(!im.dawn)for(let i=0;i<3;i++){const gx=(W*.2+i*W*.25+t*40)%W,gy=hz*.3+i*30+Math.sin(t*2+i)*8;c.strokeStyle='#2a1a14';c.lineWidth=2;c.beginPath();c.moveTo(gx-10,gy);c.quadraticCurveTo(gx-5,gy-6,gx,gy);c.quadraticCurveTo(gx+5,gy-6,gx+10,gy);c.stroke()}
   caption(c,W,H,tx.a2,seg(t,8,9)*(1-seg(t,14.2,15)))}
  else if(t<21.5){// 3. the crew
-  const k=t-15;drawSea(c,W,H,t,['#3d5d9a','#8fb7d8','#ffe6b0'],['#2f6a8a','#123448'],hz);
-  c.fillStyle='rgba(20,12,4,.35)';c.fillRect(0,0,W,H);
+  const k=t-15;if(paint(c,W,H,im.harbour,k/6.5)){c.fillStyle='rgba(20,12,4,.22)';c.fillRect(0,0,W,H)}else{drawSea(c,W,H,t,['#3d5d9a','#8fb7d8','#ffe6b0'],['#2f6a8a','#123448'],hz);
+  c.fillStyle='rgba(20,12,4,.35)';c.fillRect(0,0,W,H)}
   const crew=['sailor','captain',hero==='scarlet'?'scarlet':'scarlet','shark','crab'],n=crew.length;
   crew.forEach((id,i)=>{const img=im[id];if(!img)return;const a=seg(k,.25+i*.35,.85+i*.35),hgt=id==='scarlet'?H*.62:H*.38,w=img.width*hgt/img.height,cx=W*(.14+i*.18),by=H*.86-(id==='scarlet'?0:20)+(1-a)*60;
    c.save();c.globalAlpha=a;c.drawImage(img,cx-w/2,by-hgt,w,hgt);c.font='800 22px Georgia,serif';c.textAlign='center';c.lineWidth=5;c.strokeStyle='rgba(20,10,0,.9)';c.strokeText(tx.names[id],cx,by+28);c.fillStyle='#ffe3a6';c.fillText(tx.names[id],cx,by+28);c.restore()});
