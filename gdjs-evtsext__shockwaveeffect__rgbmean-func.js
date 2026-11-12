@@ -9,7 +9,7 @@ gdjs.evtsExt__ShockWaveEffect__RgbMean = {};
 gdjs.evtsExt__ShockWaveEffect__RgbMean.idToCallbackMap = new Map();
 
 
-gdjs.evtsExt__ShockWaveEffect__RgbMean.userFunc0x4118168 = function GDJSInlineCode(runtimeScene, eventsFunctionContext) {
+gdjs.evtsExt__ShockWaveEffect__RgbMean.userFunc0x3e1eaa0 = function GDJSInlineCode(runtimeScene, eventsFunctionContext) {
 "use strict";
 try {
     // split do allocations, but the code a lot simpler this way.
@@ -39,7 +39,7 @@ gdjs.evtsExt__ShockWaveEffect__RgbMean.eventsList0 = function(runtimeScene, even
 {
 
 
-gdjs.evtsExt__ShockWaveEffect__RgbMean.userFunc0x4118168(runtimeScene, eventsFunctionContext);
+gdjs.evtsExt__ShockWaveEffect__RgbMean.userFunc0x3e1eaa0(runtimeScene, eventsFunctionContext);
 
 }
 
