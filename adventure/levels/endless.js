@@ -58,7 +58,7 @@ Object.assign(E.ENEMY,{
  ghostcap:{hp:360,w:100,h:160,speed:0,chase:0,sight:1400,gold:30,flesh:false,boss:true,name:NM('Ghost Captain','Kabus Kapitan','Hayalet Kaptan','Капитан-призрак','Kapitan Widmo')},
  serpent:{hp:400,w:160,h:230,speed:0,chase:0,sight:1400,gold:30,flesh:true,boss:true,name:NM('Sea Serpent','Dəniz İlanı','Deniz Yılanı','Морской змей','Wąż morski')}});
 const SPRITE={flyfish:{D:104,face:1},gull:{D:118,face:1},jelly:{D:104,face:0},kraken:{D:330,face:-1,base:true},ghostcap:{D:250,face:-1},serpent:{D:350,face:-1,base:true}};
-const BOSSES=['kraken','ghostcap','serpent'],BOSS_MUSIC={kraken:'level6boss',ghostcap:'level7boss',serpent:'level8boss'};
+const BOSSES=['kraken','ghostcap','serpent'],BOSS_MUSIC={kraken:'seaboss',ghostcap:'seaboss',serpent:'seaboss'};
 const groundAt=(run,x)=>{let y=null;for(const s of run.solids)if(x>=s.x&&x<=s.x+s.w&&(y===null||s.y<y))y=s.y;return y};
 function spawn(run,type,x){const g=groundAt(run,x)??run.cfg.world.ground,e=new E.Enemy(run,{id:'sp'+(run.spawnN=(run.spawnN||0)+1),type,x,y:g,range:[x-260,x+260]});
  const sc=1+.08*(run.endless.stage-1);e.max=e.hp=Math.round(e.max*sc);e.alert=true;run.enemies.push(e);run.fx.burst(x,g-40,'#bfe9ff',14,1.2);return e}
@@ -255,13 +255,13 @@ const def={
   run.bossShots=run.bossShots.filter(s=>s.life>0);
   if(!st.bossDone){const b=run.enemies.find(e=>e.def.boss);
    if(b&&!b.dead){const wall=b.x+b.w*.55;if(p.x+p.w>wall){p.x=wall-p.w;p.vx=Math.min(0,p.vx)}}
-   else{st.bossDone=true;st.bossBonus=(st.bossBonus||0)+2500;st.bossesBeaten=(st.bossesBeaten||0)+1;run.audio.stopMusic?.(.4);run.audio.play('bossWin',{vol:1});setTimeout(()=>{if(run.phase==='play')run.audio.playMusic('level5win',.8)},2600);
+   else{st.bossDone=true;st.bossBonus=(st.bossBonus||0)+2500;try{window.PirateAchievements?.note('boss',run.def.boss)}catch{};st.bossesBeaten=(st.bossesBeaten||0)+1;run.audio.stopMusic?.(.4);run.audio.play('bossWin',{vol:1});setTimeout(()=>{if(run.phase==='play')run.audio.playMusic('level5win',.8)},2600);
     p.hp=Math.min(run.maxHP||100,p.hp+40);run.banner={t:3.2,text:text(run.lang,'bossDown')};run.fx.burst(b?b.cx:p.x,(b?b.y:p.y)+60,'#ffd36b',40,2);run.camera.shake=10}}},
  /* the record and the gold are kept after every cleared stage, so leaving through the pause menu loses nothing;
   * runBest = the best stored before this run started (to say "new record" at the end) */
  record(run){const st=run.endless;let best={stage:0,score:0};try{best=JSON.parse(localStorage.getItem(BEST_KEY)||'null')||best}catch{}
   st.before??={stage:best.stage||0,score:best.score||0};
-  if(st.score>(best.score||0)||st.stage>(best.stage||0))try{localStorage.setItem(BEST_KEY,JSON.stringify({stage:Math.max(st.stage,best.stage||0),score:Math.max(st.score,best.score||0),at:Date.now()}))}catch{}
+  if(st.score>(best.score||0)||st.stage>(best.stage||0)){try{localStorage.setItem(BEST_KEY,JSON.stringify({stage:Math.max(st.stage,best.stage||0),score:Math.max(st.score,best.score||0),at:Date.now()}))}catch{}try{window.PirateAchievements?.check()}catch{}}
   try{st.paid=(st.paid||0)+(window.PirateEconomy?.earnBest?.('endless','cleared',st.cleared*GOLD_PER_STAGE)||0)}catch{}},
  onGameOver(run){
   const st=run.endless;def.record(run);const reached=st.stage,score=st.score,best=st.before,gold=st.paid||0;

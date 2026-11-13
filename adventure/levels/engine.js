@@ -103,6 +103,14 @@ const ENEMY={
  gunner:{hp:52,w:40,h:96,speed:0,chase:0,sight:620,name:{en:'Pirate Gunner',az:'Pirat Atıcı',tr:'Korsan Nişancı',ru:'Пират-стрелок',pl:'Pirat strzelec'},gold:4,flesh:true},
  archer:{hp:46,w:32,h:74,speed:0,chase:0,sight:600,name:{en:'Cursed Archer',az:'Lənətli Oxatan',tr:'Lanetli Okçu',ru:'Проклятый лучник',pl:'Przeklęty łucznik'},gold:3}
 };
+/* loading-screen art and tips (5 languages) */
+const LOAD_ART={1:'level-01/plate-strand.webp',2:'level-02/plate-ruins.webp',3:'level-03/plate-entrance.webp',4:'level-04/plate-shore.webp',5:'level-05/plate-shore.webp',6:'level-06/plate-beach.webp',7:'painted/level07-coast.webp',8:'painted/level08-ice.webp',9:'painted/level09-fortress.webp',10:'painted/level10-fleet.webp',endless:'endless/plate-arena.webp'};
+const TIPS={
+en:['Hold attack with a full power bar to unleash your special power.','Block just as a hit lands to parry and strike back.','Jump again in the air to cross wide gaps.','Hearts give back a life — look past the checkpoints.','Throw your weapon at enemies you cannot reach.','Climb the high ledges: chests hide gold up there.','Every 5th stage of the Endless Sea hides a mini-boss.','Earn badges and see them in the Treasury room.'],
+az:['Güc zolağı dolanda hücumu basıb saxla — özəl güc işə düşəcək.','Zərbə dəyən an blokla — əks-zərbə vurarsan.','Havada yenidən tullan, geniş çuxurları keç.','Ürəklər can qaytarır — yoxlama nöqtələrindən sonra axtar.','Çata bilmədiyin düşmənlərə silahını at.','Hündür platformalara qalx — sandıqlarda qızıl var.','Sonsuz Dənizdə hər 5-ci mərhələdə mini-boss gözləyir.','Nailiyyət nişanları qazan, Xəzinə otağında bax.'],
+tr:['Güç çubuğu doluyken saldırıyı basılı tut — özel güç açılır.','Darbe gelirken tam zamanında blokla, karşı saldırı yap.','Geniş boşlukları havada tekrar zıplayarak geç.','Kalpler can verir — kontrol noktalarının ötesine bak.','Ulaşamadığın düşmanlara silahını fırlat.','Yüksek çıkıntılara tırman: sandıklarda altın var.','Sonsuz Deniz’de her 5. aşamada bir mini boss var.','Rozetler kazan, Hazine odasında gör.'],
+ru:['Удерживайте атаку при полной шкале силы — сработает суперудар.','Блокируйте в момент удара, чтобы контратаковать.','Прыгните ещё раз в воздухе, чтобы перелететь широкие пропасти.','Сердца возвращают жизнь — ищите их за контрольными точками.','Бросайте оружие во врагов, до которых не дотянуться.','Забирайтесь на высокие уступы: там сундуки с золотом.','Каждый 5-й этап Бескрайнего моря — мини-босс.','Собирайте значки — они в Сокровищнице.'],
+pl:['Przytrzymaj atak przy pełnym pasku mocy — uwolnisz moc specjalną.','Zablokuj w chwili ciosu, by skontrować.','Skocz ponownie w powietrzu, by przeskoczyć szerokie przepaście.','Serca zwracają życie — szukaj ich za punktami kontrolnymi.','Rzucaj bronią we wrogów poza zasięgiem.','Wspinaj się na wysokie półki: w skrzyniach jest złoto.','Co 5. etap Bezkresnego Morza czeka mini-boss.','Zdobywaj odznaki i oglądaj je w Skarbcu.']};
 class Enemy{
  constructor(run,d){const t=ENEMY[d.type];this.run=run;this.id=d.id;this.type=d.type;this.def=t;this.w=t.w;this.h=t.h;this.x=d.x-t.w/2;this.floor=d.y;this.y=d.y-t.h;this.range=d.range||[d.x-120,d.x+120];this.hp=t.hp;this.max=t.hp;this.dir=-1;this.state='idle';this.timer=0;this.anim='idle';this.animT=0;this.flash=0;this.hurtT=0;this.dead=false;this.deadT=0;this.cool=1+((d.x*7)%10)/10;this.kb=0;this.alert=false;this.home=this.x}
  get cx(){return this.x+this.w/2}
@@ -121,7 +129,7 @@ class Enemy{
   if(this.hp<=0){this.die(dir)}else{this.setAnim('hurt');run.audio.at(this.type==='skeleton'?'boneHit':this.type==='archer'?'ghostHit':this.def.flesh?'fleshHit':'metalHit',this.cx,{rate:.92+Math.random()*.16})}
   return'hit';
  }
- die(dir){const run=this.run;this.dead=true;this.deadT=0;this.setAnim('dead');this.kb=dir*120;run.killed.add(this.id);run.stats.kills++;run.audio.at(this.type==='skeleton'?'boneBreak':this.type==='archer'?'ghostDie':this.def.flesh?'pirateDie':'armorFall',this.cx);run.fx.burst(this.cx,this.y+this.h/2,this.type==='archer'?'#e7a8ff':this.def.flesh?'#ffd08a':'#efe0bf',22);run.dropCoins(this.cx,this.y+20,this.def.gold,'enemy-'+this.id);run.save()}
+ die(dir){const run=this.run;this.dead=true;try{window.PirateAchievements?.note('kill')}catch{};this.deadT=0;this.setAnim('dead');this.kb=dir*120;run.killed.add(this.id);run.stats.kills++;run.audio.at(this.type==='skeleton'?'boneBreak':this.type==='archer'?'ghostDie':this.def.flesh?'pirateDie':'armorFall',this.cx);run.fx.burst(this.cx,this.y+this.h/2,this.type==='archer'?'#e7a8ff':this.def.flesh?'#ffd08a':'#efe0bf',22);run.dropCoins(this.cx,this.y+20,this.def.gold,'enemy-'+this.id);run.save()}
  update(dt){
   const run=this.run,p=run.p;this.animT+=dt;this.flash=Math.max(0,this.flash-dt);
   if(this.dead){this.deadT+=dt;this.x+=this.kb*dt;this.kb*=.9;return}
@@ -258,7 +266,7 @@ class LevelRun{
 #pirate-level .pl-stick{position:absolute;left:max(18px,env(safe-area-inset-left));bottom:max(14px,env(safe-area-inset-bottom));width:clamp(116px,30vh,160px);height:clamp(116px,30vh,160px);border-radius:50%;border:3px solid #b9cfe066;background:radial-gradient(circle,#1d3a5a66,#0b1a2a99);pointer-events:auto;touch-action:none;box-shadow:inset 0 0 22px #0008}
 #pirate-level .pl-knob{position:absolute;left:30%;top:30%;width:40%;height:40%;border-radius:50%;background:radial-gradient(circle at 35% 30%,#e9f4ff,#8fb2d4 55%,#4b6f93);box-shadow:0 4px 10px #0009;pointer-events:none}
 #pirate-level .pl-pad{position:absolute;right:max(14px,env(safe-area-inset-right));bottom:max(12px,env(safe-area-inset-bottom));display:grid;grid-template-columns:repeat(3,auto);grid-template-areas:". block dash" "throw attack jump";gap:clamp(6px,1.6vh,12px);align-items:end;pointer-events:auto;touch-action:none}
-#pirate-level .pl-pad button[data-k=attack].pl-ready{outline:4px solid #ffd36b;outline-offset:3px;border-radius:50%;filter:drop-shadow(0 0 10px rgba(255,211,107,1)) drop-shadow(0 0 22px rgba(255,170,60,.9)) brightness(1.15)!important;animation:plReady .6s ease-in-out infinite alternate}@keyframes plReady{to{outline-color:#fff6d0;outline-offset:8px}}#pirate-level .pl-pad button{pointer-events:auto;touch-action:none;width:clamp(58px,14vh,84px);height:clamp(58px,14vh,84px);border-radius:50%;border:3px solid #9fb6cc55;background:radial-gradient(circle at 40% 30%,#2b4258b0,#101c2bb8);color:#f2f5ff;font:800 clamp(11px,2.7vh,16px)/1.05 Arial,sans-serif;letter-spacing:.5px;box-shadow:0 5px 14px #000a,inset 0 2px 3px #ffffff18;padding:0}
+#pirate-level .pl-card.pl-loading{background:linear-gradient(150deg,#1b3247e0,#08131ee8)}#pirate-level .pl-card.pl-loading h2{font:900 clamp(22px,5vh,34px) Georgia,serif;color:#ffe3a0;margin:0 0 6px}#pirate-level .pl-sub{display:block;color:#bcd6e6;font:600 13px system-ui;margin-bottom:10px}#pirate-level .pl-loadbar{height:7px;border-radius:4px;background:linear-gradient(90deg,#ffd36b 0 35%,#ffffff22 35% 100%);background-size:220% 100%;animation:plLoad 1.2s linear infinite}@keyframes plLoad{from{background-position:100% 0}to{background-position:-120% 0}}#pirate-level .pl-tip{margin:12px 0 0;color:#ffe7b0;font:600 clamp(13px,2.6vh,16px)/1.35 system-ui}#pirate-level .pl-pad button[data-k=attack].pl-ready{outline:4px solid #ffd36b;outline-offset:3px;border-radius:50%;filter:drop-shadow(0 0 10px rgba(255,211,107,1)) drop-shadow(0 0 22px rgba(255,170,60,.9)) brightness(1.15)!important;animation:plReady .6s ease-in-out infinite alternate}@keyframes plReady{to{outline-color:#fff6d0;outline-offset:8px}}#pirate-level .pl-pad button{pointer-events:auto;touch-action:none;width:clamp(58px,14vh,84px);height:clamp(58px,14vh,84px);border-radius:50%;border:3px solid #9fb6cc55;background:radial-gradient(circle at 40% 30%,#2b4258b0,#101c2bb8);color:#f2f5ff;font:800 clamp(11px,2.7vh,16px)/1.05 Arial,sans-serif;letter-spacing:.5px;box-shadow:0 5px 14px #000a,inset 0 2px 3px #ffffff18;padding:0}
 #pirate-level .pl-pad button.pressed{transform:scale(.93);filter:brightness(1.35)}
 #pirate-level .pl-pad [data-k=attack]{grid-area:attack;width:clamp(70px,18vh,100px);height:clamp(70px,18vh,100px);opacity:.92;background:radial-gradient(circle at 40% 30%,#ffd36b,#f0a12b 60%,#b86b12);color:#2a1606;border-color:#ffe6a3}
 #pirate-level .pl-pad [data-k=block]{grid-area:block}#pirate-level .pl-pad [data-k=dash]{grid-area:dash}#pirate-level .pl-pad [data-k=throw]{grid-area:throw}#pirate-level .pl-pad [data-k=jump]{grid-area:jump}
@@ -292,7 +300,7 @@ class LevelRun{
   this.prevBack=window.__pfBack;window.__pfBack=()=>{if(this.phase==='play'){this.pause();return true}if(this.phase==='pause'){this.resume();return true}return this.prevBack?.()||false};
  }
  async load(){
-  this.phase='loading';this.showCard(this.t('loading'),'',[]);
+  this.phase='loading';this.showLoading();
   const base=this.def.base;
   const json=async u=>{const r=await fetch(u);if(!r.ok)throw Error(u+' HTTP '+r.status);return r.json()};
   this.cfg=this.def.generate?this.def.generate(this):await json(this.def.config);   // Endless Sea builds its stages in code
@@ -417,7 +425,14 @@ class LevelRun{
  exitToMap(){if(this.phase!=='complete')this.save();this.close();this.opts.onExit?.('map')}
  close(){if(this.phase==='closed')return;this.phase='closed';window.PirateGdThrottle?.release(this);window.PirateEnemyAnim?.release(this);cancelAnimationFrame(this.loopId);this.clearInputs();this.audio.close();window.removeEventListener('keydown',this.onKeyDown,true);window.removeEventListener('keyup',this.onKeyUp,true);window.removeEventListener('blur',this.onBlur);document.removeEventListener('visibilitychange',this.onVis);window.__pfBack=this.prevBack;this.root?.remove();if(window.__pirateLevel===this)window.__pirateLevel=null}
  showCard(title,text,buttons){this.modal.hidden=false;this.controls.hidden=true;this.card.textContent='';const h=document.createElement('h2');h.textContent=title;this.card.append(h);if(text){const p=document.createElement('p');p.textContent=text;this.card.append(p)}for(const [label,fn,primary] of buttons||[]){const b=document.createElement('button');b.textContent=label;if(primary)b.className='primary';b.onclick=fn;this.card.append(b)}return this.card}
- hideCard(){this.modal.hidden=true;this.controls.hidden=false}
+ hideCard(){this.modal.hidden=true;this.controls.hidden=false;this.modal.style.background='';this.card.classList.remove('pl-loading')}
+ /* loading screen: the level's painted backdrop, its name, a rotating tip and a moving bar */
+ showLoading(){
+  const lang=TIPS[this.lang]?this.lang:'en',title=this.def.title?.(this.lang)||this.t('loading'),card=this.showCard(title,'',[]);card.classList.add('pl-loading');
+  const art=LOAD_ART[this.def.id];if(art)this.modal.style.background='linear-gradient(#02070d40,#02070dd0),url(adventure/levels/assets/'+art+') center/cover no-repeat,#02070d';
+  const sub=document.createElement('small');sub.className='pl-sub';sub.textContent=this.t('loading');card.append(sub);
+  const bar=document.createElement('div');bar.className='pl-loadbar';card.append(bar);
+  const list=TIPS[lang],tip=document.createElement('p');tip.className='pl-tip';tip.textContent='💡 '+list[Math.floor(Math.random()*list.length)];card.append(tip);return card}
  /* ---------------- loop */
  loop(now){
   if(this.phase==='closed')return;this.loopId=requestAnimationFrame(this.raf);
@@ -500,7 +515,7 @@ class LevelRun{
  /* each hero's special power: scarlet blade storm, sailor anchor shockwave, captain cannon volley, shark lunge, crab quake.
     Bosses (reached through def.strike) take a third of the damage so fights keep their shape. */
  special(){
-  const p=this.p,cx=p.x+p.w/2,cy=p.y+p.h*.5,cam=this.camera,sc=this.attackScale||1;this.power=0;this.powerReady=false;this.specials=(this.specials||0)+1;this.powerMsg=null;this.syncPowerButton();
+  const p=this.p,cx=p.x+p.w/2,cy=p.y+p.h*.5,cam=this.camera,sc=this.attackScale||1;this.power=0;this.powerReady=false;this.specials=(this.specials||0)+1;try{window.PirateAchievements?.note('special')}catch{};this.powerMsg=null;this.syncPowerButton();
   const S=({scarlet:{kind:'storm',r:300,dmg:70,col:'#ff4a5a'},sailor:{kind:'wave',r:440,dmg:60,col:'#7fd8ff',push:520},captain:{kind:'volley',r:0,dmg:45,col:'#ffb347'},shark:{kind:'lunge',r:400,dmg:65,col:'#4ad7ff'},crab:{kind:'quake',r:420,dmg:45,col:'#ff8a3a'}})[this.heroId]||{kind:'storm',r:300,dmg:60,col:'#ffd36b'};
   p.inv=Math.max(p.inv,S.kind==='lunge'?1:.6);if(S.kind==='lunge'){p.vx=p.dir*900;p.dash=Math.max(p.dash||0,.3)}
   let hits=0;
@@ -643,7 +658,7 @@ class LevelRun{
   let unlockedNext=null;try{unlockedNext=window.PirateLevels?.complete(this.def.id,stats)}catch(e){this.warn('progress '+e)}
   try{const C=window.PirateTavernContracts,met=C?.levelComplete(this.def.id);if(met?.length)this.fx?.text(C.text(this.lang).done,this.p.x+this.p.w/2,this.p.y-60,'#ffe27a',true)}catch(e){this.warn('tavern contract '+e)}   // Meyxana contracts met by this level
   if(window.PirateLevels&&!window.PirateLevels.isCompleted(this.def.id))return retry();
-  this.phase='complete';this.clearInputs();this.audio.stopMusic(.4);this.audio.silenceLoops();this.audio.play('victory',{vol:.9});
+  this.phase='complete';setTimeout(()=>{try{window.PirateAchievements?.check()}catch{}},400);this.clearInputs();this.audio.stopMusic(.4);this.audio.silenceLoops();this.audio.play('victory',{vol:.9});
   if(!E||!this.paid)try{const total=clamp(Number(localStorage.getItem('pf-adventure-gold'))||0,0,1e7);localStorage.setItem('pf-adventure-gold',String(total+this.gold))}catch{}
   this.clearSave();this.lastStats=stats;
   const mm=Math.floor(stats.time/60),ss=String(stats.time%60).padStart(2,'0');

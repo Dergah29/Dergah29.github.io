@@ -9,6 +9,7 @@
  * 'level7boss', the shattered lens → 'level5win'; Level 8 Frozen Fleet → 'level8', its ambushes → 'level4battle',
  * Captain Rime → 'level8boss', the Admiral's chart → 'level5win'; Level 9 Chain Fortress → 'level9', its ambushes →
  * 'level4battle', the siege of the gate → 'level9siege', the open gate → 'level5win'; online/bot arena → 'arena'.
+ * Endless Sea mini-boss arenas → 'seaboss'.
  * Changes cross-fade; loops are sample-seamless. Music and effects volumes are separate,
  * the existing SOUND switch (pf-sound) mutes everything, and the choices are saved
  * (pf-audio-v1). Audio starts on the first touch/key (mobile autoplay rules). */
@@ -16,7 +17,8 @@
 if(window.PirateMusic)return;
 const M='adventure/levels/assets/music/',L3='adventure/levels/assets/level-03/';
 const TRACKS={
- menu:{src:M+'menu.ogg',gain:.9},
+ menu:{src:M+'theme.ogg',gain:.85},   // main theme (Higgsfield / ElevenLabs Music, see ASSET_MANIFEST); the older menu.ogg stays in the repo
+ seaboss:{src:M+'sea-boss.ogg',gain:.85},   // Endless Sea mini-boss battle (Higgsfield / ElevenLabs Music)
  level1:{src:M+'harbor.ogg',gain:.9},
  boss1:{src:'adventure/assets/boss.wav',gain:.8},
  level2:{src:L3+'music-jungle.ogg',gain:1},

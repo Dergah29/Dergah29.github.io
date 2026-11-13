@@ -27,7 +27,7 @@ const CSS=`#pirate-treasury{position:fixed;inset:0;z-index:2147482000;display:fl
 #pirate-treasury h1{margin:0;font:900 clamp(22px,4.2vh,34px) Georgia,serif;color:#ffd77a;text-shadow:0 2px 0 #1d0f05;letter-spacing:.04em}
 #pirate-treasury .tr-sub{color:#e3c78f;font-size:13px}
 #pirate-treasury .tr-gold{margin-left:auto;display:flex;align-items:center;gap:8px;padding:6px 14px;border-radius:999px;border:2px solid #d9a548;background:#1d0f05cc;font:800 18px Georgia,serif;color:#ffe08a}
-#pirate-treasury .tr-body{flex:1;display:grid;grid-template-columns:1.6fr 1fr;gap:12px;min-height:0}
+#pirate-treasury .tr-body{flex:1 0 auto;display:grid;grid-template-columns:1.6fr 1fr;gap:12px;align-content:start}   /* grows with the achievements row; the room scrolls */
 #pirate-treasury section{border-radius:16px;border:2px solid #d9a548;background:linear-gradient(#4a2c16e6,#24140ae6);box-shadow:inset 0 1px 0 #ffffff22,0 6px 16px #0009;padding:10px 12px;min-height:0}
 #pirate-treasury h2{margin:0 0 8px;font:800 16px Georgia,serif;color:#ffd98a;display:flex;justify-content:space-between;gap:8px}
 #pirate-treasury h2 small{font:600 12px system-ui;color:#e3c78f}
@@ -46,7 +46,15 @@ const CSS=`#pirate-treasury{position:fixed;inset:0;z-index:2147482000;display:fl
 #pirate-treasury .tr-chest{margin-top:12px;display:flex;flex-direction:column;gap:6px}
 #pirate-treasury .tr-chest button{min-height:48px;border-radius:12px;border:2px solid #2d1a0b;background:linear-gradient(#ffe6a6,#d9a948);color:#2a1a08;font:900 17px Georgia,serif;cursor:pointer;box-shadow:0 4px 0 #6a3f12}
 #pirate-treasury .tr-chest p{margin:0;font-size:12px;color:#e3c78f}
-@media (max-width:640px){#pirate-treasury .tr-body{grid-template-columns:1fr}}
+#pirate-treasury .tr-ach{grid-column:1/-1}
+#pirate-treasury .tr-badges{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px}
+#pirate-treasury .tr-badge{text-align:center;padding:6px 4px;border-radius:12px;background:linear-gradient(#2a170a,#120904);border:1px solid #8a6a3a}
+#pirate-treasury .tr-badge.got{border-color:#ffd77a;box-shadow:0 0 14px #ffcf6a44 inset}
+#pirate-treasury .tr-badge canvas{width:clamp(40px,9vh,64px);height:clamp(40px,9vh,64px);display:block;margin:0 auto 4px}
+#pirate-treasury .tr-badge:not(.got) canvas{filter:grayscale(1) brightness(.45)}
+#pirate-treasury .tr-badge b{display:block;font:800 12px Georgia,serif;color:#ffe7b0;line-height:1.15}
+#pirate-treasury .tr-badge span{display:block;font-size:11px;color:#e3c78f;line-height:1.2;margin-top:2px}
+@media (max-width:640px){#pirate-treasury .tr-body{grid-template-columns:1fr}#pirate-treasury .tr-badges{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media (max-height:420px){#pirate-treasury .tr-sub{display:none}#pirate-treasury h2{margin-bottom:5px}}`;
 let current=null;
 const tx=(lang)=>T[lang]||T.en;
@@ -60,6 +68,9 @@ const imgCache=new Map();
 function loadImg(src){if(!imgCache.has(src))imgCache.set(src,new Promise(ok=>{const i=new Image();i.onload=()=>ok(i);i.onerror=()=>ok(null);i.src=src}));return imgCache.get(src)}
 async function drawBoss(cv,id){try{const m=await fetch(ANIM+id+'/manifest.json').then(r=>r.json());const clip=m.clips.idle||Object.values(m.clips)[0];const f=clip.frames[0];const img=await loadImg(ANIM+id+'/'+m.pages[f.page]);if(!img)return;
  const [sx,sy,sw,sh]=f.rect,k=Math.min(cv.width/sw,cv.height/sh)*.95,c=cv.getContext('2d');c.imageSmoothingQuality='high';c.drawImage(img,sx,sy,sw,sh,(cv.width-sw*k)/2,cv.height-sh*k,sw*k,sh*k)}catch{}}
+/* achievements (harbor/achievements.js): 12 badges, earned ones lit */
+function achHtml(lang){const A=window.PirateAchievements;if(!A)return'';try{A.check(true)}catch{}const L=A.list(lang),n=L.filter(a=>a.got).length;
+ return`<section class="tr-ach" aria-label="${A.title(lang)}"><h2>${A.title(lang)}<small>${n} / ${L.length}</small></h2><div class="tr-badges">${L.map(a=>`<div class="tr-badge${a.got?' got':''}" data-id="${a.id}" data-icon="${a.icon}"><b>${a.name}</b><span>${a.desc}</span></div>`).join('')}</div></section>`}
 function open({lang='en',onClose,onChests}={}){
  current?.close();
  if(!document.getElementById('pirate-treasury-style')){const s=document.createElement('style');s.id='pirate-treasury-style';s.textContent=CSS;document.head.append(s)}
@@ -68,8 +79,9 @@ function open({lang='en',onClose,onChests}={}){
  root.innerHTML=`<div class="tr-top"><button class="tr-back" type="button">◀ ${w.back}</button><div><h1>◆ ${w.title}</h1><div class="tr-sub">${w.sub}</div></div><div class="tr-gold" aria-label="${w.gold}">🪙 <span>${st.gold.toLocaleString()}</span></div></div>
  <div class="tr-body"><section aria-label="${w.trophies}"><h2>${w.trophies}<small>${w.beaten.replace('{n}',st.beaten.length)}</small></h2><div class="tr-shelf">${BOSSES.map(b=>{const won=st.beaten.includes(b.n);return`<div class="tr-cup${won?' won':''}" data-boss="${b.n}"><i>${won?'🏆':'🔒'}</i><canvas width="180" height="120"></canvas><b>${w.names[b.n]}</b><span>${won?w.bonus+' +'+BOSS_GOLD[b.n]:w.locked}</span></div>`}).join('')}</div></section>
  <section aria-label="${w.wealth}"><h2>${w.wealth}</h2><dl><dt>${w.gold}</dt><dd>${st.gold.toLocaleString()}</dd><dt>${w.earned}</dt><dd>${st.earned.toLocaleString()}</dd><dt>${w.chests}</dt><dd>${st.chests}</dd><dt>${w.endless}</dt><dd>${best}</dd><dt>${w.stars}</dt><dd>${st.stars} / 10</dd></dl>
- <div class="tr-chest"><button type="button" class="tr-open">🗝 ${w.open}</button><p>${w.chestNote}</p></div></section></div>`;
+ <div class="tr-chest"><button type="button" class="tr-open">🗝 ${w.open}</button><p>${w.chestNote}</p></div></section>${achHtml(lang)}</div>`;
  document.body.append(root);
+ root.querySelectorAll('.tr-badge').forEach(b=>{const c=window.PirateAchievements.badge(+b.dataset.icon,96);b.prepend(c)});
  root.querySelectorAll('.tr-cup').forEach(cup=>drawBoss(cup.querySelector('canvas'),BOSSES.find(b=>b.n===+cup.dataset.boss).id));
  const prevBack=window.__pfBack;let closed=false;
  const close=(then)=>{if(closed)return;closed=true;if(window.__pfBack===back)window.__pfBack=prevBack;root.remove();if(current===api)current=null;(then||onClose)?.()};
