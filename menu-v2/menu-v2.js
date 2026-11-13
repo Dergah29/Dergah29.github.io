@@ -542,6 +542,8 @@ const M={state:{mounted:false,frames:0,ready:false,renderer:null,arena:false,err
   for(const b of this.menu.querySelectorAll('.mv-mode')){let f=1;b.style.setProperty('--fs','1');while(b.scrollWidth>b.clientWidth+1&&f>.55){f-=.05;b.style.setProperty('--fs',f.toFixed(2))}}},
  pulse(){const f=this.flashEl;f.classList.remove('go');void f.offsetWidth;f.classList.add('go')},
  toggleArena(){if(this.harbor)return this.harbor.toggleArena();this.state.arena?this.closeArena():this.openArena()},
+ /* open a classic-menu destination (.play-bot, .play-friend, .menu-training, .menu-profile …): through the harbour when it is mounted, else a plain click */
+ native(sel){if(this.harbor?.openNative)return this.harbor.openNative(sel);document.querySelector('#fighter-ui '+sel)?.click()},
  openArena(){if(this.harbor)return this.harbor.openArena();if(this.state.arena)return;this.state.arena=true;this.menu.classList.add('mv-arena-open');this.el.arena.classList.add('on');this.arenaBtn.setAttribute('aria-expanded','true');
   this.prevBack=window.__pfBack;this.backSaved=true;window.__pfBack=()=>{this.closeArena();return true};},
  closeArena(){if(this.harbor)return this.harbor.closeArena();if(!this.state.arena)return;this.state.arena=false;this.menu.classList.remove('mv-arena-open');this.el.arena.classList.remove('on');this.arenaBtn.setAttribute('aria-expanded','false');

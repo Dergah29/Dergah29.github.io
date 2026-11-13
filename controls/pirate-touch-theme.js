@@ -24,6 +24,9 @@
     throw: '<path d="M58 4l2 2-4 14-22 22-10-10L46 10z"/><path d="M14 30l20 20-5 5-20-20z"/><path d="M20 42l4 4-11 11-4-4z"/><circle cx="9" cy="57" r="5"/>',
     pistol: '<path d="M4 20h42l4-4h8v10H32l-2 6h-6l-4 10c-1 3-3 4-6 4H8l7-16H4z"/><circle cx="22" cy="31" r="3" fill="#17141f"/>'
   });
+  /* painted icons (Higgsfield, controls/icons/*.webp, see ASSET_MANIFEST): sword = attack, shield = block, boot = dash,
+   * arrow = jump, flintlock = shoot, dagger = throw. The SVG silhouettes above stay as the fallback. */
+  const ICON_BASE = 'controls/icons/', PAINTED = new Set(['attack', 'block', 'dash', 'jump', 'pistol', 'throw']);
   /* ---------------------------------------------------------------- shared geometry */
   const pt = (r, a) => {const n = (a - 90) * Math.PI / 180; return [(50 + Math.cos(n) * r).toFixed(2), (50 + Math.sin(n) * r).toFixed(2)];};
   const arc = (r, a, b) => {const p = pt(r, a), q = pt(r, b); return `M${p[0]} ${p[1]}A${r} ${r} 0 ${b - a > 180 ? 1 : 0} 1 ${q[0]} ${q[1]}`;};
@@ -69,7 +72,9 @@
     const id = 'psb' + (++uid);
     return `<svg class="ps-art" xmlns="${NS}" viewBox="0 0 100 100" aria-hidden="true" focusable="false">` +
       face(kind, id) + ring(kind, id) +
-      `<g class="ps-icon" transform="translate(${50 - 26} ${50 - 26}) scale(${52 / 64})" fill="#fff" stroke="#0b0716" stroke-opacity=".5" stroke-width="2.4" stroke-linejoin="round">${ICONS[icon]}</g></svg>`;
+      (PAINTED.has(icon)
+        ? `<image class="ps-icon ps-icon-img" href="${ICON_BASE}${icon}.webp" x="14" y="14" width="72" height="72" preserveAspectRatio="xMidYMid meet"/></svg>`
+        : `<g class="ps-icon" transform="translate(${50 - 26} ${50 - 26}) scale(${52 / 64})" fill="#fff" stroke="#0b0716" stroke-opacity=".5" stroke-width="2.4" stroke-linejoin="round">${ICONS[icon]}</g></svg>`);
   }
   function stickArt() {
     const dashes = [];
@@ -102,7 +107,8 @@
   function iconOf(button, kind) {
     if (kind !== 'weapon') return kind;
     // numbered levels label the ranged button PISTOL or THROW; the voyage pistol is data-action="shoot"
-    return button.dataset.action === 'shoot' || /pistol/i.test(button.textContent || '') ? 'pistol' : 'throw';
+    if (button.dataset.weapon) return button.dataset.weapon === 'pistol' ? 'pistol' : 'throw';
+    return button.dataset.action === 'shoot' || /pistol|tapan[çc]a|tabanca|пистолет/i.test(button.textContent || '') ? 'pistol' : 'throw';
   }
   function decorateButton(button) {
     const kind = kindOf(button);if (!kind) return;

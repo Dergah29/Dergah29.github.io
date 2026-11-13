@@ -290,7 +290,7 @@ class LevelRun{
   this.canvas=root.querySelector('canvas');this.ctx=this.canvas.getContext('2d');this.ctx.imageSmoothingEnabled=false;
   this.modal=root.querySelector('.pl-modal');this.card=root.querySelector('.pl-card');this.controls=root.querySelector('.pl-controls');
   root.querySelector('.pl-portrait').textContent=this.t('rotate');
-  for(const b of root.querySelectorAll('.pl-pad button')){const k=b.dataset.k;b.innerHTML=(k==='throw'&&(this.opts.hero||window.PirateLevels?.hero?.())==='scarlet'?this.t('pistol'):this.t(k))+(k==='throw'?'<small>●●●</small>':'');b.setAttribute('aria-label',this.t(k))}
+  for(const b of root.querySelectorAll('.pl-pad button')){const k=b.dataset.k;b.innerHTML=(k==='throw'&&(this.opts.hero||window.PirateLevels?.hero?.())==='scarlet'?this.t('pistol'):this.t(k))+(k==='throw'?'<small>●●●</small>':'');b.setAttribute('aria-label',this.t(k));if(k==='throw')b.dataset.weapon=(this.opts.hero||window.PirateLevels?.hero?.())==='scarlet'?'pistol':'throw'}   /* the touch skin picks its icon from data-weapon, not from the translated label */
   this.bindPad(root.querySelector('.pl-pad'));
   this.bindStick(root.querySelector('.pl-stick'));
   root.querySelector('.pl-pause').onclick=()=>this.pause();
@@ -523,7 +523,8 @@ class LevelRun{
    const ok=S.kind==='volley'?e.cx>cam.x-40&&e.cx<cam.x+W+40&&e.y<cam.y+H&&e.y+e.h>cam.y:S.kind==='wave'||S.kind==='lunge'?Math.sign(dx||p.dir)===p.dir&&Math.abs(dx)<S.r&&Math.abs(dy)<200:Math.hypot(dx,dy*1.4)<S.r;
    if(!ok)continue;const dir=Math.sign(dx)||p.dir,dmg=S.dmg*sc;if(e.damage(dmg,dir,'heavyBack')==='hit'){hits++;this.fx.text(String(Math.round(dmg)),e.cx,e.y-14,S.col,true);this.fx.burst(e.cx,e.y+e.h*.4,S.col,10,1.2);if(!e.dead){if(S.push)e.kb=dir*S.push;if(S.kind==='quake')e.vy=-320}}}
   const box=S.kind==='volley'?{x:cam.x,y:cam.y,w:W,h:H}:S.kind==='wave'||S.kind==='lunge'?{x:p.dir>0?cx:cx-S.r,y:cy-200,w:S.r,h:400}:{x:cx-S.r,y:cy-S.r*.7,w:S.r*2,h:S.r*1.4};
-  if(this.def.strike?.(this,box,S.dmg*sc/3,3))hits++;
+  // bosses are reached through the level's strike hook, only while a boss fight is on (the wide box must not smash ropes, planks or props)
+  if(this.def.bossHud?.(this)&&this.def.strike?.(this,box,S.dmg*sc/3,3))hits++;
   for(const q of this.projectiles)if(q.owner==='enemy'&&overlap(box,q)){q.life=0;this.fx.spark(q.x,q.y,'#e9f2ff',8)}
   this.specialFx={kind:S.kind,col:S.col,x:cx,y:cy,ground:p.y+p.h,dir:p.dir,r:S.kind==='volley'?W:S.r,t0:this.time,dur:S.kind==='volley'?.85:.7,cam:{x:cam.x,y:cam.y}};
   // look and sound
