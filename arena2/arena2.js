@@ -271,8 +271,8 @@ function draw(m,dt){const cv=m.canvas,ctx=m.ctx,dpr=Math.min(window.devicePixelR
  // decorations behind
  decor(ctx,map,left,vw);
  // ground blocks
- const gs=img('ground-sand');for(const [a,b,y] of map.ground){if(b<left-50||a>left+vw+50)continue;const grd=ctx.createLinearGradient(0,y,0,1080);grd.addColorStop(0,'#6b4a2c');grd.addColorStop(1,'#2a1a10');ctx.fillStyle=grd;ctx.fillRect(a,y+30,b-a,1080-y);
-  if(ready(gs)){const h=110,w=h*gs.width/gs.height,i0=gs.width*.03,iw=gs.width*.94;for(let x=a;x<b;x+=w-2){const cw2=Math.min(w,b-x);ctx.drawImage(gs,i0,0,iw*cw2/w,gs.height,x,y-12,cw2,h)}}}
+ const gs=img('ground-sand');for(const [a,b,y] of map.ground){if(b<left-50||a>left+vw+50)continue;const grd=ctx.createLinearGradient(0,y,0,1080);grd.addColorStop(0,'#6b4a2c');grd.addColorStop(1,'#2a1a10');ctx.fillStyle=grd;ctx.fillRect(a,y+20,b-a,1080-y);
+  if(ready(gs)){const h=110,w=h*gs.width/gs.height,i0=gs.width*.03,iw=gs.width*.94;for(let x=a;x<b;x+=w-2){const cw2=Math.min(w,b-x);ctx.drawImage(gs,i0,0,iw*cw2/w,gs.height,x,y-h*GROUND_TOP+3,cw2,h)}}}
  // one-way platforms and movers
  const P={wood:'plat-wood',stone:'plat-stone',bridge:'plat-bridge'};
  for(const [x,y,w,kind] of map.plats){if(x+w<left-50||x>left+vw+50)continue;plat(ctx,img(P[kind]||'plat-wood'),x,y,w,kind)}
@@ -280,11 +280,11 @@ function draw(m,dt){const cv=m.canvas,ctx=m.ctx,dpr=Math.min(window.devicePixelR
  for(const [x,y] of map.pads){const i=img('pad');if(ready(i))ctx.drawImage(i,x-34,y-92,68,98)}
  for(const [x,y,w] of map.spikes){const i=img('spikes');if(ready(i))for(let xx=x;xx<x+w;xx+=70)ctx.drawImage(i,xx,y-34,Math.min(70,x+w-xx),36)}
  // mode objects
- if(s.mode==='flag'){[0,1].forEach(t=>{const b=map.bases[t],i=img(t?'base-red':'base-blue');if(ready(i))ctx.drawImage(i,b.x-95,b.y-150,190,243)});
+ if(s.mode==='flag'){[0,1].forEach(t=>{const b=map.bases[t],i=img(t?'base-red':'base-blue');if(ready(i))ctx.drawImage(i,b.x-95,b.y-239,190,243)});
   for(const f of s.flags){const i=img(f.team?'flag-red':'flag-blue');if(!ready(i))continue;if(f.carrier!==null){const c=s.players[f.carrier];ctx.save();ctx.translate(c.x-c.dir*26,c.y-150);ctx.rotate(-c.dir*.25);ctx.drawImage(i,-20,-30,60,120);ctx.restore()}else{const bob=f.home?0:Math.sin(time*4)*4;ctx.drawImage(i,f.x-30,f.y-150+bob,70,150);if(!f.home){ctx.fillStyle='#fff';ctx.font='bold 20px system-ui';ctx.fillText(Math.ceil(10-(s.time-f.droppedAt))+'',f.x-6,f.y-160)}}}}
- if(s.mode==='treasure'){for(const c of map.chests){const i=img('chest-open');if(ready(i))ctx.drawImage(i,c.x-55,c.y-108,110,122)}const ci=img('coin');if(ready(ci))for(const c of s.coins){const b=c.rest?Math.sin(time*5+c.id)*4:0,sc=.85+.15*Math.cos(time*6+c.id);ctx.drawImage(ci,c.x-17*sc,c.y-40+b,34*sc,36)}}
- if(s.mode==='race'){const cp=img('checkpoint');map.cps.slice(1).forEach((x,i)=>{const y=C.groundBelow(s,x,600);if(ready(cp))ctx.drawImage(cp,x-40,y-150,96,130);if(me.cp>i){ctx.fillStyle='#ffd77a88';ctx.beginPath();ctx.arc(x+28,y-100,18+Math.sin(time*6)*3,0,7);ctx.fill()}});
-  const fi=img('finish');if(ready(fi)){const y=C.groundBelow(s,map.finish,600);ctx.drawImage(fi,map.finish-150,y-300,300,170*300/300*1.0+0)}}
+ if(s.mode==='treasure'){for(const c of map.chests){const i=img('chest-open');if(ready(i))ctx.drawImage(i,c.x-55,c.y-118,110,122)}const ci=img('coin');if(ready(ci))for(const c of s.coins){const b=c.rest?Math.sin(time*5+c.id)*4:0,sc=.85+.15*Math.cos(time*6+c.id);ctx.drawImage(ci,c.x-17*sc,c.y-40+b,34*sc,36)}}
+ if(s.mode==='race'){const cp=img('checkpoint');map.cps.slice(1).forEach((x,i)=>{const y=C.groundBelow(s,x,600);if(ready(cp))ctx.drawImage(cp,x-40,y-126,96,130);if(me.cp>i){ctx.fillStyle='#ffd77a88';ctx.beginPath();ctx.arc(x+28,y-76,18+Math.sin(time*6)*3,0,7);ctx.fill()}});
+  const fi=img('finish');if(ready(fi)){const y=C.groundBelow(s,map.finish,600);ctx.drawImage(fi,map.finish-150,y-166,300,170)}}
  // players
  const order=s.players.slice().sort((a,b)=>(a.i===0)-(b.i===0));for(const p of order)drawHero(ctx,m,p,time);
  // particles
@@ -293,7 +293,10 @@ function draw(m,dt){const cv=m.canvas,ctx=m.ctx,dpr=Math.min(window.devicePixelR
  ctx.setTransform(1,0,0,1,0,0);arrow(m,ctx,left,top,k,vw);
  if(m.phase==='count'){const n=Math.ceil(m.count);ctx.fillStyle='#ffd77a';ctx.strokeStyle='#3a1d08';ctx.lineWidth=10*dpr;ctx.font=`900 ${Math.round(cv.height*.24)}px Georgia`;ctx.textAlign='center';ctx.textBaseline='middle';if(n<=3&&n>0){ctx.strokeText(n,cv.width/2,cv.height*.45);ctx.fillText(n,cv.width/2,cv.height*.45)}ctx.textAlign='left';ctx.textBaseline='alphabetic'}
  minimap(m)}
-function plat(ctx,i,x,y,w,kind){if(!ready(i)){ctx.fillStyle='#8a6a40';ctx.fillRect(x,y,w,24);return}const h=Math.min(110,w*i.height/i.width*1.25),top=kind==='bridge'?.38:kind==='stone'?.16:.1;
+// where the walkable surface starts inside each painted tile (fraction of its height, measured on the art):
+// sand top, plank top, stone slab top, bridge deck — so feet, crates, barrels and pads stand on what is drawn
+const GROUND_TOP=.38,PLAT_TOP={wood:.18,stone:.28,bridge:.6};
+function plat(ctx,i,x,y,w,kind){if(!ready(i)){ctx.fillStyle='#8a6a40';ctx.fillRect(x,y,w,24);return}const h=Math.min(110,w*i.height/i.width*1.25),top=(PLAT_TOP[kind]??PLAT_TOP.wood)-.01;
  // stretch the middle, keep the end caps
  const cap=i.width*.14,ch=h,cwid=Math.min(w/2,ch*cap/i.height*1.0+18);ctx.drawImage(i,0,0,cap,i.height,x,y-h*top,cwid,ch);ctx.drawImage(i,cap,0,i.width-cap*2,i.height,x+cwid,y-h*top,w-cwid*2,ch);ctx.drawImage(i,i.width-cap,0,cap,i.height,x+w-cwid,y-h*top,cwid,ch)}
 function decor(ctx,map,left,vw){if(!map.decor){const r=((n)=>()=>(n=(n*16807)%2147483647)/2147483647)(map.w);map.decor=[];const names=['crates','barrels','palm','anchor','mast'];for(const [a,b,y] of map.ground){for(let x=a+120;x<b-120;x+=260+r()*380){const n=names[Math.floor(r()*names.length)];if(map.bases&&map.bases.some(q=>Math.abs(q.x-x)<180))continue;map.decor.push({x,y,n})}}}

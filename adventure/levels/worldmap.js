@@ -136,6 +136,7 @@ class WorldMap{
   this.stage.querySelectorAll('.wm-node,.wm-fog').forEach(e=>e.remove());
   const built=[1,2,3,4,5].map(i=>(ch-1)*5+i).some(n=>this.L.isPlayable(n));
   this.layout.nodes.forEach(([x,y],i)=>this.node((ch-1)*5+i+1,x,y));
+  if(ch===1&&window.PirateBastion)this.bastionNode(140,470);   // the playable seaside castle defence sits on the beach before Stage 1
   if(!built){const f=document.createElement('div');f.className='wm-fog';f.innerHTML='<h3></h3><p></p>';f.querySelector('h3').textContent=tr(this.lang,'chapter')+' '+ch;f.querySelector('p').textContent=tr(this.lang,'soonChapter');this.stage.append(f)
    // the first stage of an unbuilt chapter that the player has unlocked (e.g. Level 6 after the Totem Shaman) is named, but stays 'coming soon'
    const first=(ch-1)*5+1;if(this.L.isUnlocked(first)){const n=document.createElement('p');n.className='wm-new';n.style.cssText='margin-top:18px;font:800 34px Georgia,serif;color:#ffe3a0';n.textContent=({en:'Stage {n} unlocked: {name}',az:'Mərhələ {n} açıldı: {name}',tr:'{n}. bölüm açıldı: {name}',ru:'Этап {n} открыт: {name}',pl:'Etap {n} odblokowany: {name}'}[this.lang]||'Stage {n} unlocked: {name}').replace('{n}',first).replace('{name}',this.L.name(first,this.lang)||'');f.append(n)}}
@@ -152,6 +153,24 @@ class WorldMap{
   b.setAttribute('aria-label',(boss?tr(this.lang,'boss')+' ':'')+tr(this.lang,'stage')+' '+n+' · '+(done?tr(this.lang,'legend')[0]:open?tr(this.lang,'legend')[1]:tr(this.lang,'locked'))+(playable?'':' · '+tr(this.lang,'soon')));
   b.addEventListener('click',e=>{if(this.dragged)return;this.select(n)});
   this.stage.append(b);
+ }
+ bastionNode(x,y){
+  const B=window.PirateBastion,t=B.texts[B.texts[this.lang]?this.lang:'az'],won=B.won();
+  if(!document.getElementById('wm-castle-css')){const st=document.createElement('style');st.id='wm-castle-css';   // same look as a stage node, own class (stage nodes stay 1..5)
+   st.textContent='#pirate-world-map .wm-castle{position:absolute;width:96px;height:96px;margin:-48px 0 0 -48px;border-radius:50%;border:0;padding:0;background:none;cursor:pointer;touch-action:none}#pirate-world-map .wm-castle .ring{position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle at 50% 40%,#fff6c8,#e9b94a 38%,#9c6418 70%,#3d250a 72%);box-shadow:0 6px 10px #0009}#pirate-world-map .wm-castle .core{position:absolute;inset:9px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at 40% 30%,#ffe27a,#e3a524 55%,#9a5c0e)}#pirate-world-map .wm-castle.done .core{background:radial-gradient(circle at 40% 30%,#7fe07a,#2f9a3e 55%,#14592a)}#pirate-world-map .wm-castle.open .ring{animation:wm-pulse 1.8s ease-in-out infinite}#pirate-world-map .wm-castle:active .ring{transform:scale(.94)}#pirate-world-map .wm-castle .wm-plaque{position:absolute;left:50%;top:calc(100% + 2px);transform:translateX(-50%);white-space:nowrap}@media (prefers-reduced-motion:reduce){#pirate-world-map .wm-castle .ring{animation:none!important}}';document.head.append(st)}
+  const b=document.createElement('button');b.type='button';b.className='wm-castle '+(won?'done':'open');b.dataset.bastion='1';b.style.left=x+'px';b.style.top=y+'px';
+  const ring=document.createElement('span');ring.className='ring';const core=document.createElement('span');core.className='core';core.textContent='🏰';core.style.fontSize='44px';b.append(ring,core);
+  const pl=document.createElement('span');pl.className='wm-plaque';pl.textContent=t.title;b.append(pl);b.setAttribute('aria-label',t.title);
+  b.addEventListener('click',()=>{if(this.dragged)return;this.selectBastion()});this.stage.append(b);
+ }
+ selectBastion(){
+  const B=window.PirateBastion,t=B.texts[B.texts[this.lang]?this.lang:'az'];this.root.querySelector('.wm-sheet')?.remove();
+  const sh=document.createElement('div');sh.className='wm-sheet';const c=document.createElement('div');c.className='wm-card';sh.append(c);
+  const h=document.createElement('h3');h.textContent='🏰 '+t.title;c.append(h);const sub=document.createElement('p');sub.className='sub';sub.textContent=t.intro;c.append(sub);
+  const row=document.createElement('div');row.className='row';const cl=document.createElement('button');cl.className='wm-btn';cl.textContent=tr(this.lang,'close');cl.onclick=()=>sh.remove();
+  const go=document.createElement('button');go.className='wm-btn primary';go.dataset.bastionPlay='1';go.textContent='▶ '+(B.won()?tr(this.lang,'replay'):tr(this.lang,'play'));
+  go.onclick=async()=>{go.disabled=true;sh.remove();const host=this.host;this.close();try{await B.play({hero:this.L.hero()})}finally{this.L.openMap(host)}};
+  row.append(cl,go);c.append(row);sh.addEventListener('pointerdown',e=>{if(e.target===sh)sh.remove()});this.root.append(sh);go.focus?.();
  }
  starsEl(k){const s=document.createElement('span');s.className='wm-stars';for(let i=0;i<3;i++){const st=document.createElement('i');if(i>=k)st.className='off';s.append(st)}return s}
  toast(m){this.root.querySelector('.wm-toast')?.remove();const t=document.createElement('div');t.className='wm-toast';t.textContent=m;this.root.append(t);setTimeout(()=>t.remove(),1900)}
