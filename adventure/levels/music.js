@@ -18,7 +18,9 @@ if(window.PirateMusic)return;
 const M='adventure/levels/assets/music/',L3='adventure/levels/assets/level-03/';
 const TRACKS={
  menu:{src:M+'theme.ogg',gain:.85},   // main theme (Higgsfield / ElevenLabs Music, see ASSET_MANIFEST); the older menu.ogg stays in the repo
- seaboss:{src:M+'sea-boss.ogg',gain:.85},   // Endless Sea mini-boss battle (Higgsfield / ElevenLabs Music)
+ seaboss:{src:M+'sea-boss.ogg',gain:.85},
+ a2battle:{src:'arena2/assets/music-battle.ogg',gain:.7},   // Arena flag / treasure battles (Higgsfield / ElevenLabs Music)
+ a2race:{src:'arena2/assets/music-race.ogg',gain:.7},       // Arena Grand Race (Higgsfield / ElevenLabs Music)   // Endless Sea mini-boss battle (Higgsfield / ElevenLabs Music)
  level1:{src:M+'harbor.ogg',gain:.9},
  boss1:{src:'adventure/assets/boss.wav',gain:.8},
  level2:{src:L3+'music-jungle.ogg',gain:1},
@@ -86,6 +88,7 @@ const D={
   const lv=window.__pirateLevel;
   if(lv&&lv.phase&&lv.phase!=='closed'){this.duck=lv.phase==='pause';return this.wants.level??null}
   this.duck=false;
+  if(this.wants.arena2)return this.wants.arena2;   // a running Arena v2 match
   if(document.getElementById('cursed-island-prototype'))return this.wants.island??'island';
   if(document.getElementById('pirate-tavern'))return'tavern';   // the Meyxana interior and its table games
   const map=window.PirateWorldMap?.current;if(map&&map.alive!==false&&document.getElementById('pirate-world-map'))return'menu';

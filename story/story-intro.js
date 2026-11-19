@@ -429,7 +429,7 @@ class StoryPlayer{
  resume(){if(this.closed||!this.paused||document.hidden)return;this.paused=false;this.last=performance.now();this.sound?.resume();this.s3?.resume()}
  loop(now){if(this.closed)return;this.raf=requestAnimationFrame(this.loop);const elapsed=(now-this.last)/1000||.016;let dt=Math.min(.05,elapsed);this.last=now;
   if(this.paused||innerHeight>innerWidth){return}
-  if(this.slowmo>0){this.slowmo-=dt;dt*=.33}this.t+=dt;this.sceneT+=dt;this.perfCheck(elapsed);this.update(dt);try{this.render()}catch(e){this.log('render:'+e.message)}}
+  if(this.slowmo>0){this.slowmo-=dt;dt*=.33}this.t+=dt;this.sceneT+=dt;this.perfCheck(elapsed);this.update(dt,elapsed);try{this.render()}catch(e){this.log('render:'+e.message)}}
  perfCheck(dt){if(this.s3on&&!this.s3checked){(this.ft3??=[]).push(dt);if(this.ft3.length>=45){this.s3checked=true;const m=[...this.ft3].sort((x,y)=>x-y)[22];let force=false;try{force=localStorage.getItem('pf-story-3d-force')==='1'}catch{}if(m>.06&&!force)this.drop3d(Error('slow '+Math.round(1/m)+'fps'))}}
   if(this.low||this.perfDone)return;(this.ft??=[]).push(dt);if(this.ft.length>=120){const a=[...this.ft].sort((x,y)=>x-y)[60];this.perfDone=true;if(a>.03){this.low=true;this.fx.max=160;if(this.rain)this.rain.length=40;this.log('quality:low');const dpr=1;this.canvas.width=Math.round(innerWidth*dpr);this.canvas.height=Math.round(innerHeight*dpr);this.k=this.canvas.height/VH;this.W=this.canvas.width/this.k}}}
  /* ---------------- script runner */
@@ -458,8 +458,9 @@ class StoryPlayer{
   if(b.handoff)this.handoff();
  }
  skipAllowed(){return !this.selecting&&!this.handingOff&&this.scene?.id!=='select'}
- update(dt){
-  const b=this.beat;if(b?.wait&&this.el.modal.hidden&&!this.transitioning){this.beatT+=dt;if(this.beatT>=b.wait)this.nextBeat()}
+ update(dt,elapsed=dt){
+  // timed beats follow the wall clock (capped per frame), so a slow GPU cannot stretch a 3.6 s beat into minutes
+  const b=this.beat;if(b?.wait&&this.el.modal.hidden&&!this.transitioning){this.beatT+=this.slowmo>0?dt:Math.min(.25,Math.max(dt,elapsed));if(this.beatT>=b.wait)this.nextBeat()}
   if(this.typing){this.typed=Math.min(this.full.length,this.typed+dt*this.cps*(/[.,!?…—]/.test(this.full[Math.floor(this.typed)-1]||'')?.35:1));this.el.text.textContent=this.full.slice(0,Math.floor(this.typed));if(this.typed>=this.full.length)this.finishTyping()}
   this.envUpdate(dt);this.fx.step(dt);
   if(this.sound&&this.ship){const fl=this.env==='sea'?Math.min(1.2,(this.fires?.length||0)*.32):.4;if(Math.abs(fl-(this.fireLevel??-1))>.04){this.fireLevel=fl;this.sound.setFire(fl)}const b=this.ship.bob||0;this.sound.tick(dt,{bobDown:this.prevBob!==undefined&&b>this.prevBob&&b>2});this.prevBob=b}

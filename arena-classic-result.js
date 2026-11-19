@@ -30,7 +30,9 @@ root.gdjs.registerRuntimeScenePostEventsCallback(scene=>{
  r.scene=null; // Never retain an unloaded native scene just for a portrait.
  if(screen.hidden||game.__adventure?.active){if(r.shown||r.pending){r.epoch++;r.view.hide();r.shown=false;r.pending=false;r.identity=null}return}
  if(!r.identity)return;
- if(!r.shown&&!r.pending&&performance.now()>=(r.retryAt||0)){r.pending=true;const epoch=r.epoch;const id=r.identity;r.view.show(id.hero,id.loadout).then(ok=>{if(epoch!==r.epoch)return;r.pending=false;r.shown=ok;r.retryAt=performance.now()+2000})}
+ if(!r.shown&&!r.pending&&performance.now()>=(r.retryAt||0)){r.pending=true;const epoch=r.epoch;const id=r.identity;r.view.show(id.hero,id.loadout).then(ok=>{if(epoch!==r.epoch)return;r.pending=false;r.shown=ok;r.retryAt=performance.now()+2000;
+  // The menu scene behind the result card can run at a throttled rate, so the pose animates on its own frames.
+  const raf=root.requestAnimationFrame?.bind(root);if(ok&&raf){const loop=()=>{if(epoch!==r.epoch||!r.shown)return;r.view.tick(performance.now()/1000,document.hidden,motion.matches);raf(loop)};raf(loop)}})}
  r.view.tick(performance.now()/1000,document.hidden,motion.matches);
 });
 })(typeof window!=='undefined'?window:globalThis);

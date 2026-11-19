@@ -242,3 +242,14 @@ function install(){
 }
 window.PirateArenaHeroes={refresh,install};install();
 })();
+/* Native Classic Duel layout (moved here from the removed objective-mode presentation file): the reserved touch
+ * rail under the fitted playfield, rail-sized buttons, and the painted bot-setup and result cards. */
+(()=>{if(typeof document==='undefined'||document.getElementById('arena-native-rail-css'))return;const css=document.createElement('style');css.id='arena-native-rail-css';css.textContent=`
+canvas.arena-native-viewport{width:min(100vw,calc((100dvh - 84px)*var(--arena-native-aspect,1.77777778)))!important;height:min(calc(100vw/var(--arena-native-aspect,1.77777778)),calc(100dvh - 84px))!important;max-height:calc(100dvh - 84px)!important;object-fit:contain!important;position:absolute!important;top:0!important;left:50%!important;transform:translateX(-50%)!important}
+#fighter-ui[data-arena-rail] .combat{bottom:8px!important;grid-template-columns:repeat(5,58px)!important;grid-template-areas:none!important;gap:8px!important}
+#fighter-ui[data-arena-rail] .combat button{grid-area:auto!important;width:58px!important;height:58px!important;min-height:58px!important;font-size:10px!important;backdrop-filter:none;border-color:#b3945e;background:radial-gradient(at 40% 25%,#365964,#102d37)}
+#fighter-ui[data-arena-rail] .joystick{width:72px!important;height:72px!important;bottom:8px!important;background:#163641;border-color:#c19d5d}
+#fighter-ui .bot-setup .fighter-card{border-radius:4px;border-color:#ab915566;background:linear-gradient(#193b44aa,#09202bee),url(menu-v2/assets/harbor.webp) center/cover}
+#fighter-ui .bot-setup .fighter-card[aria-pressed=true]{border-color:#edca83;box-shadow:inset 0 0 0 1px #edca8344}
+#fighter-ui .result-screen .card{border-radius:6px;border-color:#bda06c;background:linear-gradient(105deg,#153a43ee,#071b27ee),url(menu-v2/assets/harbor.webp) center/cover}
+`;document.head.append(css)})();
