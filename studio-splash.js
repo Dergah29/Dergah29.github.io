@@ -5,7 +5,7 @@ if(window.__dergahSplashInstalled)return;
 window.__dergahSplashInstalled=true;
 const style=document.createElement('style');
 style.textContent=`
-#studio-boot{position:fixed;inset:0;background:#000;z-index:2147483647;display:flex;align-items:center;justify-content:center;opacity:1;transition:opacity .32s ease;pointer-events:auto}
+#studio-boot{position:fixed;inset:0;background:#000;z-index:2147483646;display:flex;align-items:center;justify-content:center;opacity:1;transition:opacity .32s ease;pointer-events:auto}
 #studio-boot.leaving{opacity:0;pointer-events:none}
 #studio-boot .studio-mark{position:relative;width:min(76vw,1080px);animation:studio-arrive .7s ease-out both}
 #studio-boot img{display:block;width:100%;height:auto;user-select:none;-webkit-user-drag:none}
