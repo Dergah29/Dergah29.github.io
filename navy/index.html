@@ -1,0 +1,17 @@
+<!doctype html><html lang="az"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<title>Gəmi döyüşü 3D</title><link rel="stylesheet" href="navy.css"></head><body>
+<canvas id="c"></canvas>
+<div id="hud">
+ <button id="back" class="btn">←</button>
+ <div class="hp me"><span id="myname">Sən</span><div class="bar"><b id="myhp"></b></div></div>
+ <div id="mid"><div id="title">Gəmi döyüşü</div><div id="wind">⇢ 0</div></div>
+ <div class="hp foe"><span id="foename">Düşmən</span><div class="bar"><b id="foehp"></b></div></div>
+ <button id="restart" class="btn">⟲</button>
+</div>
+<div id="ammo"><button class="am sel" data-k="ball"><i>●</i><span>Top</span><em>∞</em></button><button class="am" data-k="chain"><i>⛓</i><span>Zəncir</span><em id="n-chain">3</em></button><button class="am" data-k="fire"><i>🔥</i><span>Alov</span><em id="n-fire">3</em></button></div>
+<button id="repair" class="btn big"><span>🔧 Təmir</span><u></u></button>
+<div id="reload"><b></b></div>
+<div id="hint">Ekrana toxun, geri çək və burax – top atılır. Zəncir topu yelkəni, alov topu göyərtəni vurur.</div>
+<div id="start" class="panel"><h1>⚓ Gəmi döyüşü</h1><p>Düşmən gəmisini batır, öz gəmini qoru!</p><div id="levels"></div></div>
+<div id="end" class="panel hidden"><h1 id="end-title"></h1><div id="end-stars"></div><div class="row"><button id="again" class="btn big">Yenidən</button><button id="next" class="btn big pri">Növbəti ▶</button><button id="menu2" class="btn big">Səviyyələr</button></div></div>
+<script src="navy.js"></script></body></html>

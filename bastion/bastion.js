@@ -91,7 +91,7 @@ async function open(o={}){
  try{await loadBundle()}catch{finish('unavailable');return done}
  if(st.closed)return done;
  const art=await heroArt(hero);if(st.closed)return done;
- let stage;try{stage=window.PirateBastion3D.create(root,{base:'harbor/harbor3d/',art:'bastion/',troll:true,heroArt:art});st.stage=stage;await Promise.race([stage.ready,new Promise(r=>setTimeout(r,15000))])}catch(e){console.warn('Bastion 3D',e);finish('unavailable');return done}
+ let stage;try{stage=window.PirateBastion3D.create(root,{base:'harbor/harbor3d/',art:'bastion/',troll:true,mari3d:hero==='scarlet',heroArt:art});st.stage=stage;await Promise.race([stage.ready,new Promise(r=>setTimeout(r,15000))])}catch(e){console.warn('Bastion 3D',e);finish('unavailable');return done}
  if(st.closed)return done;
  q('.bs-load').style.opacity='0';setTimeout(()=>q('.bs-load')?.remove(),600);
  // simulation
