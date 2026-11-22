@@ -2,7 +2,7 @@
    player sees something beautiful immediately and can type a name while the game loads behind it. */
 (function(){
  let have='';try{have=(localStorage.getItem('pf-player-name')||'').trim()}catch{}
- if(have)return;
+ function show(opts){opts=opts||{};if(document.getElementById('pf-name-early'))return;try{const l=localStorage.getItem('pf-lang');if(LANGS.includes(l))lang=l}catch{}
  const LANGS=['az','en','tr','ru','pl'];
  let lang='en';try{lang=localStorage.getItem('pf-lang')||''}catch{}
  if(!LANGS.includes(lang)){const n=(navigator.language||'en').slice(0,2).toLowerCase();lang=LANGS.includes(n)?n:'en'}
@@ -41,6 +41,7 @@
 @keyframes pfne-glow{50%{box-shadow:0 3px 0 #9a5d0a,0 8px 22px #ffb53a99}}
 #pf-name-early .go:active{transform:translateY(2px)}
 #pf-name-early .err{min-height:1.1em;font:700 12px Georgia,serif;color:#a01c0c}
+#pf-name-early .x{position:absolute;left:10px;top:10px;z-index:2;border:1px solid #f0cf84;background:#0b1c2dcc;color:#ffe9b0;border-radius:9px;padding:6px 12px;font:700 15px sans-serif;cursor:pointer}
 #pf-name-early .langs{position:absolute;right:10px;top:10px;display:flex;gap:6px;z-index:2}
 #pf-name-early .langs button{border:1px solid #f0cf84;background:#0b1c2dcc;color:#ffe9b0;border-radius:9px;padding:6px 9px;font:700 12px sans-serif;cursor:pointer}
 #pf-name-early .langs button.on{background:#e2a53a;color:#2b1700}
@@ -51,7 +52,7 @@
 @media (max-aspect-ratio:1/1){#pf-name-early .mari{display:none}}
 @media (max-height:420px){#pf-name-early .mari{height:62vh}}
 `;
- el.innerHTML='<div class="sun"></div><div class="langs"></div><div class="stage"><img class="mari" src="name-screen/mari.webp" alt="" draggable="false"><div class="scroll"><div class="inner"><h1></h1><p class="ask"></p><div class="row"><input maxlength="40" autocomplete="nickname" autocapitalize="words" enterkeyhint="go"><button class="dice" type="button" aria-label="random">🎲</button></div><div class="err" role="alert"></div><button class="go" type="button"></button></div></div></div><div class="load"><span></span><i></i></div>';
+ el.innerHTML=(opts.closable?'<button class="x" type="button" aria-label="close">✕</button>':'')+'<div class="sun"></div><div class="langs"></div><div class="stage"><img class="mari" src="name-screen/mari.webp" alt="" draggable="false"><div class="scroll"><div class="inner"><h1></h1><p class="ask"></p><div class="row"><input maxlength="40" autocomplete="nickname" autocapitalize="words" enterkeyhint="go"><button class="dice" type="button" aria-label="random">🎲</button></div><div class="err" role="alert"></div><button class="go" type="button"></button></div></div></div><div class="load"><span></span><i></i></div>';
  const mount=()=>{if(!document.body){document.addEventListener('DOMContentLoaded',mount,{once:true});return}document.head.append(css);document.body.append(el);paint()};
  const q=s=>el.querySelector(s);
  function paint(){const t=T[lang];q('h1').textContent=t.hi;q('.ask').textContent=t.ask;q('input').placeholder=t.ph;q('.go').textContent=t.go;q('.dice').title=t.dice;q('.load span').textContent=t.load;
@@ -59,12 +60,15 @@
  function done(){const v=clean(q('input').value);if(!v){q('.err').textContent=T[lang].err;q('input').focus();return}
   try{localStorage.setItem('pf-player-name',v);localStorage.setItem('pf-lang',lang)}catch{}
   window.dispatchEvent(new CustomEvent('pf-name-saved',{detail:{name:v,lang}}));el.classList.add('out');setTimeout(()=>{el.remove();css.remove()},480)}
- el.addEventListener('click',e=>{if(e.target.closest('.go'))done();else if(e.target.closest('.dice')){q('input').value=rnd();q('.err').textContent=''}});
+ el.addEventListener('click',e=>{if(e.target.closest('.go'))done();else if(e.target.closest('.x')){el.remove();css.remove()}else if(e.target.closest('.dice')){q('input').value=rnd();q('.err').textContent=''}});
  el.addEventListener('keydown',e=>{e.stopPropagation();if(e.key==='Enter')done()},true);
  for(const t of ['keyup','keypress'])el.addEventListener(t,e=>e.stopPropagation(),true);
  el.addEventListener('input',()=>{q('.err').textContent=''});
  window.__pfNameEarly={hide(){el.remove();css.remove()}};
- mount();
+ mount();if(opts.name){const i=q('input');i.value=opts.name;setTimeout(()=>{try{i.focus();i.select()}catch{}},350)}
  /* hide the "loading" hint once the real game has started */
- const iv=setInterval(()=>{if(!document.body.contains(el)){clearInterval(iv);return}if(document.querySelector('canvas')){const l=q('.load');if(l)l.style.display='none'}},800);
+ const iv=setInterval(()=>{if(!document.body.contains(el)){clearInterval(iv);return}if(opts.closable||document.querySelector('canvas')){const l=q('.load');if(l)l.style.display='none'}},800);
+ }
+ window.PfNameScreen={show};
+ if(!have)show({});
 })();

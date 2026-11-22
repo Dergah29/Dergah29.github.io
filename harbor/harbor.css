@@ -462,3 +462,11 @@
 #pirate-harbor .h3dMode .wallet svg{width:27px;height:27px;flex:none;color:#f7cd62}
 #pirate-harbor .h3dMode .h3dGear{top:auto;bottom:max(12px,env(safe-area-inset-bottom))}
 @media(max-width:760px){#pirate-harbor .h3dMode .wallet{height:44px;min-width:110px;max-width:160px;font-size:18px;padding:6px 10px}}
+
+/* Short landscape screens (phone browser with its toolbars, ~280-360px tall): cards keep a usable height and the page scrolls. */
+@media(max-height:360px){
+#pirate-harbor .screenRoot{overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch}
+#pirate-harbor .collectionBody{height:auto;min-height:0;overflow:visible}
+#pirate-harbor .heroGrid{height:auto;min-height:0;align-items:start}
+#pirate-harbor .heroGrid .crewCard{height:214px;min-height:214px}
+}
