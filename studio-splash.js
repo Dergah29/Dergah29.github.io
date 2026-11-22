@@ -29,7 +29,7 @@ gdjs.RuntimeGame.prototype.loadAllAssets=function(done,progress){
  // Preserve the engine's callback, progress reporting and this binding.
  return base.call(this,()=>{
   update(100);
-  setTimeout(()=>{el.classList.add('leaving');setTimeout(()=>{el.remove();style.remove()},350);done()},Math.max(0,1800-(performance.now()-start)));
+  setTimeout(()=>{el.classList.add('leaving');setTimeout(()=>{el.remove();style.remove()},350);done()},Math.max(0,1100-(performance.now()-start)));
  },value=>{update(value);if(progress)progress(value)});
 };
 function update(value){const v=Math.max(0,Math.min(100,Number(value)||0));bar.style.width=v+'%';track.setAttribute('aria-valuenow',String(v))}
