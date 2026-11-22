@@ -2,16 +2,17 @@
    Same factory contract as PirateHarbor3D.create: {loaded, pause, resume, setLabels, select, state, dispose}. */
 (function(){
 const SPOTS={ // x/y = anchor (bottom centre) in % of the 16:9 stage, w = sprite width in % of stage width
- arena:{x:20,y:50,w:16,img:'arena.webp',icon:'⚔'},
- vault:{x:83,y:50,w:16,img:'vault.webp',icon:'◆'},
+ arena:{x:20,y:45,w:16,img:'arena.webp',icon:'⚔'},
+ vault:{x:83,y:45,w:16,img:'vault.webp',icon:'◆'},
  hq:{x:50,y:44,w:17,img:'hq.webp',icon:'★'},
- tavern:{x:21,y:79,w:16,img:'tavern.webp',icon:'🍺'},
- market:{x:79,y:79,w:16,img:'market.webp',icon:'$'},
- adventure:{x:50,y:81,w:19,img:'empire.webp',icon:'⚓',main:true}
+ tavern:{x:21,y:83,w:16,img:'tavern.webp',icon:'🍺'},
+ market:{x:79,y:83,w:16,img:'market.webp',icon:'$'},
+ adventure:{x:50,y:84,w:19,img:'empire.webp',icon:'⚓',main:true}
 };
-const CSS=`.pfhub{position:absolute;inset:0;overflow:hidden;background:#2b8fb0;touch-action:manipulation;user-select:none}
+const CSS=`.pfhub{position:absolute;inset:0;overflow:hidden;background:#2b8fb0;touch-action:manipulation;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none}
 .pfhub .st{position:absolute;left:50%;top:50%;width:177.78vh;height:100vh;min-width:100vw;min-height:56.25vw;transform:translate(-50%,-50%);will-change:transform}
-.pfhub .bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.pfhub .ly{position:absolute;left:50%;top:50%;width:min(100%,235vh);height:100%;transform:translate(-50%,-50%)}
+.pfhub .bg{pointer-events:none;-webkit-touch-callout:none;-webkit-user-drag:none;position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
 .pfhub .cl{position:absolute;top:4%;width:30%;height:14%;border-radius:50%;background:radial-gradient(closest-side,#fff8,#fff0);filter:blur(2px);animation:pfc 60s linear infinite}
 .pfhub .cl.b{top:12%;width:24%;animation-duration:85s;animation-delay:-30s}
 @keyframes pfc{from{transform:translateX(-40vw)}to{transform:translateX(140vw)}}
@@ -35,23 +36,23 @@ const CSS=`.pfhub{position:absolute;inset:0;overflow:hidden;background:#2b8fb0;t
 function create(host,opts){
  opts=opts||{};const base=opts.base||'harbor/hub/';let N=Object.assign({},opts.labels||{}),paused=false,disposed=false,ready=false;
  if(!document.getElementById('pfhub-css')){const s=document.createElement('style');s.id='pfhub-css';s.textContent=CSS;document.head.append(s)}
- const el=document.createElement('div');el.className='pfhub';const st=document.createElement('div');st.className='st';el.append(st);
- const bg=new Image();bg.className='bg';bg.alt='';bg.decoding='async';bg.src=base+'bg.webp';st.append(bg);
+ const el=document.createElement('div');el.className='pfhub';const st=document.createElement('div');st.className='st';el.append(st);const ly=document.createElement('div');ly.className='ly';el.append(ly);el.addEventListener('contextmenu',e=>e.preventDefault());
+ const bg=new Image();bg.className='bg';bg.alt='';bg.draggable=false;bg.decoding='async';bg.src=base+'bg.webp';st.append(bg);
  for(const c of ['cl','cl b']){const d=document.createElement('div');d.className=c;st.append(d)}
  for(let i=0;i<7;i++){const w=document.createElement('div');w.className='wv';w.style.top=(38+i*5.5)+'%';w.style.left=(i*9%30)+'%';w.style.right=(i*7%25)+'%';w.style.animationDelay=(-i*.8)+'s';st.append(w)}
  for(let i=0;i<2;i++){const b=document.createElement('div');b.className='bi';b.style.top=(10+i*6)+'%';b.style.animationDelay=(-i*6)+'s';st.append(b)}
  const btn={};
  const html=id=>{const S=SPOTS[id];return S.main?`<span class="lb"><i>${S.icon}</i><b>${N[id]||''}</b><em>▶ ${N.play||'PLAY'}</em></span>`:`<span class="lb"><i>${S.icon}</i><b>${N[id]||''}</b></span>`};
- for(const id of Object.keys(SPOTS)){const S=SPOTS[id],b=document.createElement('button');b.className='bd'+(S.main?' main':'');b.dataset.id=id;b.style.cssText=`left:${S.x}%;top:${S.y}%;width:${S.w}%`;b.setAttribute('aria-label',N[id]||id);
-  const im=new Image();im.src=base+S.img;im.alt='';im.decoding='async';b.append(im);b.insertAdjacentHTML('beforeend',html(id));
-  b.addEventListener('click',e=>{e.stopPropagation();select(id)});st.append(b);btn[id]=b}
- for(const [x,y] of [[13,52],[17,55],[29,70],[33,72],[70,72],[74,73],[49,43],[84,52]]){const g=document.createElement('div');g.className='gl';g.style.cssText=`left:${x}%;top:${y}%;animation-delay:${-(x%5)*.5}s`;st.append(g)}
+ for(const id of Object.keys(SPOTS)){const S=SPOTS[id],b=document.createElement('button');b.className='bd'+(S.main?' main':'');b.dataset.id=id;b.style.cssText=`left:${S.x}%;top:${S.y}%;width:calc(min(100vw,177.78vh)*${S.w/100})`;b.setAttribute('aria-label',N[id]||id);
+  const im=new Image();im.src=base+S.img;im.alt='';im.draggable=false;im.decoding='async';b.append(im);b.insertAdjacentHTML('beforeend',html(id));
+  b.addEventListener('click',e=>{e.stopPropagation();select(id)});ly.append(b);btn[id]=b}
+ for(const [x,y] of [[13,52],[17,55],[29,70],[33,72],[70,72],[74,73],[49,43],[84,52]]){const g=document.createElement('div');g.className='gl';g.style.cssText=`left:${x}%;top:${y}%;animation-delay:${-(x%5)*.5}s`;ly.append(g)}
  host.append(el);
  // gentle parallax from pointer / tilt
  let px=0,py=0,tx=0,ty=0,raf=0;
  const move=e=>{const r=el.getBoundingClientRect();tx=((e.clientX-r.left)/r.width-.5)*-14;ty=((e.clientY-r.top)/r.height-.5)*-8;kick()};
  const kick=()=>{if(!raf&&!paused&&!disposed)raf=requestAnimationFrame(tick)};
- const tick=()=>{raf=0;px+=(tx-px)*.12;py+=(ty-py)*.12;st.style.transform=`translate(calc(-50% + ${px}px),calc(-50% + ${py}px)) scale(1.03)`;if(Math.abs(tx-px)>.1||Math.abs(ty-py)>.1)kick()};
+ const tick=()=>{raf=0;px+=(tx-px)*.12;py+=(ty-py)*.12;st.style.transform=`translate(calc(-50% + ${px}px),calc(-50% + ${py}px)) scale(1.03)`;ly.style.transform=`translate(calc(-50% + ${px*1.6}px),calc(-50% + ${py*1.6}px))`;if(Math.abs(tx-px)>.1||Math.abs(ty-py)>.1)kick()};
  el.addEventListener('pointermove',move);
  const loaded=new Promise(res=>{const done=()=>{ready=true;res()};if(bg.complete)done();else{bg.onload=done;bg.onerror=done}});
  // ambience: sea waves + soft music; starts on first touch (autoplay rules), obeys the game SOUND switch (pf-sound)
