@@ -2,12 +2,12 @@
    Same factory contract as PirateHarbor3D.create: {loaded, pause, resume, setLabels, select, state, dispose}. */
 (function(){
 const SPOTS={ // x/y = anchor (bottom centre) in % of the 16:9 stage, w = sprite width in % of stage width
- arena:{x:30,y:60,w:18,img:'arena.webp',icon:'⚔'},
- vault:{x:85,y:60,w:19,img:'vault.webp',icon:'◆'},
- hq:{x:52,y:50,w:20,img:'hq.webp',icon:'★'},
- tavern:{x:25,y:79,w:21,img:'tavern.webp',icon:'🍺'},
- market:{x:79,y:80,w:19,img:'market.webp',icon:'$'},
- adventure:{x:49,y:83,w:24,img:'empire.webp',icon:'⚓',main:true}
+ arena:{x:20,y:50,w:16,img:'arena.webp',icon:'⚔'},
+ vault:{x:83,y:50,w:16,img:'vault.webp',icon:'◆'},
+ hq:{x:50,y:44,w:17,img:'hq.webp',icon:'★'},
+ tavern:{x:21,y:79,w:16,img:'tavern.webp',icon:'🍺'},
+ market:{x:79,y:79,w:16,img:'market.webp',icon:'$'},
+ adventure:{x:50,y:81,w:19,img:'empire.webp',icon:'⚓',main:true}
 };
 const CSS=`.pfhub{position:absolute;inset:0;overflow:hidden;background:#2b8fb0;touch-action:manipulation;user-select:none}
 .pfhub .st{position:absolute;left:50%;top:50%;width:177.78vh;height:100vh;min-width:100vw;min-height:56.25vw;transform:translate(-50%,-50%);will-change:transform}
@@ -54,11 +54,20 @@ function create(host,opts){
  const tick=()=>{raf=0;px+=(tx-px)*.12;py+=(ty-py)*.12;st.style.transform=`translate(calc(-50% + ${px}px),calc(-50% + ${py}px)) scale(1.03)`;if(Math.abs(tx-px)>.1||Math.abs(ty-py)>.1)kick()};
  el.addEventListener('pointermove',move);
  const loaded=new Promise(res=>{const done=()=>{ready=true;res()};if(bg.complete)done();else{bg.onload=done;bg.onerror=done}});
+ // ambience: sea waves + soft music; starts on first touch (autoplay rules), obeys the game SOUND switch (pf-sound)
+ const snd={m:null,w:null};
+ const soundOn=()=>{try{return localStorage.getItem('pf-sound')!=='off'}catch{return true}};
+ const mk=(f,v)=>{const a=new Audio(base+f);a.loop=true;a.volume=v;a.preload='auto';return a};
+ const sync=()=>{if(disposed)return;const on=soundOn()&&!paused&&!document.hidden;if(on&&!snd.m){snd.m=mk('music.mp3',.35);snd.w=mk('waves.mp3',.5)}
+  for(const k of ['m','w']){const a=snd[k];if(!a)continue;if(on){const p=a.play();if(p&&p.catch)p.catch(()=>{})}else a.pause()}};
+ const unlock=()=>sync();
+ el.addEventListener('pointerdown',unlock);document.addEventListener('visibilitychange',sync);
+ setTimeout(sync,300);
  function select(id){if(disposed||!SPOTS[id])return;const b=btn[id];b.classList.add('pr');setTimeout(()=>b.classList.remove('pr'),180);setTimeout(()=>{if(!disposed)opts.onSelect?.(id)},120)}
- return{loaded,select,pause(){paused=true;el.classList.add('ps')},resume(){if(disposed)return;paused=false;el.classList.remove('ps')},
+ return{loaded,select,pause(){paused=true;el.classList.add('ps');sync()},resume(){if(disposed)return;paused=false;el.classList.remove('ps');sync()},
   setLabels(n){Object.assign(N,n||{});for(const id in btn){btn[id].setAttribute('aria-label',N[id]||id);btn[id].querySelector('.lb').outerHTML=html(id)}},
   get state(){return{ready,paused,disposed,focus:null,labels:Object.keys(btn).length}},
-  dispose(){disposed=true;cancelAnimationFrame(raf);el.remove()}};
+  dispose(){disposed=true;document.removeEventListener('visibilitychange',sync);for(const k of ['m','w']){try{snd[k]?.pause()}catch{}}cancelAnimationFrame(raf);el.remove()}};
 }
 window.PirateHarborHub={create,supported:()=>true,version:1};
 })();
