@@ -13,8 +13,8 @@ const overlap=(a,b)=>a.x<b.x+b.w&&a.x+a.w>b.x&&a.y<b.y+b.h&&a.y+a.h>b.y;
 const lerp=(a,b,t)=>a+(b-a)*t;
 // Physics/combat numbers mirror the Blacktide adventure runtime and Combat V2.
 const MAX_LIVES=5,HEART_HEAL=30;   // life hearts: +1 life up to 5; at 5 lives a heart heals instead
-const PHYS={gravity:1300,run:225,blockRun:60,jump:510,maxFall:900,coyote:.1,buffer:.13,dash:.17,dashSpeed:550,dashCool:.85};
-const COMBAT={damage:[23,23,34],cool:.3,chain:.42,reach:84,throwDamage:18,dashDamage:16,ammo:3,reload:1};
+const PHYS={gravity:1300,run:262,blockRun:60,jump:510,maxFall:900,coyote:.1,buffer:.13,dash:.17,dashSpeed:620,dashCool:.65};
+const COMBAT={damage:[23,23,34],cool:.25,chain:.36,reach:84,throwDamage:18,dashDamage:16,ammo:3,reload:1};
 
 const TEXT={
 en:{powerReady:'SPECIAL READY — hold attack',endlessOpen:'Endless Sea unlocked!',pistol:'PISTOL',pause:'PAUSED',resume:'RESUME',sound:'SOUND',vibration:'VIBRATION',on:'ON',off:'OFF',map:'WORLD MAP',retry:'RETRY FROM CHECKPOINT',restart:'RESTART LEVEL',over:'DEFEATED',overHint:'Your progress in this level is kept at the last checkpoint.',complete:'LEVEL COMPLETE',gold:'Gold',time:'Time',enemies:'Enemies',secrets:'Secrets',chests:'Treasure',next:'CONTINUE',replay:'PLAY AGAIN',lives:'lives',sword:'SWORD',checkpoint:'CHECKPOINT',loading:'Loading level…',failed:'This level could not load. Please try again.',back:'BACK',unlocked:'unlocked',rotate:'Rotate your phone to landscape',block:'BLOCK',dash:'DASH',throw:'THROW',attack:'ATTACK',jump:'JUMP',blocked:'BLOCKED',newLife:'Lives',lifeUp:'+1 LIFE',lifeFull:'LIVES FULL +30'},
@@ -97,9 +97,9 @@ class Sheet{
 
 /* ------------------------------------------------------------------ enemies (reusable kit) */
 const ENEMY={
- skeleton:{hp:66,w:34,h:76,speed:48,chase:96,sight:300,name:{en:'Skeleton Warrior',az:'Skelet Döyüşçü',tr:'İskelet Savaşçı',ru:'Скелет-воин',pl:'Szkielet wojownik'},gold:3},
- shield:{hp:96,w:40,h:76,speed:38,chase:62,sight:280,name:{en:'Shield Guardian',az:'Qalxanlı Keşikçi',tr:'Kalkanlı Muhafız',ru:'Страж со щитом',pl:'Strażnik z tarczą'},gold:4},
- pirate:{hp:70,w:40,h:96,speed:52,chase:104,sight:320,name:{en:'Pirate Cutthroat',az:'Pirat Qılınclı',tr:'Korsan Kılıççı',ru:'Пират-рубака',pl:'Pirat rębajło'},gold:3,flesh:true},
+ skeleton:{hp:66,w:34,h:76,speed:62,chase:125,sight:300,name:{en:'Skeleton Warrior',az:'Skelet Döyüşçü',tr:'İskelet Savaşçı',ru:'Скелет-воин',pl:'Szkielet wojownik'},gold:3},
+ shield:{hp:96,w:40,h:76,speed:49,chase:81,sight:280,name:{en:'Shield Guardian',az:'Qalxanlı Keşikçi',tr:'Kalkanlı Muhafız',ru:'Страж со щитом',pl:'Strażnik z tarczą'},gold:4},
+ pirate:{hp:70,w:40,h:96,speed:68,chase:135,sight:320,name:{en:'Pirate Cutthroat',az:'Pirat Qılınclı',tr:'Korsan Kılıççı',ru:'Пират-рубака',pl:'Pirat rębajło'},gold:3,flesh:true},
  gunner:{hp:52,w:40,h:96,speed:0,chase:0,sight:620,name:{en:'Pirate Gunner',az:'Pirat Atıcı',tr:'Korsan Nişancı',ru:'Пират-стрелок',pl:'Pirat strzelec'},gold:4,flesh:true},
  archer:{hp:46,w:32,h:74,speed:0,chase:0,sight:600,name:{en:'Cursed Archer',az:'Lənətli Oxatan',tr:'Lanetli Okçu',ru:'Проклятый лучник',pl:'Przeklęty łucznik'},gold:3}
 };
@@ -254,7 +254,7 @@ class LevelRun{
  lt(k){return this.def.text?.(this.lang,k)||k}
  warn(m){this.warnings.push(m);console.warn('[level]',m)}
  soundOn(){const u=this.host?.u;if(u&&typeof u.sound==='boolean')return u.sound;try{return localStorage.getItem('pf-sound')!=='off'}catch{return true}}
- effectsOn(){return this.host?.u?.hitEffects!==false}
+ effectsOn(){return this.host?.u?.hitEffects!==false&&!this.perfLow}
  /* ---------------- mount / load */
  fitView(){const r=this.canvas.getBoundingClientRect();W=960;if(r.width>r.height&&r.height>0)W=Math.round(Math.min(1280,Math.max(960,H*r.width/r.height))/2)*2;this.hudScale=r.height>0?Math.min(1.3,Math.max(1,430/r.height)):1;this.canvas.width=W;this.canvas.height=H;this.needsRender=true}
  mount(){
@@ -436,7 +436,7 @@ class LevelRun{
  /* ---------------- loop */
  loop(now){
   if(this.phase==='closed')return;this.loopId=requestAnimationFrame(this.raf);
-  const dt=this.last?Math.min(.1,(now-this.last)/1000):DT;this.last=now;
+  const dt=this.last?Math.min(.1,(now-this.last)/1000):DT;this.last=now;if(this.phase==='play'){const raw=(now-(this.lastRaw||now))/1000;this.lastRaw=now;if(raw>0&&raw<.5){this.ema=this.ema?this.ema*.95+raw*.05:raw;this.pn=(this.pn||0)+1;if(this.pn>90&&!this.perfLow&&this.ema>.028){this.perfLow=true;this.fx.parts.length=0}}}else this.lastRaw=0;
   if(this.phase==='play'&&!this.manual){this.acc+=dt;let n=0;while(this.acc>=DT&&n<6){this.tick(DT);this.acc-=DT;n++}if(n===6)this.acc=0}
   if(this.p&&this.phase!=='loading'){
    window.PirateTouchTheme?.setAmmo?.(this.root.querySelector('.pl-pad [data-k="throw"]'),this.p.ammo,COMBAT.ammo);
