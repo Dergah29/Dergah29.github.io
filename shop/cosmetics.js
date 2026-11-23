@@ -168,7 +168,18 @@ class Extras{
   const on=!run.fx||run.fx.on!==false,reduced=!!run.fx?.reduced;
   // companion follows a point behind the hero's shoulder with a spring
   const L=this.look;
-  if(L.companion){const lg=this.lunge>0;if(lg)this.lunge-=dt;const tx=p.x+p.w/2+(lg?p.dir*84*u:-p.dir*46*u),ty=p.y+p.h-146*u+Math.sin(t*2.2)*6*u+(lg?30*u:0);const q=this.pet||(this.pet={x:tx,y:ty,vx:0,vy:0,dir:p.dir});
+  if(L.companion){const lg=this.lunge>0;if(lg)this.lunge-=dt;const cx=p.x+p.w/2,fy=p.y+p.h,spr=L.companion.sprite;
+   const still=Math.abs(p.vx||0)<12&&p.ground!==false&&!(p.dash>0)&&!(p.anim&&p.anim.startsWith('attack'))&&!p.dead;this.idleT=still?(this.idleT||0)+dt:0;
+   let tx=cx+(lg?p.dir*84*u:-p.dir*46*u),ty=fy-146*u+Math.sin(t*2.2)*6*u+(lg?30*u:0),rot=0,sc=1,back=null,hearts=false;
+   if(this.idleT>2.5&&!lg){const it=this.idleT-2.5,d=-p.dir;/* behind-the-shoulder side */
+    if(spr==='dragon'){tx=cx+d*13*u+Math.sin(it*7)*3*u;ty=fy-106*u+Math.sin(it*3.5)*2*u;rot=Math.sin(it*7)*.32*d*-1;hearts=true}      /* perches on the shoulder, rubs its head along her cheek */
+    else if(spr==='cat'){const ph=it%9;if(ph<4.5){const a=it*2.1;tx=cx+Math.cos(a)*50*u;ty=fy-62*u+Math.sin(a)*16*u;back=Math.sin(a)<0;rot=Math.cos(a)*.25}else{tx=cx+Math.sin(it*3.2)*17*u;ty=fy-15*u;rot=Math.sin(it*3.2)*.5;hearts=true}} /* circles her body, drops down and rubs against her legs */
+    else if(spr==='kraken'){tx=cx+d*2*u;ty=fy-72*u+Math.sin(it*2.6)*3*u;sc=1.18+Math.sin(it*2.6)*.06;rot=Math.sin(it*2.2)*.1;hearts=true}   /* hugs her */
+    else if(spr==='phoenix'){const a=it*1.9;tx=cx+Math.cos(a)*44*u;ty=fy-128*u+Math.sin(a)*10*u;back=Math.sin(a)<0}                     /* circles above her head */
+    else{tx=cx+d*12*u;ty=fy-104*u+Math.sin(it*4)*2*u;rot=Math.sin(it*5)*.12}                                                            /* birds perch on the shoulder */
+    if(hearts&&(this.heart||0)<=0&&on){this.heart=.8;this.particle({k:'star',col:'#ff8cb4',x:tx+(Math.random()-.5)*14*u,y:ty-18*u,vx:(Math.random()-.5)*10*u,vy:-26*u,life:1,max:1,s:12*u,g:0})}}
+   this.heart=(this.heart||0)-dt;
+   const q=this.pet||(this.pet={x:tx,y:ty,vx:0,vy:0,dir:p.dir});q.rot=rot;q.sc=sc;q.back=back;
    const ax=(tx-q.x)*28-q.vx*7.5,ay=(ty-q.y)*28-q.vy*7.5;q.vx+=ax*dt;q.vy+=ay*dt;q.x+=q.vx*dt;q.y+=q.vy*dt;if(Math.hypot(tx-q.x,ty-q.y)>600*u){q.x=tx;q.y=ty;q.vx=q.vy=0}
    if(Math.abs(q.vx)>25*u)q.dir=Math.sign(q.vx);else q.dir=p.dir}
   const atk=!!(p.anim&&p.anim.startsWith('attack')&&!p.dead);
@@ -202,7 +213,7 @@ class Extras{
  drawBack(c,p,run){
   const L=this.look,t=run.time||0,u=this.unit;
   if(L.effect?.id==='fx-wisps'&&run.fx?.on!==false){const im=dot(L.effect.color,32);c.save();c.globalCompositeOperation='lighter';for(let i=0;i<3;i++){const a=this.wisp*2.2+i*TAU/3;if(Math.sin(a)>0)continue;c.globalAlpha=.75;const s=18*u;c.drawImage(im,p.x+p.w/2+Math.cos(a)*34*u-s/2,p.y+p.h*.45+Math.sin(a)*14*u-s/2,s,s)}c.restore()}
-  if(L.companion&&this.pet&&this.pet.y<p.y+p.h-150*u)this.drawPet(c,t);
+  if(L.companion&&this.pet&&(this.pet.back!=null?this.pet.back:this.pet.y<p.y+p.h-150*u))this.drawPet(c,t);
  }
  drawFront(c,p,run){
   const L=this.look,t=run.time||0,u=this.unit;
@@ -213,7 +224,7 @@ class Extras{
     const pc=q.col||L.effect.color,im=q.k==='star'?star(pc):dot(pc,32),s=q.s*(q.k==='star'?(.6+.4*Math.sin(k*Math.PI)):(.5+.5*k))*2;c.globalAlpha=q.k==='drop'?.85*k:k;c.drawImage(im,q.x-s/2,q.y-s/2,s,s)}
    c.restore()}
   if(L.effect?.id==='fx-wisps'&&run.fx?.on!==false){const im=dot(L.effect.color,32);c.save();c.globalCompositeOperation='lighter';for(let i=0;i<3;i++){const a=this.wisp*2.2+i*TAU/3;if(Math.sin(a)<=0)continue;c.globalAlpha=.9;const s=20*u;c.drawImage(im,p.x+p.w/2+Math.cos(a)*34*u-s/2,p.y+p.h*.45+Math.sin(a)*14*u-s/2,s,s)}c.restore()}
-  if(L.companion&&this.pet&&this.pet.y>=p.y+p.h-150*u)this.drawPet(c,t);
+  if(L.companion&&this.pet&&!(this.pet.back!=null?this.pet.back:this.pet.y<p.y+p.h-150*u))this.drawPet(c,t);
  }
  drawArc(c,p,u){
   const step=p.anim==='attackC'?3:p.anim==='attackB'?2:1,dur=step===3?.3:.22,k=1-clamp((p.attack||0)/dur,0,1);if(k<=0||k>=1)return;
@@ -228,7 +239,7 @@ class Extras{
  drawPet(c,t){
   const a=Extras.art;if(!a)return;const L=this.look.companion,m=a.meta.companions[L.sprite];if(!m)return;const q=this.pet,u=this.unit;
   const f=Math.floor(t*(Math.abs(q.vx)>60*u?14:9))%m.frames,fw=m.w,fh=m.h,s=L.size*u;
-  c.save();c.translate(q.x,q.y);if(q.dir<0)c.scale(-1,1);c.rotate(clamp(q.vy/(900*u),-.35,.35));
+  c.save();c.translate(q.x,q.y);if(q.dir<0)c.scale(-1,1);c.rotate(clamp(q.vy/(900*u),-.35,.35)+(q.rot||0));if(q.sc&&q.sc!==1)c.scale(q.sc,q.sc);
   if(L.ghost){c.globalAlpha=.62;c.globalCompositeOperation='lighter'}
   if(L.flap){const w=Math.sin(t*(Math.abs(q.vx)>60*u?17:11));c.scale(1+w*.03,1-w*.07)}
   if(L.glow){c.globalCompositeOperation='lighter';c.globalAlpha=.25;c.imageSmoothingEnabled=true;c.drawImage(a.birds,m.x,m.y,fw,fh,-m.ax*s*1.08,-m.ay*s*1.08,fw*s*1.16,fh*s*1.16);c.globalAlpha=1;c.globalCompositeOperation='source-over'}
