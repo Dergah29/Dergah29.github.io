@@ -184,7 +184,39 @@ const CSS=`
 @keyframes shfade{from{opacity:0}}
 @keyframes shbump{30%{transform:scale(1.12)}}
 @keyframes shshake{20%,60%{transform:translateX(-6px)}40%,80%{transform:translateX(6px)}}
-@media (prefers-reduced-motion:reduce){#pf-shop *{animation:none!important;transition:none!important}}
+@media (prefers-reduced-motion:reduce){#pf-shop *{animation:none!important;transition:none!important}}/* short landscape phones (page height <= 400px): compact px layout so every category, card and button fits */
+#pf-shop.short .wood{border-width:8px;border-image-width:8px}
+#pf-shop.short .sh-back{top:5px;height:36px;min-height:36px;left:calc(var(--sl) + 8px);font-size:13px;padding:0 10px 0 6px}
+#pf-shop.short .sh-title{top:4px;padding:5px 36px}#pf-shop.short .sh-title b{font-size:15px}
+#pf-shop.short .sh-goldchip{top:5px;height:36px;min-height:36px;min-width:92px;right:calc(var(--sr) + 54px);padding:0 10px 0 6px}
+#pf-shop.short .sh-goldchip svg{width:24px;height:24px}#pf-shop.short .sh-goldchip span{font-size:15px}
+#pf-shop.short .sh-gear{top:4px;width:38px;height:38px;min-width:0;right:calc(var(--sr) + 8px);padding:5px}
+#pf-shop.short .sh-cats{left:calc(var(--sl) + 8px);top:46px;bottom:6px;width:126px;padding:3px 4px;overflow-y:auto;gap:2px}
+#pf-shop.short .sh-cat{flex:0 0 27px;min-height:27px;font-size:12px;gap:4px;padding:0 4px}
+#pf-shop.short .sh-cat .md{width:22px;height:22px}#pf-shop.short .sh-cat i{width:16px;height:16px}
+#pf-shop.short .sh-cat span{padding-right:0;overflow-wrap:normal;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}#pf-shop.short .sh-cat em{display:none}
+#pf-shop.short .sh-shelf{top:46px;right:calc(var(--sr) + 8px);width:282px;bottom:94px;padding:4px 2px 4px 6px}
+#pf-shop.short .sh-shelf h3{min-height:30px;margin:0;font-size:13px;padding-right:104px}
+#pf-shop.short .sh-filter{min-height:28px;top:2px;right:6px;width:98px;font-size:11px}
+#pf-shop.short .sh-grid{left:6px;right:2px;top:34px;bottom:2px;grid-template-columns:repeat(3,1fr);gap:7px 6px}
+#pf-shop.short .sh-card{height:76px;min-height:76px;border-width:6px;border-image-width:6px}
+#pf-shop.short .sh-card .ic{width:40px;height:40px;top:6px}#pf-shop.short .sh-card canvas.ic{width:46px;height:40px;top:6px}
+#pf-shop.short .sh-card .nm{font-size:10.5px}#pf-shop.short .sh-card .pr{font-size:11px;margin-top:1px}
+#pf-shop.short .sh-card .badge{width:16px;height:16px;top:6px;right:3px}#pf-shop.short .sh-card .rar{font-size:8px;top:6px;left:3px}
+#pf-shop.short .sh-info{right:calc(var(--sr) + 8px);width:282px;bottom:6px;height:84px;padding:5px 9px;column-gap:8px}
+#pf-shop.short .sh-info .t b{font-size:13px}#pf-shop.short .sh-info .t i{font-size:10px}
+#pf-shop.short .sh-info p{font-size:10.5px;line-height:1.2;margin:2px 0 0;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+#pf-shop.short .sh-info .req{font-size:10px}
+#pf-shop.short .sh-act{min-width:88px;height:42px;font-size:13px;padding:0 10px;border-width:2px}
+#pf-shop.short .sh-heroes{top:46px;gap:6px}
+#pf-shop.short .sh-arrow{width:34px;height:34px;min-width:0}
+#pf-shop.short .sh-who{width:150px;height:34px;gap:5px}#pf-shop.short .sh-who img{width:26px;height:26px}
+#pf-shop.short .sh-who b{font-size:13px}#pf-shop.short .sh-who small{font-size:9px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#pf-shop.short .sh-play{height:30px;font-size:11px;padding:0 8px}
+#pf-shop.short .sh-anims{bottom:6px;gap:4px;padding:4px}
+#pf-shop.short .sh-anim{height:38px;min-width:42px;font-size:10px;padding:0 3px}#pf-shop.short .sh-anim svg{width:16px;height:16px}
+#pf-shop.short .sh-loadout{display:none!important}
+
 `;
 
 const ANIM_ICON={
@@ -315,21 +347,21 @@ async function mount(opts={}){
   if(label.scrollWidth>label.clientWidth)label.style.fontSize=Math.max(10.5,parseFloat(getComputedStyle(label).fontSize)*label.clientWidth/label.scrollWidth)+'px';
  }
  function layout(){
-  const W=innerWidth,Hh=innerHeight;const u=Math.min(W/100,Hh*16/9/100);root.style.setProperty('--u',u+'px');
+  const W=innerWidth,Hh=innerHeight;const SHORT=Hh<=400;root.classList.toggle('short',SHORT);const u=SHORT?7.4:Math.min(W/100,Hh*16/9/100);root.style.setProperty('--u',u+'px');
   const probe=document.createElement('div');probe.style.cssText='position:absolute;visibility:hidden;padding-left:env(safe-area-inset-left,0px);padding-right:env(safe-area-inset-right,0px)';root.append(probe);const cs=getComputedStyle(probe);const sl=parseFloat(cs.paddingLeft)||0,sr=parseFloat(cs.paddingRight)||0;probe.remove();
   root.style.setProperty('--sl',sl+'px');root.style.setProperty('--sr',sr+'px');
   fitTitle();
   // cabin cover; keep the stern windows and the rug centred between the panels
-  const left=sl+u*24.2,right=W-sr-u*36.4,mid=(left+right)/2;
+  const left=SHORT?sl+140:sl+u*24.2,right=SHORT?W-sr-298:W-sr-u*36.4,mid=(left+right)/2;
   const s=Math.max(W/meta.w,Hh/meta.h);let ox=mid-960*s;ox=clamp(ox,W-meta.w*s,0);const oy=(Hh-meta.h*s)*.6;cover={s,ox,oy};
   Object.assign(el.plate.style,{width:meta.w+'px',height:meta.h+'px',transform:`translate(${ox}px,${oy}px) scale(${s})`});
   const dpr=Math.min(devicePixelRatio||1,1.5),fx=el.fx;fx.width=Math.round(W*dpr);fx.height=Math.round(Hh*dpr);fx.style.width=W+'px';fx.style.height=Hh+'px';fx.__dpr=dpr;
   // hero stage between the panels
-  const top=u*14,bottom=Hh-u*8.2,cw=right-left,ch=bottom-top;const hc=el.hero,hd=Math.min(devicePixelRatio||1,2);hc.width=Math.round(cw*hd);hc.height=Math.round(ch*hd);Object.assign(hc.style,{left:left+'px',top:top+'px',width:cw+'px',height:ch+'px'});hc.__dpr=hd;
+  const top=SHORT?78:u*14,bottom=SHORT?Hh-48:Hh-u*8.2,cw=right-left,ch=bottom-top;const hc=el.hero,hd=Math.min(devicePixelRatio||1,2);hc.width=Math.round(cw*hd);hc.height=Math.round(ch*hd);Object.assign(hc.style,{left:left+'px',top:top+'px',width:cw+'px',height:ch+'px'});hc.__dpr=hd;
   const figure=hero==='scarlet'?176:190;let k=Math.min(ch*.8/figure,cw*.55/120);k=Math.min(k,hero==='scarlet'?1.6:1.25);// feet on the painted dais (cabin.json stand point), kept inside the stage
   // Keep only this shop preview above the equipped badge; game foot anchors and
   // collision boxes are untouched. The badge sits6px above the animation row.
-  const badgeBottom=Math.max(u*2.6+46,u*7.8+6),badgeHeight=8+Math.max(10.5,u*1.35)*1.2,maxFeet=Hh-badgeBottom-badgeHeight-8-top;
+  const badgeBottom=Math.max(u*2.6+46,u*7.8+6),badgeHeight=8+Math.max(10.5,u*1.35)*1.2,maxFeet=SHORT?ch*.97:Hh-badgeBottom-badgeHeight-8-top;
   const sy=clamp(oy+meta.stand[1]*s-top,ch*.62,Math.min(ch*.97,maxFeet)),sx=clamp(ox+meta.stand[0]*s-left,cw*.3,cw*.7);k=Math.min(k,sy/figure*.98);stand={x:sx,y:sy,k};
   el.heroes.style.left=left+'px';el.heroes.style.width=cw+'px';
   el.anims.style.left=left+'px';el.anims.style.width=cw+'px';
