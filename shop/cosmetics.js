@@ -59,7 +59,7 @@ const WEAPON={
  'weapon-ghost':{metal:['#06343a','#22989e','#8af2f2','#ecffff'],arc:'#6ff6ff'},
  'weapon-emerald':{metal:R.emerald,arc:'#3cf09a'},'weapon-rose':{metal:R.sakura,arc:'#ff8cc0'},'weapon-lava':{metal:R.lava,arc:'#ff7a22'},'weapon-frost':{metal:R.frost,arc:'#a8ecff',bolt:true},
  'weapon-storm':{metal:['#081428','#2858a0','#8ad0ff','#ffffff'],arc:'#9adcff',bolt:true}};
-const COMPANION={'acc-kraken':{sprite:'kraken',size:.5,flap:1},'acc-cat':{sprite:'cat',size:.5,flap:1},'acc-dragon':{sprite:'dragon',size:.5,flap:1},'acc-phoenix':{sprite:'phoenix',size:.56,flap:1,glow:1},'acc-gull':{sprite:'gull',size:.5},'acc-macaw':{sprite:'macaw',size:.48},'acc-bluemacaw':{sprite:'bluemacaw',size:.48},'acc-ghostparrot':{sprite:'macaw',size:.48,ghost:true}};
+const COMPANION={'acc-kraken':{sprite:'kraken',size:.5},'acc-cat':{sprite:'cat',size:.5},'acc-dragon':{sprite:'dragon',size:.5},'acc-phoenix':{sprite:'phoenix',size:.56,glow:1},'acc-gull':{sprite:'gull',size:.5},'acc-macaw':{sprite:'macaw',size:.48},'acc-bluemacaw':{sprite:'bluemacaw',size:.48},'acc-ghostparrot':{sprite:'macaw',size:.48,ghost:true}};
 const EFFECT={'fx-bubbles':{color:'#9fe8ff',core:'#ffffff'},'fx-petals':{color:'#ffa6c8',core:'#ffffff'},'fx-flame':{color:'#ff7a22',core:'#ffe6a0'},'fx-frost':{color:'#bfeaff',core:'#ffffff'},'fx-rainbow':{color:'#ff6ad0',core:'#ffffff'},'fx-spray':{color:'#bfe8ff',core:'#ffffff'},'fx-embers':{color:'#ff8a2a',core:'#ffe0a0'},'fx-wisps':{color:'#62f0e0',core:'#e8fffb'},'fx-storm':{color:'#8ad0ff',core:'#ffffff'},'fx-gold':{color:'#ffd24a',core:'#fff8d0'}};
 
 /* pixel fighters: palette regions (hat colours count as hat only in the top 13 rows of the figure) */
