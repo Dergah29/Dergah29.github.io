@@ -18,7 +18,7 @@
  const clean=v=>Array.from(String(v||'').normalize('NFC').replace(/[\p{C}<>]/gu,'').replace(/\s+/g,' ').trim()).slice(0,16).join('');
  const el=document.createElement('div');el.id='pf-name-early';
  const css=document.createElement('style');css.textContent=`
-#pf-name-early{position:fixed;inset:0;z-index:2147483647;overflow:hidden;background:#10202c url(name-screen/bg.webp) center/cover no-repeat;font-family:Georgia,'Times New Roman',serif;color:#3b2206;-webkit-user-select:none;user-select:none;animation:pfne-in .5s ease both}
+#pf-name-early{position:fixed;inset:0;z-index:2147483645;overflow:hidden;background:#10202c url(name-screen/bg.webp) center/cover no-repeat;font-family:Georgia,'Times New Roman',serif;color:#3b2206;-webkit-user-select:none;user-select:none;animation:pfne-in .5s ease both}
 #pf-name-early.out{animation:pfne-out .45s ease both;pointer-events:none}
 @keyframes pfne-in{from{opacity:0}to{opacity:1}}@keyframes pfne-out{to{opacity:0;transform:scale(1.04)}}
 #pf-name-early:before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 55%,#0006,#0000 55%),linear-gradient(#0000 60%,#0007)}
