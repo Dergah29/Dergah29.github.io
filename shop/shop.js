@@ -207,6 +207,7 @@ const CSS=`
 #pf-shop.short .sh-info .t b{font-size:13px}#pf-shop.short .sh-info .t i{font-size:10px}
 #pf-shop.short .sh-info p{font-size:10.5px;line-height:1.2;margin:2px 0 0;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
 #pf-shop.short .sh-info .req{font-size:10px}
+#pf-shop.short .sh-info:has(.req svg) p{-webkit-line-clamp:1}
 #pf-shop.short .sh-act{min-width:88px;height:42px;font-size:13px;padding:0 10px;border-width:2px}
 #pf-shop.short .sh-heroes{top:46px;gap:6px}
 #pf-shop.short .sh-arrow{width:34px;height:34px;min-width:0}

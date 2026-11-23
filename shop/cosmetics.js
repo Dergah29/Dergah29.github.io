@@ -28,6 +28,8 @@ const R={
  slate:['#0e1a24','#2a4658','#557c90','#b0d2e0'],teal:['#041c1a','#0e4a44','#239086','#8eeadc'],stormBlue:['#06121e','#173a5a','#3a78a8','#a6d8ff'],
  seaGreen:['#04201a','#0c5a46','#2a9a78','#a0f0d0'],greyWhite:['#3a4048','#7e8894','#c8d0d8','#f6f9fc'],
  coral:['#3a0e16','#a8344a','#f07a8a','#ffd0d4'],purple:['#14061e','#3e1858','#7a3a9e','#cc9ae8'],charcoal:['#08080a','#1c1c22','#3a3a44','#70707e'],
+ emerald:['#02170f','#0a4a30','#1f9a62','#9cf0c4'],emeraldCloth:['#03120c','#0c3a28','#1a7a52','#7ad8a8'],royal:['#10041c','#37125a','#7a2fb0','#d6a2f2'],royalCloth:['#0e0418','#2c0e48','#5e2490','#b27ae0'],
+ sakura:['#2e0a1a','#a8345e','#f48ab0','#ffe3ee'],sakuraCloth:['#3a1226','#c0527e','#f8a8c6','#fff0f6'],lava:['#0c0404','#3a0e06','#c8300e','#ffb02a'],lavaCloth:['#060303','#1a0806','#46140a','#8a2a10'],frost:['#0a1a2c','#2e6a9a','#8ad8f4','#f2fcff'],frostCloth:['#102236','#3c7aa8','#a8e4fa','#ffffff'],
  rust:['#1e0806','#5a1a10','#9e3a22','#e48a5a'],ghost:['#03201f','#13625e','#45c7c0','#d8fffb']};
 /* Mari regions: 1 hat felt, 2 hat trim, 3 dark clothing, 4 red cloth, 5 metal. Pixel fighters:
    hat, cloth, metal, body (shark skin / crab shell), trim (crab belt). */
@@ -36,6 +38,11 @@ const OUTFIT={
  'outfit-black':{scarlet:{hat:R.black,trim:R.iron,cloth:R.blackCloth,red:R.blood},sailor:{hat:R.black,cloth:R.blackCloth},captain:{hat:R.black,cloth:R.blood},shark:{body:R.charcoal,cloth:R.blood},crab:{body:R.charcoal,cloth:R.blood,trim:R.iron}},
  'outfit-ghost':{all:{material:'ghost'}},
  'outfit-gold':{scarlet:{hat:R.gold,trim:R.cream,cloth:R.goldCloth,red:R.brass,material:'gold'},sailor:{hat:R.gold,cloth:R.goldCloth,material:'gold'},captain:{hat:R.gold,cloth:R.goldCloth,material:'gold'},shark:{body:R.gold,cloth:R.cream,material:'gold'},crab:{body:R.gold,cloth:R.goldCloth,trim:R.cream,material:'gold'}},
+ 'outfit-emerald':{all:{hat:R.emerald,trim:R.brass,cloth:R.emeraldCloth,red:R.gold,body:R.emerald}},
+ 'outfit-royal':{all:{hat:R.royal,trim:R.gold,cloth:R.royalCloth,red:R.gold,body:R.royal}},
+ 'outfit-sakura':{all:{hat:R.sakura,trim:R.cream,cloth:R.sakuraCloth,red:R.crimson,body:R.sakura}},
+ 'outfit-lava':{all:{hat:R.lavaCloth,trim:R.lava,cloth:R.lavaCloth,red:R.lava,body:R.lava}},
+ 'outfit-frost':{all:{hat:R.frost,trim:R.silver,cloth:R.frostCloth,red:R.frost,body:R.frost}},
  'outfit-storm':{scarlet:{hat:R.slate,trim:R.silver,cloth:R.slate,red:R.stormBlue}},
  'outfit-navy':{sailor:{hat:R.navy,cloth:R.white}},
  'outfit-admiral':{captain:{hat:R.navy,cloth:R.navy}},
@@ -43,15 +50,17 @@ const OUTFIT={
  'outfit-coral':{crab:{body:R.coral,cloth:R.purple,trim:R.gold}}};
 const HAT={
  'hat-crimson':{hat:R.crimson,trim:R.brass,plume:0},'hat-midnight':{hat:R.black,trim:R.silver,plume:1},'hat-admiral':{hat:R.navy,trim:R.gold,plume:2},
+ 'hat-emerald':{hat:R.emerald,trim:R.brass,plume:2},'hat-royal':{hat:R.royal,trim:R.gold,plume:1},'hat-lava':{hat:R.lavaCloth,trim:R.lava,plume:0,spark:true},'hat-frost':{hat:R.frost,trim:R.white,plume:3,glow:'#9ae8ff'},
  'hat-ghost':{hat:R.ghost,trim:R.white,plume:3,glow:'#6ff6ee'},'hat-storm':{hat:R.slate,trim:R.silver,plume:4,spark:true}};
 const WEAPON={
  'weapon-crimson':{metal:['#300608','#9a1c26','#ff6458','#ffd2c8'],arc:'#ff4a44'},
  'weapon-obsidian':{metal:['#060408','#1a1424','#46365e','#c8a2ff'],arc:'#a46aff'},
  'weapon-gold':{metal:R.gold,arc:'#ffd25a'},
  'weapon-ghost':{metal:['#06343a','#22989e','#8af2f2','#ecffff'],arc:'#6ff6ff'},
+ 'weapon-emerald':{metal:R.emerald,arc:'#3cf09a'},'weapon-rose':{metal:R.sakura,arc:'#ff8cc0'},'weapon-lava':{metal:R.lava,arc:'#ff7a22'},'weapon-frost':{metal:R.frost,arc:'#a8ecff',bolt:true},
  'weapon-storm':{metal:['#081428','#2858a0','#8ad0ff','#ffffff'],arc:'#9adcff',bolt:true}};
-const COMPANION={'acc-gull':{sprite:'gull',size:.5},'acc-macaw':{sprite:'macaw',size:.48},'acc-bluemacaw':{sprite:'bluemacaw',size:.48},'acc-ghostparrot':{sprite:'macaw',size:.48,ghost:true}};
-const EFFECT={'fx-spray':{color:'#bfe8ff',core:'#ffffff'},'fx-embers':{color:'#ff8a2a',core:'#ffe0a0'},'fx-wisps':{color:'#62f0e0',core:'#e8fffb'},'fx-storm':{color:'#8ad0ff',core:'#ffffff'},'fx-gold':{color:'#ffd24a',core:'#fff8d0'}};
+const COMPANION={'acc-kraken':{sprite:'kraken',size:.5,flap:1},'acc-cat':{sprite:'cat',size:.5,flap:1},'acc-dragon':{sprite:'dragon',size:.5,flap:1},'acc-phoenix':{sprite:'phoenix',size:.56,flap:1,glow:1},'acc-gull':{sprite:'gull',size:.5},'acc-macaw':{sprite:'macaw',size:.48},'acc-bluemacaw':{sprite:'bluemacaw',size:.48},'acc-ghostparrot':{sprite:'macaw',size:.48,ghost:true}};
+const EFFECT={'fx-bubbles':{color:'#9fe8ff',core:'#ffffff'},'fx-petals':{color:'#ffa6c8',core:'#ffffff'},'fx-flame':{color:'#ff7a22',core:'#ffe6a0'},'fx-frost':{color:'#bfeaff',core:'#ffffff'},'fx-rainbow':{color:'#ff6ad0',core:'#ffffff'},'fx-spray':{color:'#bfe8ff',core:'#ffffff'},'fx-embers':{color:'#ff8a2a',core:'#ffe0a0'},'fx-wisps':{color:'#62f0e0',core:'#e8fffb'},'fx-storm':{color:'#8ad0ff',core:'#ffffff'},'fx-gold':{color:'#ffd24a',core:'#fff8d0'}};
 
 /* pixel fighters: palette regions (hat colours count as hat only in the top 13 rows of the figure) */
 const PIXEL={
@@ -173,6 +182,11 @@ class Extras{
   else if(fxid==='fx-storm'){const fin=p.anim==='attackC'&&p.attack>.12;if((dash||fin)&&this.emit<=0){this.emit=.05;this.particle({k:'bolt',x:p.x+p.w/2+(Math.random()-.5)*50*u,y:p.y+Math.random()*p.h,len:(26+Math.random()*30)*u,a:Math.random()*TAU,life:.16,max:.16,seed:Math.random()*99})}
    else if(this.emit<=0&&Math.random()<.02){this.emit=.6;this.particle({k:'bolt',x:p.x+p.w/2+(Math.random()-.5)*30*u,y:p.y+Math.random()*p.h*.6,len:16*u,a:Math.random()*TAU,life:.12,max:.12,seed:Math.random()*99})}}
   else if(fxid==='fx-gold'){if(this.emit<=0){this.emit=moving||dash?.06:.16;this.particle({k:'star',x:p.x+p.w/2+(Math.random()-.5)*60*u,y:p.y+Math.random()*p.h,vx:0,vy:-14*u,life:.7,max:.7,s:13*u,g:0})}}
+  else if(fxid==='fx-bubbles'){if(this.emit<=0){this.emit=moving||dash?.08:.22;this.particle({k:'drop',x:p.x+p.w/2+(Math.random()-.5)*56*u,y:p.y+p.h*(.3+Math.random()*.7),vx:(Math.random()-.5)*24*u,vy:(-36-Math.random()*40)*u,life:1,max:1,s:(6+Math.random()*7)*u,g:-10*u})}}
+  else if(fxid==='fx-petals'){if(this.emit<=0){this.emit=moving||dash?.07:.14;this.particle({k:'star',col:['#ffa6c8','#ffc8dc','#ff8cb4'][Math.random()*3|0],x:p.x+p.w/2+(Math.random()-.5)*70*u,y:p.y-8*u+Math.random()*p.h*.4,vx:(-p.dir*14+(Math.random()-.5)*30)*u,vy:(30+Math.random()*34)*u,life:1.3,max:1.3,s:10*u,g:0})}}
+  else if(fxid==='fx-flame'){if(this.emit<=0){this.emit=dash?.02:.03;const cols=['#ff4a14','#ff8a1e','#ffd24a'];this.particle({k:'ember',col:cols[Math.random()*3|0],x:p.x+p.w/2+(Math.random()-.5)*34*u,y:p.y+p.h*(.35+Math.random()*.65),vx:(Math.random()-.5)*22*u-(moving?p.dir*30*u:0),vy:(-60-Math.random()*70)*u,life:.55,max:.55,s:(16+Math.random()*10)*u,g:-30*u})}}
+  else if(fxid==='fx-frost'){if(this.emit<=0){this.emit=dash?.03:.09;this.particle({k:'star',col:Math.random()<.4?'#ffffff':'#bfeaff',x:p.x+p.w/2+(Math.random()-.5)*66*u,y:p.y+Math.random()*p.h*.6,vx:(Math.random()-.5)*18*u,vy:(22+Math.random()*26)*u,life:1.1,max:1.1,s:(8+Math.random()*7)*u,g:0})}}
+  else if(fxid==='fx-rainbow'){this.hue=((this.hue||0)+dt*260)%360;if(this.emit<=0){this.emit=dash?.02:moving?.035:.09;const h=Math.round(this.hue/20)*20;this.particle({k:'ember',col:'hsl('+h+',100%,60%)',x:p.x+p.w/2-p.dir*(10+Math.random()*10)*u,y:p.y+p.h*(.45+Math.random()*.5),vx:-p.dir*(moving?60:10)*u,vy:(-8-Math.random()*16)*u,life:.7,max:.7,s:13*u,g:0})}}
   this.step(dt);
  }
  step(dt){for(const q of this.parts){q.life-=dt;if(q.vx!=null){q.vy+=(q.g||0)*dt;q.x+=q.vx*dt;q.y+=q.vy*dt}}this.parts=this.parts.filter(q=>q.life>0)}
@@ -187,7 +201,7 @@ class Extras{
   if(this.parts.length){c.save();c.globalCompositeOperation='lighter';
    for(const q of this.parts){const k=q.life/q.max;
     if(q.k==='bolt'){c.globalAlpha=k;c.strokeStyle=L.effect.color;c.lineWidth=2.2*u;c.shadowColor=L.effect.color;c.shadowBlur=0;c.beginPath();let x=q.x,y=q.y;c.moveTo(x,y);for(let i=1;i<=5;i++){const f=i/5;x=q.x+Math.cos(q.a)*q.len*f+Math.sin(q.seed+i*7.3)*6*u;y=q.y+Math.sin(q.a)*q.len*f+Math.cos(q.seed+i*5.1)*6*u;c.lineTo(x,y)}c.stroke();c.strokeStyle='#fff';c.lineWidth=.9*u;c.stroke();continue}
-    const im=q.k==='star'?star(L.effect.color):dot(L.effect.color,32),s=q.s*(q.k==='star'?(.6+.4*Math.sin(k*Math.PI)):(.5+.5*k))*2;c.globalAlpha=q.k==='drop'?.85*k:k;c.drawImage(im,q.x-s/2,q.y-s/2,s,s)}
+    const pc=q.col||L.effect.color,im=q.k==='star'?star(pc):dot(pc,32),s=q.s*(q.k==='star'?(.6+.4*Math.sin(k*Math.PI)):(.5+.5*k))*2;c.globalAlpha=q.k==='drop'?.85*k:k;c.drawImage(im,q.x-s/2,q.y-s/2,s,s)}
    c.restore()}
   if(L.effect?.id==='fx-wisps'&&run.fx?.on!==false){const im=dot(L.effect.color,32);c.save();c.globalCompositeOperation='lighter';for(let i=0;i<3;i++){const a=this.wisp*2.2+i*TAU/3;if(Math.sin(a)<=0)continue;c.globalAlpha=.9;const s=20*u;c.drawImage(im,p.x+p.w/2+Math.cos(a)*34*u-s/2,p.y+p.h*.45+Math.sin(a)*14*u-s/2,s,s)}c.restore()}
   if(L.companion&&this.pet&&this.pet.y>=p.y+p.h-150*u)this.drawPet(c,t);
@@ -207,6 +221,8 @@ class Extras{
   const f=Math.floor(t*(Math.abs(q.vx)>60*u?14:9))%m.frames,fw=m.w,fh=m.h,s=L.size*u;
   c.save();c.translate(q.x,q.y);if(q.dir<0)c.scale(-1,1);c.rotate(clamp(q.vy/(900*u),-.35,.35));
   if(L.ghost){c.globalAlpha=.62;c.globalCompositeOperation='lighter'}
+  if(L.flap){const w=Math.sin(t*(Math.abs(q.vx)>60*u?17:11));c.scale(1+w*.03,1-w*.07)}
+  if(L.glow){c.globalCompositeOperation='lighter';c.globalAlpha=.25;c.imageSmoothingEnabled=true;c.drawImage(a.birds,m.x,m.y,fw,fh,-m.ax*s*1.08,-m.ay*s*1.08,fw*s*1.16,fh*s*1.16);c.globalAlpha=1;c.globalCompositeOperation='source-over'}
   c.imageSmoothingEnabled=true;c.drawImage(a.birds,m.x+f*fw,m.y,fw,fh,-m.ax*s,-m.ay*s,fw*s,fh*s);
   c.restore();
  }
