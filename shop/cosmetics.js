@@ -161,16 +161,19 @@ function star(color){const k='star'+color;if(dotCache.has(k))return dotCache.get
 
 /* ---- per-hero extras: plume, glints, weapon arc, companion, particles (world units) */
 class Extras{
- constructor(look,unit){this.look=look;this.unit=unit;this.parts=[];this.pet=null;this.last=null;this.emit=0;this.prev=null;this.wisp=0}
+ constructor(look,unit){this.look=look;this.unit=unit;this.parts=[];this.pet=null;this.last=null;this.emit=0;this.prev=null;this.wisp=0;this.lunge=0;this.wasAtk=false}
  particle(o){if(this.parts.length>=40)this.parts.shift();this.parts.push(o)}
  update(p,run){
   const t=run.time||0,dt=clamp(this.last==null?0:t-this.last,0,.05);this.last=t;const u=this.unit;
   const on=!run.fx||run.fx.on!==false,reduced=!!run.fx?.reduced;
   // companion follows a point behind the hero's shoulder with a spring
   const L=this.look;
-  if(L.companion){const tx=p.x+p.w/2-p.dir*46*u,ty=p.y+p.h-146*u+Math.sin(t*2.2)*6*u;const q=this.pet||(this.pet={x:tx,y:ty,vx:0,vy:0,dir:p.dir});
+  if(L.companion){const lg=this.lunge>0;if(lg)this.lunge-=dt;const tx=p.x+p.w/2+(lg?p.dir*84*u:-p.dir*46*u),ty=p.y+p.h-146*u+Math.sin(t*2.2)*6*u+(lg?30*u:0);const q=this.pet||(this.pet={x:tx,y:ty,vx:0,vy:0,dir:p.dir});
    const ax=(tx-q.x)*28-q.vx*7.5,ay=(ty-q.y)*28-q.vy*7.5;q.vx+=ax*dt;q.vy+=ay*dt;q.x+=q.vx*dt;q.y+=q.vy*dt;if(Math.hypot(tx-q.x,ty-q.y)>600*u){q.x=tx;q.y=ty;q.vx=q.vy=0}
    if(Math.abs(q.vx)>25*u)q.dir=Math.sign(q.vx);else q.dir=p.dir}
+  const atk=!!(p.anim&&p.anim.startsWith('attack')&&!p.dead);
+  if(L.companion&&this.pet&&on&&atk&&!this.wasAtk)this.petStrike(p,u);
+  this.wasAtk=atk;
   if(!on||!L.effect||!dt)return this.step(dt);
   const fxid=L.effect.id,feet={x:p.x+p.w/2,y:p.y+p.h},moving=Math.abs(p.vx||0)>40,air=!p.ground,dash=p.dash>0||p.anim==='dash';
   const rate=reduced?.5:1;this.emit-=dt*rate;
@@ -188,6 +191,12 @@ class Extras{
   else if(fxid==='fx-frost'){if(this.emit<=0){this.emit=dash?.03:.09;this.particle({k:'star',col:Math.random()<.4?'#ffffff':'#bfeaff',x:p.x+p.w/2+(Math.random()-.5)*66*u,y:p.y+Math.random()*p.h*.6,vx:(Math.random()-.5)*18*u,vy:(22+Math.random()*26)*u,life:1.1,max:1.1,s:(8+Math.random()*7)*u,g:0})}}
   else if(fxid==='fx-rainbow'){this.hue=((this.hue||0)+dt*260)%360;if(this.emit<=0){this.emit=dash?.02:moving?.035:.09;const h=Math.round(this.hue/20)*20;this.particle({k:'ember',col:'hsl('+h+',100%,60%)',x:p.x+p.w/2-p.dir*(10+Math.random()*10)*u,y:p.y+p.h*(.45+Math.random()*.5),vx:-p.dir*(moving?60:10)*u,vy:(-8-Math.random()*16)*u,life:.7,max:.7,s:13*u,g:0})}}
   this.step(dt);
+ }
+ /* companion joins the hero's attack: it lunges forward and bursts with its own colours (cosmetic only) */
+ petStrike(p,u){
+  const q=this.pet,id=this.look.companion.sprite,d=p.dir,x=q.x+d*34*u,y=q.y+8*u;this.lunge=.26;
+  const spec={dragon:['ember',['#ff4a14','#ff8a1e','#ffd24a'],9],phoenix:['ember',['#ffb02a','#ffe08a','#ff6a1a'],9],kraken:['drop',['#7a5cff','#3cd6c8','#b49cff'],8],cat:['star',['#ffffff','#ffc8dc','#fff2a8'],7],ghostparrot:['ember',['#62f0e0','#e8fffb'],6]}[id]||['star',['#ffffff','#ffe9a8'],4];
+  for(let i=0;i<spec[2];i++){const a=(Math.random()-.5)*1.3,v=(120+Math.random()*180)*u;this.particle({k:spec[0],col:spec[1][i%spec[1].length],x,y:y+(Math.random()-.5)*14*u,vx:Math.cos(a)*v*d,vy:Math.sin(a)*v-30*u,life:.55,max:.55,s:(24+Math.random()*16)*u,g:spec[0]==='drop'?240*u:-20*u})}
  }
  step(dt){for(const q of this.parts){q.life-=dt;if(q.vx!=null){q.vy+=(q.g||0)*dt;q.x+=q.vx*dt;q.y+=q.vy*dt}}this.parts=this.parts.filter(q=>q.life>0)}
  drawBack(c,p,run){
